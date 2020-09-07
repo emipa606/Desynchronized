@@ -1,0 +1,35 @@
+v1.7.0 (done)
+Merge DesynchronizedPsychology back into Main Mod as an Integrated Compat [done]
+Clean-up internal code [kind of done]
+more trad chinese localizations [done]
+fixed nullreferenceexception once more by excluding forgotten (hence invalid) news from being transmitted
+
+v1.7.1 (scheduled)
+Questionable Ethics integrated support
+Open text from v1.6 for translation [done]
+{
+Tale-News strings: where to put them?
+Need to translate to other languages
+}
+
+v1.7.?
+Steam pic for french translate
+Steam pic for Psychology compatibility
+in-caravan news transmission (workaround)
+
+v1.8.0 (?)
+Open more text from v1.6 for translation [done]
+{
+Tale-News strings: where to put them?
+Need to translate to other languages
+}
+More text from v1.6 for translation
+{
+Mainly for Tale-News related text; consider adopting the Def Paradigm for better compatibility (this will push feature to v2.0)
+}
+
+v?.?.?
+localized aggro; hostile pawns don't affect faction relations unless they leave the map
+faction goodwill affected by news transmission
+generalize pawn banished into pawn released
+generalize pawn kidnapped into pawn captured

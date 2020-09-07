@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <MainButtonDef>
+    <defName>DesynchronizedTab</defName>
+    <label>desynchronized</label>
+    <description>Provides an overview of how news have been circulating in your faction.</description>
+    <tabWindowClass>Desynchronized.Interfaces.MainTabWindow_Desynchronized</tabWindowClass>
+    <order>168</order>
+    <validWithoutMap>true</validWithoutMap>
+  </MainButtonDef>
+</Defs>

@@ -1,0 +1,56 @@
+﻿Even the strong can, one day, become weak. The v2.0 branch provides basic support of the mod for vanilla v1.1.
+
+- Updated to RimWorld v1.1 (parallel to existing v1.0 version (v1.7.*))
+- Pawn Kidnapped now uses the vanilla Pawn Lost thought family instead of the custom Pawn Kidnapped thought family
+- Disabled custom fix for unblocked Colonist Left Unburied thought since this fix should already be in vanilla game
+- Rewritten code that patches vanilla behavior
+- Add/fix selling bonded animals now gives relevant Bonded Animal Sold thought to pet owners as required by v1.1
+- Disabled integrated Psychology compatibility until further notice
+- Dementia patients no longer forget news when Confused Wandering starts
+
+I have noticed that Psychology is currently experiencing a no-update breakdown. This is similar to what happened to ClosedDoors back when RimWorld v1.0 was released. I won't be providing support to any Psychology until both sides (Psychology and here) have settled down.
+
+If you would like to include your error logs when reporting bugs, you may use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.
+
+Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, and current list of issues, among other things about this mod.
+
+//////
+
+Even the strong can, one day, become weak. The v2.0 branch provides basic support of the mod for vanilla v1.1.
+
+[h1]Version 2.0.0: Changelog[/h1]
+[list]
+[*]Updated to RimWorld v1.1 (parallel to existing v1.0 version (v1.7.*))
+[*]Pawn Kidnapped now uses the vanilla Pawn Lost thought family instead of the custom Pawn Kidnapped thought family
+[*]Disabled custom fix for unblocked Colonist Left Unburied thought since this fix should already be in vanilla game
+[*]Rewritten code that patches vanilla behavior
+[*]Add/fix selling bonded animals now gives relevant Bonded Animal Sold thought to pet owners as required by v1.1
+[*]Disabled integrated Psychology compatibility until further notice
+[*]Dementia patients no longer forget news when Confused Wandering starts
+[/list]
+[h1]Known Issues[/h1]
+I have noticed that Psychology is currently experiencing a no-update breakdown. This is similar to what happened to ClosedDoors back when RimWorld v1.0 was released. I won't be providing support to any Psychology until both sides (Psychology and here) have settled down.
+
+[h1]Concluding Notes[/h1]
+If you would like to include your error logs when reporting bugs, you may use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.
+
+Check out the GitHub repo [url=https://github.com/Vectorial1024/Desynchronized]here[/url] to find the source code and previous versions, among other things about this mod.
+
+//////
+
+This is the v2.0.0 version of Desynchronized: Tales and News. Basic support of this mod for RimWorld v1.1 is provided.
+
+# Changelog
+- Updated to RimWorld v1.1 (parallel to existing v1.0 version (v1.7.*))
+- Pawn Kidnapped now uses the vanilla Pawn Lost thought family instead of the custom Pawn Kidnapped thought family
+- Disabled custom fix for unblocked Colonist Left Unburied thought since this fix should already be in vanilla game
+- Rewritten code that patches vanilla behavior
+- Add/fix selling bonded animals now gives relevant Bonded Animal Sold thought to pet owners as required by v1.1
+- Disabled integrated Psychology compatibility until further notice
+- Dementia patients no longer forget news when Confused Wandering starts
+
+I have noticed that Psychology is currently experiencing a no-update breakdown. This is similar to what happened to ClosedDoors back when RimWorld v1.0 was released. I won't be providing support to any Psychology until both sides (Psychology and here) have settled down.
+
+As usual, unpack the .7z file using 7-Zip at the /Mod directory of your game, and you are good to go.
+
+Link to Workshop page for convenience: https://steamcommunity.com/sharedfiles/filedetails/?id=1573233249

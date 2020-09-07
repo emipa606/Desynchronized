@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <PawnTableDef>
+    <defName>NewsKnowledge</defName>
+    <workerClass>PawnTable_PlayerPawns</workerClass>
+    <columns>
+      <li>Label</li>
+      <li>GapTiny</li>
+      <li>KnownNewsCount</li>
+      <li>GapTiny</li>
+      <li>ForgottenNewsCount</li>
+      <li>GapTiny</li>
+      <li>NewsKnowledgeButton</li>
+      <!-->
+      <li>DetailedKnowledgeList</li>
+      -->
+      <li>RemainingSpace</li>
+    </columns>
+    <minWidth>0</minWidth>
+  </PawnTableDef>
+</Defs>

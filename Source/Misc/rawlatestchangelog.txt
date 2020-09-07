@@ -1,0 +1,34 @@
+v1.3.1:
+fixed: banished bonded animals does not give colonist banished
+rewrite: died code rewritten
+rewrite/merge: execution into died
+rewritten most code in compliance of the new standard
+
+v1.3.4
+fixed: giving bloodlust to Bloodlust when Bloodlust is killing animals (I got some new ideas from this)
+pawn sold included in the system
+fixed: sending colonists via pods to factions not giving prisoner sold
+Placeholder letters for selling panws (**)
+translations for kidnap thoughts open for translation
+fixed many bugs related to data loading/saving by changing data and type structure
+
+v1.4.4
+fixed: nullreferenceexception for Finish Off from Allow Tools
+trimmed unused mod files
+mod size minimized thanks to Mehni's PublisherPlus patch
+Known: loading previous version will display one-time error of "Could not find class" InformationKnowledgeStorage, CentralTaleDatabase, ArrivalAction_Sender_Linker
+
+v1.4.5 (maintain the version as v1.4.5; we ain't adding anything new in this version, so the v1.5 tag wont get approved)
+Fixed NullPointerReference when spreading news; inproper pawn ref handling
+Previous talenews not useful -> purged
+Fixed instigatorinfo null pointers
+seamless transition
+underlying api change
+fixed nullreferenceexception for finish off again
+significantly boosted spread chance from 5%/2%/0.05% to 40%/25%/10%
+Deep talk iteration count increased to 5 (due to rare occurence of deeptalk)
+Changing internal data structure of the mod to minimize save file size (index pointing)
+Changing TaleNewsRef into a struct (cancelled)
+Fixed news spread double-giving the sender the thoughts associated with the news (OK)
+Changing data structure to minimize save file size (fixing data redundancy/inaccuracy of "recipient" field) (OK)
+shortening internal scribe names

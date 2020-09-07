@@ -1,0 +1,4 @@
+Confirm all features are done
+Complete updatedefs.xml and steam update text
+Update manifest.xml
+Open RimWorld and upload

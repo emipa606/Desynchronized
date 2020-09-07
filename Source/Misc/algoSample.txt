@@ -1,0 +1,57 @@
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		Console.WriteLine("Hello World");
+		
+		// Input: array of weights, not adjusted.
+		double[] weights = new double[] {1, 3, 3, 7, 2.4, 1.9, 4.2, 9.1, 6.3};
+		
+		// Step 1: Normalization
+		double sumOfWeight = 0;
+		for (int i = 0; i < weights.Length; i++)
+		{
+			sumOfWeight += weights[i];
+		}
+		
+		Console.WriteLine("Normalizing array:");
+		double[] weightsNormalized = new double[weights.Length];
+		for (int i = 0; i < weights.Length; i++)
+		{
+			weightsNormalized[i] = weights[i] / sumOfWeight;
+			Console.Write(weightsNormalized[i].ToString("F3") + " ");
+		}
+		Console.WriteLine();
+		Console.WriteLine("Normalization complete.");
+		
+		// Step 2: Random float from 0 to 1
+		double randomChoice = new Random().NextDouble();
+		Console.WriteLine("RNG selected " + randomChoice.ToString("F3"));
+		
+		// Step 3: Find out which one got selected
+		int selectedIndex = 0;
+		double tempSum = 0;
+		for (int i = 0; i < weightsNormalized.Length; i++)
+		{
+			if (weightsNormalized[i] == 0)
+			{
+				continue;
+			}
+			
+			tempSum += weightsNormalized[i];
+			if (tempSum >= randomChoice)
+			{
+				selectedIndex = i;
+				break;
+			}
+		}
+		
+		// Step 4: Cleanup, and return, etc.
+		Console.WriteLine("ALgorithm selected item with index = " + selectedIndex);
+		Console.WriteLine("Such choice had weight = " + weightsNormalized[selectedIndex]);
+		
+		return;
+	}
+}

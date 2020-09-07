@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: secret-keeper -->
+  <NewsSpreadTendency.degreeDatas.secretkeeper.label>守密者</NewsSpreadTendency.degreeDatas.secretkeeper.label>
+  <!-- EN: [PAWN_nameDef] is careful with [PAWN_possessive] words, and will often choose to keep all kinds of news close to [PAWN_possessive] heart. -->
+  <NewsSpreadTendency.degreeDatas.secretkeeper.description>[PAWN_nameDef]言行謹慎，經常把各類消息放在心中深處。</NewsSpreadTendency.degreeDatas.secretkeeper.description>
+  <!-- EN: gossiper -->
+  <NewsSpreadTendency.degreeDatas.gossiper.label>愛管閒事</NewsSpreadTendency.degreeDatas.gossiper.label>
+  <!-- EN: [PAWN_nameDef] enjoys sharing [PAWN_possessive] opinions on many topics with [PAWN_possessive] friends, and will often tell others what [PAWN_possessive] knows. -->
+  <NewsSpreadTendency.degreeDatas.gossiper.description>[PAWN_nameDef]喜歡向自己的朋友分享自己對諸事的見解，也因此經常透露自己得知的消息。</NewsSpreadTendency.degreeDatas.gossiper.description>
+</LanguageData>

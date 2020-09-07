@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: secret-keeper -->
+  <NewsSpreadTendency.degreeDatas.secretkeeper.label>gardien(ne) des secrets</NewsSpreadTendency.degreeDatas.secretkeeper.label>
+  <!-- EN: [PAWN_nameDef] is careful with [PAWN_possessive] words, and will often choose to keep all kinds of news close to [PAWN_possessive] heart. -->
+  <NewsSpreadTendency.degreeDatas.secretkeeper.description>[PAWN_nameDef] fait attention aux mots qu'[PAWN_pronoun] utilise et va souvent choisir de garder toute sorte de nouvelles proche de son coeur.</NewsSpreadTendency.degreeDatas.secretkeeper.description>
+  <!-- EN: gossiper -->
+  <NewsSpreadTendency.degreeDatas.gossiper.label>commère</NewsSpreadTendency.degreeDatas.gossiper.label>
+  <!-- EN: [PAWN_nameDef] enjoys sharing [PAWN_possessive] opinions on many topics with [PAWN_possessive] friends, and will often tell others what [PAWN_possessive] knows. -->
+  <NewsSpreadTendency.degreeDatas.gossiper.description>[PAWN_nameDef] aime partager les potins de la colonie avec ses amis et donner ses opignons sur de nombreux sujets.</NewsSpreadTendency.degreeDatas.gossiper.description>
+</LanguageData>

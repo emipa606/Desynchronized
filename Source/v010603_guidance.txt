@@ -1,0 +1,19 @@
+string empty = (dinfo.HasValue ? dinfo.Value.Def.deathMessage.Formatted(pawn.LabelShort.CapitalizeFirst(), pawn.Named("PAWN")) : ((hediff == null) ? "PawnDied".Translate(pawn.LabelShort.CapitalizeFirst(), pawn.Named("PAWN")) : "PawnDiedBecauseOf".Translate(pawn.LabelShort.CapitalizeFirst(), hediff.def.LabelCap, pawn.Named("PAWN"))));
+
+string empty;
+
+if (dinfo.HasValue)
+{
+	dinfo.Value.Def.deathMessage.Formatted(pawn.LabelShort.CapitalizeFirst(), pawn.Named("PAWN"));
+}
+else 
+{
+	if (hediff == null)
+	{
+		"PawnDied".Translate(pawn.LabelShort.CapitalizeFirst(), pawn.Named("PAWN"));
+	}
+	else
+	{
+		"PawnDiedBecauseOf".Translate(pawn.LabelShort.CapitalizeFirst(), hediff.def.LabelCap, pawn.Named("PAWN"))));
+	}
+}

@@ -1,0 +1,121 @@
+Additional algorithm to organ harvesting:
+Stealing from prisoner and donating from one should give different thoughts.
+Additional thoughts related to organ donations, and family members' reactions when receiving donation, etc.
+
+Refinement of Human Meat treatment:
+Colonists wouldnt know, but certain conditions (e.g. Gourmand) will trigger a Stark Realization
+SR will apply the debuff 1.5x strong and 1.5x long, etc.
+
+Algorithm for Memory recall:
+Everyone will be able to remember something from the past from time to time.
+Bad mood will tend to cause bad memories to resurface, and vice versa.
+Older people can have more memory recalled at the same time.
+
+Revival
+A whole basket of thoughts, just like "Pawn Died"
+
+Inside-Job Assasination
+(Credits: u/Muznick)
+Pawns may lie about other events if they determine that it is OK for them to lie.
+Lying strength mainly depends on social skill
+This opens up playstyle where undesirables are silently purged one by one.
+
+Additional (Misc?) Thoughts
+(Credits: u/uglychip)
+Made something impressive
+Psychic drone relief
+
+Additional need: Social
+All humanlike pawns have a new need: Social
+The Social need is just similar to Rest, Food, and Joy need.
+Social need has Social Fulfillment
+SF naturally decays to Base Level; Base Level is normally 0
+SF naturally (but only slowly) decreases (to represent the human nature of being a social animal)
+Net Social Fulfillment (NSF) = Absolute Social Fulfillment (ASF) - Base Level (BL)
++ve SF levels gives mood bonus, while -ve SF levels gives mood penalty
+Neutral and positive social interactions give positive SF; others give negative SF
+Having more friends (and, by extension, family members), *decreases* the Base Level, while having more rivals *increases* the Base Level
+Opinions towards pawns will magnify the SF offset of the interactions. Preferrably, friends and families produce more positive SF deltas, while rivals produce more negative SF deltas.
+New Mental Break: Social Anxiety: SF decrement rate is increased; Base Level is negatively offset
+New Mental Break: Demotivation: social interactions no longer gives SF deltas.
+Modify Mental Break: Hide in Room: SF decay rate moderately increased
+
+Refinement mechanics: Forgetfulness
+Each TaleNews has a Relevance value to a Pawn
+Relevance can be influenced by many factors subject to discussion
+Over time, the TN with low Relevance are forgotten
+"Forgotten" TN can be Remembered; such remembrance generates a thought with less strength and duration compared to the original thought
+
+Refinement mechanics: Information Confidence
+If a colonist receives a TN first-hand, such TN will always have a 100% Confidence
+(Maybe the 100% confidence is not permanent; but that's another story)
+When spreading TN, the spreader will have an option to lie about the TN
+The chance of lying can depend on several factors; one might be the Severity, another might be the Estimated Relevance calculated by the spreader, yet another could be Opinion
+The receiver of TN will then also have a chance to determine if the spreader is lying
+If the lie is not discovered, the TN Confidence will get a 100% rating, else 0%.
+The Confidence rating from lies can be further adjusted based on social skills, etc.
+Each colonist will have his own "Information Confidence Average"
+A 50% ICA goves 0 mood delta; the more the ICA deviates from 50%, the stronger the directed mood delta is for the colonist
+The colonist will get the "Information confidence (v.strong/strong/weak/v.weak)" thought based on his ICA
+
+Multiplayer and What Not
+Zetrith's Multiplayer
+Phi Mod Multiplayer
+
+Additional mechanics affecting faction ratings
+Good actions boost relations (duh)
+Bad actions reduce relations (duh)
+Justified actions depends on context:
+Direct quote from u/DoomAngelBlade:
+Relationship of a pawn towards faction.
+
+
+
+If a FACTION did a raid against colony and destroyed alot of stuff - Colonists should have a mood buff when faction member was killed.
+
+"A murderer just died. World is getting brighter"
+
+"A menace is liberated. Because of that we or someone else might see another day"
+
+
+
+Or if a FACTION killed friends/relatives/love of his life/etc. - also add a "REVENGE" against faction, giving a mood boost for each of the faction member killed.
+
+"We clean the world from a trash "FACTION" is"
+
+
+
+If there is a "Radio call with a pawn chased" scenario - refusing it would impact negatively on a colonist who hates the faction that chases pawn would impact negatively on mood of a colonist.
+
+"We let those savages get an innocent person"
+
+"We look upon rapists,murderers,thieves,torturers and their actions but do nothing to protect the innocent. We should have helped"
+
+Also add proffession related relationships towards pawns.
+
+I know that there are patients who like to say F U to doctors and do nothing but.
+
+When a doctor just pulls you from death's hands - the first thing that you will do is thank the doctor, not insult him.
+
+Or your love/relative.
+
+"PAWN saved his/her life. I am thankful to PAWN".
+
+"PAWN tried to help him/her, but failed. I still respect PAWN's attempt to make it better"
+
+"PAWN failed to save him/her! That [INSULT of some kind]!"
+
+
+
+Or if a piece of defensive equipment that is worn by pawn let's him survive the attack(Flak chests,marine armors,helmets,etc.).
+
+"Because of PAWN's hard work - I will see another day"
+
+"PAWN didn't do this good. Because of him I am hurt"
+
+"He was clearly doing this terrible so I could die"
+
+Alignment, Aspiration, and Faction reputation
+ach action taken by your colonists will generate alignment points
+enough alignment points, and you gain an aspiration
+faction reputation can be reshaped to reflect how they view your ideas. Compatible alignments get higher points, incompatible ones lower points

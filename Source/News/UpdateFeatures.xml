@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Use either "\n" or XML whitespace return to make linebreaks; both method works -->
+  <HugsLib.UpdateFeatureDef Abstract="true" Name="UpdateFeatureBase_Desynchronized">
+    <modNameReadable>Desynchronized: Tales and News</modNameReadable>
+    <modIdentifier>com.vectorial1024.rimworld.desynchronized</modIdentifier>
+    <linkUrl>https://github.com/Vectorial1024/Desynchronized</linkUrl>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_v1_0_0</defName>
+    <assemblyVersion>1.0.0</assemblyVersion>
+    <content>Greetings, mod user. Thank you for using &lt;color=cyan&gt;Desynchronized&lt;/color&gt;, a WIP mod that aims to change how Colonists react to the outside world.|The only change in this update is that &lt;color=cyan&gt;Desynchronized&lt;/color&gt; now requires HugsLib, which is also the reason why you are reading this right now.|Stay safe, report bugs, and have fun!</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_v1_1_0</defName>
+    <assemblyVersion>1.1.0</assemblyVersion>
+    <content>A slightly overdue update! But who cares; at least we got this mod updated. Yay!|&lt;b&gt;Implemented Mandatory Censorship Scheme&lt;/b&gt;
+The Scheme filteres information about the following events that originate from outside the Colonists' home-base:|- Executions, Organ Harvests, and Banishments
+- Prisoners Sold
+- Colonist Died and associated thoughts|Note that the vanilla game has already implemented a similar Scheme to filter the following events:|- Know Butchered Human
+- Buried in Sarcophagus
+- Colonist Left Unburied.|&lt;b&gt;On a more serious note:&lt;/b&gt;
+- Reduced Steam Workshop file size thanks to PublisherPlus
+- Changing the direction of this mod from a simple, low-level "Gulag mod" to a complex, high-level "Censorship mod"|That's all! Stay safe, report bugs, and have fun!</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_2_0</defName>
+    <assemblyVersion>1.2.0</assemblyVersion>
+    <content>Weekly update. Version 1.2 will focus on Colonists' reactions towards kidnaps in raids. Don't you realize that colonists won't have any thoughts whatsoever when someone is kidnapped?|- Added new Thought: Colonist Kidnapped (Stacks 5 times, with -2/-3/-4/-5/-6)
+- More kidnap-related thoughts to come in later v1.2.* updates|I have also implemented a script that logs the Tales of kidnapped Colonists onto your desktop when DevMode is turned on. This will be useful later when I start to implement the Information Barricade.|That's all! Stay safe, report bugs, and have fun!</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_2_1</defName>
+    <assemblyVersion>1.2.1</assemblyVersion>
+    <content>Version 1.2.1 is here to add in more Thoughts about kidnaps.|- Mod now no longer contains the Harmony library
+- Added some new Thoughts related to Colonist kidnapping
+- Added new Thought: Prisoner released dangerously
+- Fixed bug related to Colonists dying while being carried|To reduce clutter, the changelogs displayed here and on Steam are simplified.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, and detailed changelogs.|That's all! Stay safe, report bugs, and Merry Christmas!</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_3_0</defName>
+    <assemblyVersion>1.3.0</assemblyVersion>
+    <content>I originally planned to upload a holiday special v1.2.2 a few days ago, but couldn't make it, so now, we have this huge update to Desynchronized: the version 1.3.0!|- Major rewrite of underlying code to conform to the "information system" standard
+- Effects of existing features are unchanged
+- Kidnaps: now has all the family-relation Thoughts like "my grandfather was kidnapped", "my cousin was kidnapped" etc.
+- Banishment: new placeholder letter for when you banish a Colonist
+- Executions: new placeholder letter for when you execute a Colonist/Guest (Prisoners are technically Guests)
+- Organ Harvests: no new features (i.e., should work just as before)
+- Slight (maybe non-noticable) optimization: game no longer attempts to give out thoughts when pawns are downed
+- Fixed bug: Colonists should now not know about Executions happening outside of their home map (for real this time)|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, and detailed changelogs.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_3_1</defName>
+    <assemblyVersion>1.3.1</assemblyVersion>
+    <content>Version 1.3.1 is here to restructure the mod in preparation to implement the "information system". And I have already decided the name of that system too. And college is resuming soon, too...|- Most code has been rewritten in compliance to the new standard
+- Internal logic update: executions are now considered as another form of death
+- Fixed bug: banishing a bonded animal should now correctly give Bonded Animal Banished instead of Colonist Banished (oh lol)|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, and detailed changelogs.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_3_2</defName>
+    <assemblyVersion>1.3.2</assemblyVersion>
+    <content>Hotfix v1.3.2 coming through!|- Resolved critical bug: when pawns (Colonists, Prisoners, Animals, etc.) die, NullReferenceExceptions should no longer be thrown|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, and detailed changelogs.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_3_3</defName>
+    <assemblyVersion>1.3.3</assemblyVersion>
+    <content>Hotfix v1.3.3, coming in hot!|- Resolved critical bug: when pawns (Colonists, Prisoners, Animals, etc.) die, NullReferenceExceptions should no longer be thrown|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, and detailed changelogs.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_3_4</defName>
+    <assemblyVersion>1.3.4</assemblyVersion>
+    <content>Version 1.3.4 is finally here! There was an unexpected amount of bugs in the previous version, so I couldn't make it in time to post an update. But still, here we are!|- Rewritten data structures to kill bugs that occur in the saving/loading process
+- (Residue bugs from previous version's savefile may still be around, but should be less severe)
+- Included "Prisoner/Colonist sold" into the "information system"
+- Fixed bug: Gifting Colonists to Factions via drop-pods should now give mood debuff; this debuff applies to those in the map where the pods were launched
+- Fixed bug: Bloodlust pawns should no longer get "Killed Someone" when they kill animals
+- Flavour texts for "Colonist Kidnapped" and related Thoughts now open for translation|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, and detailed changelogs.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_4_0</defName>
+    <assemblyVersion>1.4.0</assemblyVersion>
+    <content>It's finally here: Version 1.4. After 2 months in development, I am proud to announce that we have reached a major milestone of development: the completion of the news-spreading system.|- New concept: Tale-News (TN). A TN is a representation of an in-game event that has occured. The list of in-game events that can be represented by  the TN system will be expanded in the future as development continues. Details are on GitHub.
+- New behavior: TN spreading. When doing chit-chat and deep-talk, the initiator has a small chance to tell the recipient one entry of TN. Details are on GitHub.
+- New settings: You have the option to disable the TN-spreading behavior (which is enabled by default). Consult your Mod Settings for details.
+- Known issue: (Steam only) Mod size boomed back up to 20MB. PublisherPlus died after the recent RimWorld update.|Many thanks to the cumulative 7000 subscribers of this mod! Your support has propelled me forward even when times are tough, to encourage me to finish what I started.|And also, 新年快樂! Happy Chinese New Year!|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, detailed changelogs and elaboration of features.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_4_1</defName>
+    <assemblyVersion>1.4.1</assemblyVersion>
+    <content>Hotfix v1.4.1 coming through!|- Resolved minor bug: NullReferenceExceptions when pawns are ticking|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, detailed changelogs, and elaboration of features.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_4_2</defName>
+    <assemblyVersion>1.4.2</assemblyVersion>
+    <content>Hotfix v1.4.2 coming through!|- Resolved critical bug: Unable to generate world properly when starting out with a new colony (introduced in v1.4.1)|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, detailed changelogs, and elaboration of features.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_4_3</defName>
+    <assemblyVersion>1.4.3</assemblyVersion>
+    <content>Version 1.4.3 is here to bring you some New Year happiness.|- Clarification/New Pawn stat: News spread tendency (NST). This is the value that this mod will use in calculating likeliness for pawns to spread news. It is a Social stat. Base value of NST is 0.02 (2%).
+- New trait spectrum related to NST: Gossiper (+0.03 NST) and Secret-keeper (-0.015 NST). This trait spectrum is less common than average.
+- Fixed bug: pawns trying to spread news will no longer have 50% chance to throw ArgumentOutOfRangeException.
+- (Steam only) An attempt was made to reduce mod file size (from ~27 MB to ~15 MB)|If you would like to include your error logs when reporting bugs, please use PasteBin ( https://pastebin.com/ )|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, detailed changelogs and elaboration of features.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_4_4</defName>
+    <assemblyVersion>1.4.4</assemblyVersion>
+    <content>Version 1.4.4 is here to do some house-keeping work.|- Fixed bug: doing Finish Off (from Allow Tools) on human pawns will no longer throw NullReferenceException
+- Fixed bug that might have broken the entire TNDBS
+- Removed unused/now-irrelevant code
+- (Steam only) Reduced mod size down to &lt;1 MB (credits to Mehni's PublisherPlus patch!)|One known issue: when loading a save-game that was made with a previous version of this mod enabled, the game will show some &lt;b&gt;one-time errors&lt;/b&gt; along the lines of "Could not find class" in the debug log. The affected classes are: InformationKnowledgeStorage, CentralTaleDatabase, ArrivalAction_Sender_Linker. &lt;b&gt;This is harmless.&lt;/b&gt;|If you would like to include your error logs when reporting bugs, please use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, detailed changelogs and elaboration of features.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_4_5</defName>
+    <assemblyVersion>1.4.5</assemblyVersion>
+    <content>Version 1.4.5 is finally here! While I haven't got the time to update this in the past few weeks, this gave me plenty of time to test and patch the mod.|- Fixed bug: NullReferenceException when spreading news
+- Fixed bug: Finishing Off (from Allow Tools) on human pawns will no longer throw NullReferenceException (for real this time)
+- Fixed bug: spreading news should no longer give the sender another mood debuff of the same event
+- Changed news spread base chance due to traits from 5%/2%/0.05% to 40%/25%/10%
+- Changed feature: Increased the number of dice throw from 3 to 5 for Deep Talk news spread checking
+- Changed data structure to minimize size of data inside save-files
+- Some underlying API changes here and there|The bugs that this version patches has essentially made all the previous TaleNews entries useless. Hence, previous entries of TaleNews will be discarded; your colonists will receive TaleNews correctly with a fresh start.|If you would like to include your error logs when reporting bugs, please use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, detailed changelogs and elaboration of features.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_4_6</defName>
+    <assemblyVersion>1.4.6</assemblyVersion>
+    <content>Version 1.4.6 is hastily pushed out in response to the unending inconclusive bug reports that I have been receiving since time immemorial.|- Restructured code of TaleNewsPawnDied.GiveThoughtsToReceipient in an attempt to make bug logs clearer and more sensible|For those that have reported errors of "Cannot give thoughts; something went wrong", please reproduce the error and post the log. The log you obtain this time should be slightly different than before.|If you would like to include your error logs when reporting bugs, please use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, detailed changelogs and elaboration of features.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_5_0</defName>
+    <assemblyVersion>1.5.0</assemblyVersion>
+    <content>So many things have happened since the last proper update, and so much uncertainty await in the future, and here we are, packing version 1.5.0 for all to use.|- New feature: Pawns referenced by TaleNews will be kept by the game as world pawns
+- Hence, fixed bug: No more NullReferenceException when passing news (finally)
+- New feature: This mod will verify and fix most of its data when a savefile is loaded to make sure only valid data is loaded by the game
+- New feature: Pawns now assign a "news importance" score to every news they have received
+- New feature: News that have a higher importance score will be more likely to be transmitted
+- New feature: The news importance of pawn's death depends on several factors, but it mainly depends on the relationship between the news receiver and the victim
+- Note: News importance will naturally decay over time
+- Note: Other news types currently have place-holder, constant importance scores
+- Fixed bug: Selling pawns to other factions should no longer give "Loved one sold" thoughts to pawns off-map|With the newly-implemented, standardized self-verification feature, this update does not require you to start a new game. However, the self-verification will remove most of the existing TaleNews about pawn death because most of them are invalid; the victims they are describing are already discarded by the game, so the TaleNews become invalid. A handful of TaleNews are not affected, especially those about recent deaths (deaths in the last 24 in-game hours).|Colonies that rely on hunting and butchering will be most affected by this update since their games and poultries are forcibly retained even after their death. Hence, the next update will introduce "forgetfulness" to pawns. News with low importance will be "forgotten", allowing the dead to finally rest and pass on.|If you would like to include your error logs when reporting bugs, you are recommended to use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, detailed changelogs and elaboration of features.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_5_1</defName>
+    <assemblyVersion>1.5.1</assemblyVersion>
+    <content>Version 1.5.1 is here to kill some bugs.|- Added translation (French/Francais); credits to Mihokyo for helping out with the translation!
+- Fixed bug: no more NullReferenceException when losing pawns during player-initiated attacks on faction bases
+- Fixed bug: no more complaints from RimWorld about null-null "dummy" faction relations and "non-existent" self-self faction relations
+- Fixed bug: no more ArgumentOutOfRangeException when attempting to randomly select a piece of news to transmit
+- Cleaned up left-over developer log spam|I have come up with a good way to manage translations. From now on, the localization XML file names will also mention the version of the mod, so it will be easier for translators to spot new texts that require translation.|As a result, we are now accepting translations.|If you would like to include your error logs when reporting bugs, you may use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, detailed changelogs and elaboration of features.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_5_2</defName>
+    <assemblyVersion>1.5.2</assemblyVersion>
+    <content>Version 1.5.2 is here to improve compatibility.|- Compatibility: cleaning world pawns using RuntimeGC will not remove pawns referenced by the TaleNews system|Please note that, due to code protection, I am unable to prevent RuntimeGC from removing pawns when doing "deconstruct animal family", so please avoid using that feature.|If you would like to include your error logs when reporting bugs, you may use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, detailed changelogs and elaboration of features.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_5_3</defName>
+    <assemblyVersion>1.5.3</assemblyVersion>
+    <content>Bug fixes! Another round of bug fixes for version 1.5.3!|- Fixed bug: users without RuntimeGC should no longer receive errors of "unable to patch", etc.
+- Fixed bug: more refinements in calculating faction-faction goodwill|If you would like to include your error logs when reporting bugs, you may use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, current list of issues, detailed changelogs and elaboration of features.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_6_0</defName>
+    <assemblyVersion>1.6.0</assemblyVersion>
+    <content>The North remembers.|- New feature: new main tab for this mod
+- New feature: new tale-news UI to let us view tale-news in-game
+- The tale-news UI can either display the list of all tale-news or simply display how much tale-news an individual pawn knows
+- Removed all previous settings in the Mod Settings section; the mod has grown large enough such that fine details are tedious to manage
+- Added mod setting: configure whether the new tale-news UI should auto-pause the game
+- More texts available for translation|There are complaints of late-game lag related to the use of this mod. This is simply a flaw in the currently-incomplete system. Please hold out for a few more days (no more than 7 days), because the fix is coming.|If you would like to include your error logs when reporting bugs, you may use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, current list of issues, detailed changelogs and elaboration of features.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_6_1</defName>
+    <assemblyVersion>1.6.1</assemblyVersion>
+    <content>The North remembers.|- New concept: forgetfulness - tale-news with sufficiently low importance score will be forgotten by pawns
+- Adjusted calculation of news importance for "pawn died" news
+- Added more French translation (credits to Mihokyo)
+- Fixed null-reference bug introduced in v1.6.0
+- The news tracker UI now auto-close when the menu main tab is clicked|Recalculation of news forgetfulness may take some time if you already have a lot of tale-news accumulated in your playthrough. You may lag out a bit during the process. I may optimize this process in a later version.|The introduction of forgetfulness means that RuntimeGC users may now clear a significant number of accumulated dead pawns using RuntimeGC. This should return performance levels to what it should have been. Just wait for about 3-6 in-game hours, and run that world-pawn cleaning function.|If you would like to include your error logs when reporting bugs, you may use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, current list of issues, detailed changelogs and elaboration of features.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_6_2</defName>
+    <assemblyVersion>1.6.2</assemblyVersion>
+    <content>*Insert Spongebob Squarepants brain meltdown scene*|- Various improvements to the existing tale-news interface
+- Optimized some codes
+- Fixed some bugs
+  - Fixed out-of-bounds error when a pawn who does not remember any news attempts to transmit a news
+- Made offerings to the One True God of RimWorld, Randy Random, to quell the spirits|I hope there are no bugs this time around. Afterall, Randy is hard to please.|If you would like to include your error logs when reporting bugs, you may use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, current list of issues, detailed changelogs and elaboration of features.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_6_3</defName>
+    <assemblyVersion>1.6.3</assemblyVersion>
+    <content>Well, it's not like it will do anyone good if I keep withholding updates, so here ya go.|- New feature: pawns with Alzheimer's now forget news when they begin to "wander confused"
+- New feature: you can now see how pawns died (hediff) in the news tooltip
+- Slight improvement to the news UI
+- Fixed some bugs
+  - Added more safety checks with the relation tracker
+  - Tale-news can now be generated in caravans too
+  - Duplicate translation string for "kidnapped" removed
+- Code cleaning here and there|If you would like to include your error logs when reporting bugs, you may use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, current list of issues, detailed changelogs and elaboration of features.
+</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_6_3_1</defName>
+    <assemblyVersion>1.6.3.1</assemblyVersion>
+    <content>Clarification: pawn deaths caused by Prepare Carefully will be excluded by the TNDBS to fix exceptions. Also fixed missing textures in v1.6.3... whoops.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_1_7_0</defName>
+    <assemblyVersion>1.7.0</assemblyVersion>
+    <content>Life is full of stories; it's just whether you wanna pay attention to them. The v1.7 branch will focus on adding more types of news for your Colonists to share.|- New feature: Built-in Psychology support; now also handles Bleeding Heart, Desensitized, etc.
+- More Trad-Chinese translations 填補了繁中翻譯的各空洞
+- Some texts from v1.6 now open for translation
+- Fixed some bugs
+  - No more NullReferenceException while transmitting news by ignoring invalid news entries
+  - No more double My Organ Was Harvested debuff (Oooh yeah)
+- Cleaned up some more code|There are some problems with the current way of "handling" caravan member news transmission. It is found that vanilla RimWorld never had *any* code to let caravan members interact with each other, so the current way of relying on social interactions will not work. A workaround is needed.|If you would like to include your error logs when reporting bugs, you may use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, and current list of issues, among other things about this mod.</content>
+  </HugsLib.UpdateFeatureDef>
+  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+    <defName>Desync_2_0_0</defName>
+    <assemblyVersion>2.0.0</assemblyVersion>
+    <content>Even the strong can, one day, become weak. The v2.0 branch provides basic support of the mod for vanilla v1.1.|
+- Updated to RimWorld v1.1 (parallel to existing v1.0 version (v1.7.*))
+- Pawn Kidnapped now uses the vanilla Pawn Lost thought family instead of the custom Pawn Kidnapped thought family
+- Disabled custom fix for unblocked Colonist Left Unburied thought since this fix should already be in vanilla game
+- Rewritten code that patches vanilla behavior
+- Add/fix selling bonded animals now gives relevant Bonded Animal Sold thought to pet owners as required by v1.1
+- Disabled integrated Psychology compatibility until further notice
+- Dementia patients no longer forget news when Confused Wandering starts
+- Fixed potential mod conflict due to bad HugsLib news config|I have noticed that Psychology is currently experiencing a no-update breakdown. This is similar to what happened to ClosedDoors back when RimWorld v1.0 was released. I won't be providing support to any Psychology until both sides (Psychology and here) have settled down.|If you would like to include your error logs when reporting bugs, you may use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, and current list of issues, among other things about this mod.
+</content>
+  </HugsLib.UpdateFeatureDef>
+  <!--
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase_Desynchronized">
+		<defName>Desync_1_2_0</defName>
+		<assemblyVersion>1.2.0</assemblyVersion>
+		<content>First paragraph.|img:Things/Item/Meal/Fine,Things/Item/Meal/Lavish,Things/Item/Meal/Simple|caption:This is a caption.|Another paragraph with &lt;b&gt;rich text&lt;/b&gt;.</content>
+	</HugsLib.UpdateFeatureDef>
+    -->
+</Defs>

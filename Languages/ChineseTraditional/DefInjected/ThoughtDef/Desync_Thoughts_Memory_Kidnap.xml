@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: colonist kidnapped -->
+  <KnowColonistKidnapped.stages.colonist_kidnapped.label>colonist kidnapped</KnowColonistKidnapped.stages.colonist_kidnapped.label>
+  <!-- EN: One of our people was kidnapped. I don't feel safe staying around. -->
+  <KnowColonistKidnapped.stages.colonist_kidnapped.description>One of our people was kidnapped. I don't feel safe staying around.</KnowColonistKidnapped.stages.colonist_kidnapped.description>
+</LanguageData>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: all pawns -->
+  <AllPawns>all pawns</AllPawns>
+  <!-- EN: Viewing news knowledge of:  -->
+  <ViewingKnowledgeOf>Viewing news knowledge of: </ViewingKnowledgeOf>
+  <!-- EN: Toggle display permanently forgotten news -->
+  <ForgottenNewsToggle>Toggle display permanently forgotten news</ForgottenNewsToggle>
+  <!-- EN: Permanently-forgotten news are not hidden. -->
+  <ShowingForgottenNews>Permanently-forgotten news are not hidden.</ShowingForgottenNews>
+  <!-- EN: Hiding permanently-forgotten news. -->
+  <HidingForgottenNews>Hiding permanently-forgotten news.</HidingForgottenNews>
+  <!-- EN: ID # -->
+  <IDNumber>ID #</IDNumber>
+  <!-- EN: The ID of this tale-news. -->
+  <IDNumber_Explanation>The ID of this tale-news.</IDNumber_Explanation>
+  <!-- EN: Tale-news type -->
+  <TaleNewsType>Tale-news type</TaleNewsType>
+  <!-- EN: The type of this tale-news. -->
+  <TaleNewsType_Explanation>The type of this tale-news.</TaleNewsType_Explanation>
+  <!-- EN: Importance score of this news:  -->
+  <ImportanceScore>Importance score of this news: </ImportanceScore>
+  <!-- EN: News with higher importance score will be more likely to be passed on. -->
+  <ImportanceScore_Explanation>News with higher importance score will be more likely to be passed on.</ImportanceScore_Explanation>
+  <!-- EN: Tale-news details -->
+  <TaleNewsDetails>Tale-news details</TaleNewsDetails>
+  <!-- EN: Permanently forgotten -->
+  <NewsIsPermForgot>Permanently forgotten</NewsIsPermForgot>
+  <!-- EN: No one can remember the details of this tale-news anymore. -->
+  <NewsIsPermForgot_Explanation>No one can remember the details of this tale-news anymore.</NewsIsPermForgot_Explanation>
+  <!-- EN: Forgotten -->
+  <NewsIsLocalForgot>Forgotten</NewsIsLocalForgot>
+  <!-- EN: This pawn cannot remember the details of this tale-news, but perhaps it will when others talk about it. -->
+  <NewsIsLocalForgot_Explanation>This pawn cannot remember the details of this tale-news, but perhaps it will when others talk about it.</NewsIsLocalForgot_Explanation>
+
+</LanguageData>

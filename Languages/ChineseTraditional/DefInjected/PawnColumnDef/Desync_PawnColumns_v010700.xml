@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Count the number of news that are known by this pawn. -->
+  <KnownNewsCount.headerTip>計算本pawn所記得的新聞的數量。</KnownNewsCount.headerTip>
+  <!-- EN: Count the number of news that are forgotten by this pawn. -->
+  <ForgottenNewsCount.headerTip>計算本pawn所遺忘的新聞的數量。</ForgottenNewsCount.headerTip>
+  <!-- EN: view individual news knowledge -->
+  <NewsKnowledgeButton.label>檢視個人所知新聞</NewsKnowledgeButton.label>
+</LanguageData>

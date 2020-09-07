@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: News UI auto-pauses game -->
+  <NewsUIAutoPause_title>新聞介面會自動暫停遊戲</NewsUIAutoPause_title>
+  <!-- EN: If enabled, opening any of the detailed UI of this mod will auto-pause the game. The effect is similar to opening the trade interface.\n\nEnabled by default. -->
+  <NewsUIAutoPause_descr>若啟用本選項，則開啟本mod之中任何的詳盡新聞介面都會使遊戲暫停。其效果相當於開啟貿易介面的自動暫停效果。\n\n預設為啟用。</NewsUIAutoPause_descr>
+</LanguageData>

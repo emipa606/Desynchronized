@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: all pawns -->
+  <AllPawns>所有pawn</AllPawns>
+  <!-- EN: Viewing news knowledge of:  -->
+  <ViewingKnowledgeOf>正在檢視此pawn所知的新聞：</ViewingKnowledgeOf>
+  <!-- EN: Toggle display permanently forgotten news -->
+  <ForgottenNewsToggle>切換是否展示無人記起的新聞</ForgottenNewsToggle>
+  <!-- EN: Permanently-forgotten news are not hidden. -->
+  <ShowingForgottenNews>照常展示無人記起的新聞</ShowingForgottenNews>
+  <!-- EN: Hiding permanently-forgotten news. -->
+  <HidingForgottenNews>不展示無人記起的新聞</HidingForgottenNews>
+  <!-- EN: ID # -->
+  <IDNumber>ID #</IDNumber>
+  <!-- EN: The ID of this tale-news. -->
+  <IDNumber_Explanation>本新聞的ID。</IDNumber_Explanation>
+  <!-- EN: Tale-news type -->
+  <TaleNewsType>新聞記錄類型</TaleNewsType>
+  <!-- EN: The type of this tale-news. -->
+  <TaleNewsType_Explanation>本新聞記錄的類型。</TaleNewsType_Explanation>
+  <!-- EN: Importance score of this news:  -->
+  <ImportanceScore>本新聞的重要性評分：</ImportanceScore>
+  <!-- EN: News with higher importance score will be more likely to be passed on. -->
+  <ImportanceScore_Explanation>重要性評分愈高，新聞愈易被傳出去。</ImportanceScore_Explanation>
+  <!-- EN: Tale-news details -->
+  <TaleNewsDetails>新聞記錄詳情</TaleNewsDetails>
+  <!-- EN: Permanently forgotten -->
+  <NewsIsPermForgot>永久遺忘</NewsIsPermForgot>
+  <!-- EN: No one can remember the details of this tale-news anymore. -->
+  <NewsIsPermForgot_Explanation>已經無人記得本新聞的任何詳情了。</NewsIsPermForgot_Explanation>
+  <!-- EN: Forgotten -->
+  <NewsIsLocalForgot>遺忘</NewsIsLocalForgot>
+  <!-- EN: This pawn cannot remember the details of this tale-news, but perhaps it will when others talk about it. -->
+  <NewsIsLocalForgot_Explanation>雖然本pawn忘記了新聞的詳情，但仍可靠他人口述而重新記起。</NewsIsLocalForgot_Explanation>
+</LanguageData>

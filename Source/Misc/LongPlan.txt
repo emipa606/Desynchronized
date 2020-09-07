@@ -1,0 +1,40 @@
+// v1.4: The TNDBS
+v1.4.0: TNDBS [Done]
+v1.4.1: New Traits (Spreading Only) [Done]
+v1.4.1.1: AllowTool compatibility (FinishOff job driver) [Done]
+v1.4.2: Schizophrenia/Dementia, Forgetfulness, and News Relevance [Kind of Done]
+v1.4.3: User Interface to read the Tale-News, or Debug-mode runtime reading of Tale-News
+// v1.5: Life, Death, and Well-Being
+v1.5.-1: Psychology Compatibilities
+v1.5.0: Raid/Attack Repelled
+v1.5.1: Rescues
+v1.5.2: Revived
+v1.5.3: Pacifist and Animal Lover
+v1.5.4: Healthiness
+v1.5.5: New Mental Break (Extreme): Self-Harming { Bump head to wall, self-cut (at wrist etc.), self-burn, hit self, unbind bandages (if possible) }
+v1.5.6: Self-Harm now has a hidden, random % to turn into Suicide Attempt; new Thoughts for unfortunate suicides
+// v1.6: The Society
+v1.6.-1: Questionable Ethics Compatibilities
+v1.6.0: Social-induced mood change
+v1.6.1: New Traits related to social mood change
+v1.6.2: New Mental Break (Minor): Indulgence (attempts to gain joy)
+v1.6.3: Comms Console Network
+// v1.7: Deep State
+v1.7.0: Stricter TNDBS: per room
+v1.7.0.1: The Government
+v1.7.1: Secrets, Banned News, and Rumors
+v1.7.2: Opinion of Colony, and "Public Education"
+v1.7.2.1: New Traits regarding public opinion; such opinion should also impact social interactions
+v1.7.3: New Incident: Secret Runaway
+v1.7.4: New Incident: Mass Abandonment
+// v1.8 Practical Governance
+v1.8.0: Jurisdictive System and "reproducible" guilty; New Traits
+v1.8.1: Basic Crimes (Steal, Murder, Affair)
+v1.8.2: Legislative System and actual laws (Psychology?)
+v1.8.3: The Executive and Policing
+// v1.9: Whatever Remains
+
+/// DO NOT DO OPTIONAL BRANCHES; look at the time when we drafted this, now look at the progress, now back to me.
+// Optional branch: Abstractions
+ob.1: Colonial abstraction
+ob.2: 

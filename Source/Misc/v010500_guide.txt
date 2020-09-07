@@ -1,0 +1,8 @@
+*News importance variable and weighted random selection of news
+[Questionable ethics] Nerve stapling
+[Psychology] Bleeding Heart and Double Organ Harvested
+*Properly fix the selling pawn thoughts issue [High prio]
+*Hall of "Figures" [Mid prio]
+
+** Tech Possible to make a all-in-one compatibility pack: use Harmony TargetMethod to indirectly access the classes.
+(Still, fall back to the usual "make-a-mod" procedure for compatibility; that seems a great balance between complexity and readability)

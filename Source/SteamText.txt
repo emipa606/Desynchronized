@@ -1,0 +1,53 @@
+[i]Information spreads from one to another.[/i]
+
+[h1]Quick Info and Compatibility[/h1]
+[list]
+[*]Also known as [i]Desynchronised: Tales and News[/i]
+[*]Requires HugsLib (warning should be given if you don't have HugsLib); place this mod below HugsLib
+[*]Safe to add to existing saves
+[*]Please [b]do not remove[/b] from existing saves
+[*]Should have no problems with most other mods, see below for more info
+[*]Will support other mods
+[*]GitHub repo link is here: https://github.com/Vectorial1024/Desynchronized
+[/list]
+[h1]Mod Description[/h1]
+A continuation of [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1315706945]ClosedDoors[/url] made by MoobyNooby, this mod changes how information spreads among your colonists.
+
+I always find it strange that colonists are able to know things happening basically out of their sight, knowing to an extreme that they can react instantly. ([url=https://rimworldme.tumblr.com/post/165485304313/innocent-prisoners-of-rimworld]Descriptive comic by SrGrafo[/url]) That's why I decide to take the baton, and finish what has been started: to make information spreading more realistic, and to create the inevitable [i]desynchronization of understanding[/i].
+
+With the news-spreading mechanism well-defined and working smoothly across several thousands of colonies galaxy-wide, I present you this question: how much should your pure, innocent colonists know? Should they know everything that has happened in the game, whether big or small, whether bright or dark?
+
+[h1]Features List[/h1]
+Visit the [url=https://github.com/Vectorial1024/Desynchronized]GitHub repo[/url] for more details, but here are some highlights:
+[list]
+[*]Colonists generally does not react to events that happens "off-map" (i.e. not in the map they are in).
+[*]Colonists have a moderate chance to spread news about past events during chats and talks with each other.
+[*]Colonists may find some news more "important" to themselves; they will be more likely to spread them.
+[/list]
+
+[h1]Join Our Cause![/h1]
+Help us out in our common pursuit of success on the Rim by:
+[list]
+[*][b]Reporting Bugs:[/b] no one wants an infestation here. Visit "Reporting Bugs" down there.
+[*][b]Suggesting Features:[/b] we need new ideas to keep things interesting. Visit "Feature Suggestions" down there.
+[*][b]Inspecting the Code:[/b] sometimes, underlying problems are not obvious to spot. Visit the GitHub page to read the code.
+[*][b]Translating the Texts[/b]: if you are a native speaker of your language, you are most welcome to contribute by translating the texts to your own language. [u]You may now submit GitHub pull requests to provide your latest translations of this mod.[/u]
+[/list]
+[h1]The GitHub Repo of This Mod[/h1]
+To streamline things, I am centralizing many things onto the GitHub repo found at https://github.com/Vectorial1024/Desynchronized
+In the GitHub page, you will find:
+[list]
+[*]The source code and the xml files for this mod
+[*]The [url=https://github.com/Vectorial1024/Desynchronized/issues]issues page[/url] for bug-tracking
+[*]A detailed feature list
+[*]Several decentralized planning lists
+[*][url=https://github.com/Vectorial1024/Desynchronized/releases]Non-Steam downloads[/url]
+[*]Detailed changelogs
+[/list]
+[url=https://github.com/Vectorial1024/Desynchronized/releases][h1]Non-Steam Downloads[/h1][/url]
+
+[url=https://github.com/Vectorial1024/Desynchronized/tree/master/Docs/Compatibility.md][h1]Cross-Mod Compatibility[/h1][/url]
+
+[url=https://github.com/Vectorial1024/Desynchronized/tree/master/Docs/Credits.md][h1]Credits and Special Thanks[/h1][/url]
+
+That's all. Wish y'all a successful run on the Rim!

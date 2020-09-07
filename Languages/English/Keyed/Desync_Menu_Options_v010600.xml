@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- EN: News UI auto-pauses game -->
+  <NewsUIAutoPause_title>News UI auto-pauses game</NewsUIAutoPause_title>
+  <!-- EN: If enabled, opening any of the detailed UI of this mod will auto-pause the game. The effect is similar to opening the trade interface.\n\nEnabled by default. -->
+  <NewsUIAutoPause_descr>If enabled, opening any of the detailed UI of this mod will auto-pause the game. The effect is similar to opening the trade interface.\n\nEnabled by default.</NewsUIAutoPause_descr>
+
+</LanguageData>
