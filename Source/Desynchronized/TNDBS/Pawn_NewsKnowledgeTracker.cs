@@ -11,22 +11,10 @@ namespace Desynchronized.TNDBS
         private Pawn pawn;
         private List<TaleNewsReference> newsKnowledgeList = new List<TaleNewsReference>();
 
-        public Pawn Pawn
-        {
-            get
-            {
-                return pawn;
-            }
-        }
+        public Pawn Pawn => pawn;
 
         [Obsolete("Unsafe code.")]
-        public List<TaleNewsReference> ListOfAllKnownNews
-        {
-            get
-            {
-                return newsKnowledgeList;
-            }
-        }
+        public List<TaleNewsReference> ListOfAllKnownNews => newsKnowledgeList;
 
         internal List<TaleNewsReference> NewsKnowledgeList => newsKnowledgeList;
 
@@ -76,7 +64,7 @@ namespace Desynchronized.TNDBS
 
         public bool IsValid()
         {
-            return (pawn != null);
+            return pawn != null;
         }
 
         public void ExposeData()
@@ -119,8 +107,8 @@ namespace Desynchronized.TNDBS
         /// </summary>
         public void ForgetRandom()
         {
-            int count = newsKnowledgeList.Count;
-            int selectedIndex = Rand.Int % count;
+            var count = newsKnowledgeList.Count;
+            var selectedIndex = Rand.Int % count;
             newsKnowledgeList[selectedIndex].Forget();
         }
 
@@ -130,13 +118,13 @@ namespace Desynchronized.TNDBS
         /// <returns></returns>
         public bool ForgetOneRandom()
         {
-            List<TaleNewsReference> listOfKnownNews = this.GetAllValidNonForgottenNewsReferences().ToList();
+            var listOfKnownNews = this.GetAllValidNonForgottenNewsReferences().ToList();
             if (listOfKnownNews.Count == 0)
             {
                 return false;
             }
 
-            int selectedIndex = (int)(((uint)Rand.Int) % listOfKnownNews.Count);
+            var selectedIndex = (int)(((uint)Rand.Int) % listOfKnownNews.Count);
             listOfKnownNews[selectedIndex].Forget();
             return true;
         }

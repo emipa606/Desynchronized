@@ -25,7 +25,7 @@ namespace Desynchronized.TNDBS
         public override string GetDetailsPrintout()
         {
             // IDK what to do here for now.
-            string basic = base.GetDetailsPrintout();
+            var basic = base.GetDetailsPrintout();
             return basic;
         }
 

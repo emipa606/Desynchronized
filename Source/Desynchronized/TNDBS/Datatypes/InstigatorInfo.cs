@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using System;
 using Verse;
 
 namespace Desynchronized.TNDBS.Datatypes
@@ -25,14 +24,8 @@ namespace Desynchronized.TNDBS.Datatypes
 
         public bool PlayerIsInstigator
         {
-            get
-            {
-                return playerIsInstigator;
-            }
-            private set
-            {
-                playerIsInstigator = value;
-            }
+            get => playerIsInstigator;
+            private set => playerIsInstigator = value;
         }
 
         /// <summary>
@@ -40,26 +33,14 @@ namespace Desynchronized.TNDBS.Datatypes
         /// </summary>
         public Pawn InstigatingPawn
         {
-            get
-            {
-                return instigator;
-            }
-            internal set
-            {
-                instigator = value;
-            }
+            get => instigator;
+            internal set => instigator = value;
         }
 
         public Faction InstigatingFaction
         {
-            get
-            {
-                return instigatingFaction;
-            }
-            internal set
-            {
-                instigatingFaction = value;
-            }
+            get => instigatingFaction;
+            internal set => instigatingFaction = value;
         }
 
         /// <summary>

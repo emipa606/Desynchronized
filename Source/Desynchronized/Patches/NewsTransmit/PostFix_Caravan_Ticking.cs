@@ -1,9 +1,5 @@
 ﻿using HarmonyLib;
 using RimWorld.Planet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Verse;
 
 namespace Desynchronized.Patches.NewsTransmit
@@ -17,7 +13,7 @@ namespace Desynchronized.Patches.NewsTransmit
         {
             // Foreach pawn
             ThingOwner<Pawn> cache = __instance.pawns;
-            for (int i = 0; i < cache.Count; i++)
+            for (var i = 0; i < cache.Count; i++)
             {
                 Pawn target = cache[i];
                 //target.interactions.InteractionsTrackerTick();

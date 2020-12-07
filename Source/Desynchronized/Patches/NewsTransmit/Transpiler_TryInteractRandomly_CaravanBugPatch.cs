@@ -1,11 +1,8 @@
 ﻿using Desynchronized.Utilities;
 using HarmonyLib;
 using RimWorld;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection.Emit;
-using System.Text;
 
 namespace Desynchronized.Patches.NewsTransmit
 {
@@ -22,7 +19,7 @@ namespace Desynchronized.Patches.NewsTransmit
         /// <returns></returns>
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
         {
-            bool patchIsComplete = false;
+            var patchIsComplete = false;
 
             foreach (CodeInstruction instr in instructions)
             {

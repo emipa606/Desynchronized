@@ -93,6 +93,7 @@
     <Compile Include="Desynchronized_VersionTracker.cs" />
     <Compile Include="GeneralExtensionHelper.cs" />
     <Compile Include="Handlers\HandlerUtility.cs" />
+    <Compile Include="Handlers\Handler_PawnButchered.cs" />
     <Compile Include="Interfaces\Dialog_NewsTrackerViewer.cs" />
     <Compile Include="Interfaces\MainTabWindow_Desynchronized.cs" />
     <Compile Include="Interfaces\PawnColumnWorker_ForgottenNewsCount.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Patches\News_Sold\PostFix_TPAAGG_ArrivedActions.cs" />
     <Compile Include="Patches\News_Sold\PostFix_TransportPods_PostAdd.cs" />
     <Compile Include="Patches\News_Sold\PreFix_TPAAGG_ArrivedActions.cs" />
+    <Compile Include="Patches\PreFix_MemoryThoughtHandler_TryGainMemory.cs" />
     <Compile Include="Patches\WorldPawns\PostFix_WorldPawnGC_PawnImportanceReason.cs" />
     <Compile Include="Patches\News_Sold\PreFix_GenGuest_PrisonerSoldThoughts.cs" />
     <Compile Include="Patches\News_Sold\PreFix_PawnRelations_PreSold.cs" />
@@ -129,6 +131,7 @@
     <Compile Include="TNDBS\Datatypes\DeathBrutality.cs" />
     <Compile Include="TNDBS\DefaultTaleNews.cs" />
     <Compile Include="TNDBS\Datatypes\InstigatorInfo.cs" />
+    <Compile Include="TNDBS\TaleNewsPawnButchered.cs" />
     <Compile Include="TNDBS\Utilities\NewsSpreadUtility.cs" />
     <Compile Include="TNDBS\Pawn_NewsKnowledgeTracker.cs" />
     <Compile Include="TNDBS\TaleNewsColonyEstablished.cs" />

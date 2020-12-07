@@ -1,5 +1,4 @@
 ﻿using Desynchronized.TNDBS;
-using RimWorld;
 using System.Collections.Generic;
 using Verse;
 
@@ -11,7 +10,7 @@ namespace Desynchronized.Compatibility.RuntimeGC
         {
             // Note: currently, the list contains only the pawns that aer married, which is no where near optimal.
 
-            List<Pawn> excludedByTaleNews = new List<Pawn>();
+            var excludedByTaleNews = new List<Pawn>();
             foreach (Pawn pawn in Find.WorldPawns.AllPawnsAliveOrDead)
             {
                 foreach (TaleNews news in DesynchronizedMain.TaleNewsDatabaseSystem.TalesOfImportance_ReadOnly)

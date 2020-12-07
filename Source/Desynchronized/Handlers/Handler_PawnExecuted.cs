@@ -1,6 +1,5 @@
 ﻿using Desynchronized.TNDBS;
 using Desynchronized.TNDBS.Datatypes;
-using Desynchronized.TNDBS.Utilities;
 using RimWorld;
 using Verse;
 
@@ -31,11 +30,11 @@ namespace Desynchronized.Handlers
         private static void GenerateAndProcessNews(Pawn victim, DeathBrutality brutality)
         {
             //TaleNewsPawnDied executionNews = TaleNewsPawnDied.GenerateAsExecution(victim, brutality);
-            TaleNewsPawnDied executionNews = new TaleNewsPawnDied(victim, brutality);
+            var executionNews = new TaleNewsPawnDied(victim, brutality);
 
             foreach (Pawn other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
             {
-                if (other.IsInSameMapOrCaravan(victim))
+                if (other.IsNearEnough(victim))
                 {
                     other.GetNewsKnowledgeTracker().KnowNews(executionNews);
                 }

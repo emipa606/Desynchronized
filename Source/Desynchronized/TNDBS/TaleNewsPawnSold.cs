@@ -31,7 +31,7 @@ namespace Desynchronized.TNDBS
 
         public override string GetDetailsPrintout()
         {
-            string basic = base.GetDetailsPrintout();
+            var basic = base.GetDetailsPrintout();
             basic += "\nSold to: ";
             if (tradeDeal_OtherParty != null)
             {

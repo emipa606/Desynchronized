@@ -1,9 +1,4 @@
-﻿using HarmonyLib;
-using System.Collections.Generic;
-using System.Reflection.Emit;
-using Verse;
-
-namespace Desynchronized.Patches.News_Sold
+﻿namespace Desynchronized.Patches.News_Sold
 {
     /*
     /// <summary>

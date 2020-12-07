@@ -199,7 +199,7 @@ namespace Desynchronized
                 }
             }
 
-            Pawn_NewsKnowledgeTracker newTracker = Pawn_NewsKnowledgeTracker.GenerateNewTrackerForPawn(instance);
+            var newTracker = Pawn_NewsKnowledgeTracker.GenerateNewTrackerForPawn(instance);
             DesynchronizedMain.TaleNewsDatabaseSystem.KnowledgeTrackerMasterList.Add(newTracker);
             return newTracker;
         }
@@ -214,17 +214,63 @@ namespace Desynchronized
             return self.RelationKindWith(other) == FactionRelationKind.Ally;
         }
 
-        public static bool IsInSameMapOrCaravan(this Pawn subject, Pawn other)
+        public static bool IsNearEnough(this Pawn subject, Pawn other = null)
         {
-            if (subject.MapHeld != null)
+            Map subjectMap = subject.MapHeld;
+            Map targetMap;
+            Room subjectRoom = subject.GetRoom();
+            Room targetRoom;
+            IntVec3 subjectPosition = subject.PositionHeld;
+            IntVec3 targetPosition;
+            if (other != null)
             {
-                return other.MapHeld == subject.MapHeld;
+                // Same caravan
+                if (subject.GetCaravan() != null && subject.GetCaravan() == other.GetCaravan())
+                {
+                    Log.Message("Is in the same caravan");
+                    return true;
+                }
+                targetMap = other.MapHeld;
+                targetRoom = other.GetRoom();
+                targetPosition = other.PositionHeld;
             }
-            if (subject.GetCaravan() != null)
+            else
             {
-                return other.GetCaravan() == subject.GetCaravan();
+                targetMap = Patches.PreFix_Corpse_ButcherProducts.corpseMap;
+                targetRoom = Patches.PreFix_Corpse_ButcherProducts.corpseRoom;
+                targetPosition = Patches.PreFix_Corpse_ButcherProducts.corpseLocation;
             }
-            return false;
+
+            // Different maps
+            if (subjectMap == null || subjectMap != targetMap)
+            {
+                Log.Message("Is in different maps");
+                return false;
+            }
+            // Return true if not checking for room and range
+            if(!DesynchronizedMain.NewsBehaviour_OnlySpreadInSameRoom)
+            {
+                return true;
+            }
+            // Different rooms
+            if (subjectRoom != targetRoom)
+            {
+                Log.Message("Is in different rooms");
+                return false;
+            }
+            // Outside but too far apart
+            if (subjectRoom.PsychologicallyOutdoors && (subjectPosition.DistanceTo(targetPosition) > maximumRange || !subject.Awake() || !GenSight.LineOfSight(subjectPosition, targetPosition, subject.Map, true)))
+            {
+                Log.Message($"{subjectPosition.DistanceTo(targetPosition)} is larger than max: {maximumRange} or {subject.NameShortColored} cannot see corpse");
+                return false;
+            }
+
+            Log.Message("1");
+            Log.Message($"{subject.NameShortColored} is close enough to hear about news. Same room/caravan or {subjectPosition.DistanceTo(targetPosition)} is less than {maximumRange}");
+            Log.Message("2");
+            return true;
         }
+
+        private static readonly float maximumRange = 30f;
     }
 }

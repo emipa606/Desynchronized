@@ -42,7 +42,7 @@ namespace Desynchronized.TNDBS.Utilities
         private static void SelectNewsRandomly(Pawn initiator, Pawn receiver, out TaleNewsReference result)
         {
             // Is now weighted random.
-            List<TaleNewsReference> listInitiator = initiator.GetNewsKnowledgeTracker().GetAllValidNonForgottenNewsReferences().ToList();
+            var listInitiator = initiator.GetNewsKnowledgeTracker().GetAllValidNonForgottenNewsReferences().ToList();
 
             if (listInitiator.Count == 0)
             {
@@ -51,28 +51,28 @@ namespace Desynchronized.TNDBS.Utilities
             else
             {
                 // Collect weights
-                List<float> weights = new List<float>();
+                var weights = new List<float>();
                 float weightSum = 0;
                 foreach (TaleNewsReference reference in listInitiator)
                 {
-                    float importanceScore = reference.NewsImportance;
+                    var importanceScore = reference.NewsImportance;
                     weights.Add(importanceScore);
                     weightSum += importanceScore;
                 }
 
                 // Normalize weights
-                for (int i = 0; i < weights.Count; i++)
+                for (var i = 0; i < weights.Count; i++)
                 {
                     weights[i] /= weightSum;
                 }
 
                 // Select index
-                float randomChoice = Rand.Value;
-                int selectedIndex = -1;
+                var randomChoice = Rand.Value;
+                var selectedIndex = -1;
                 weightSum = 0;
-                for (int i = 0; i < weights.Count; i++)
+                for (var i = 0; i < weights.Count; i++)
                 {
-                    float temp = weights[i];
+                    var temp = weights[i];
                     if (temp == 0)
                     {
                         continue;
@@ -98,7 +98,7 @@ namespace Desynchronized.TNDBS.Utilities
             // DesynchronizedMain.TaleNewsDatabaseSystem.ListAllAwarenessOfPawn(receiver);
 
             // Distinct List
-            List<TaleNewsReference> listDistinct = new List<TaleNewsReference>();
+            var listDistinct = new List<TaleNewsReference>();
 
             // Find out the contents of the distinct list
             foreach (TaleNewsReference reference in listInitiator)

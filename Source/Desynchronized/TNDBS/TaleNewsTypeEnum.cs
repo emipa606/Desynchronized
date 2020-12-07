@@ -23,7 +23,7 @@ namespace Desynchronized.TNDBS
                 case TaleNewsTypeEnum.PawnDied:
                     return typeof(TaleNewsPawnDied);
                 default:
-                    return typeof(Object);
+                    return typeof(object);
             }
         }
     }

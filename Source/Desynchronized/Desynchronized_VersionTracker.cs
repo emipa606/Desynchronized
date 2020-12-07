@@ -9,13 +9,7 @@ namespace Desynchronized
     {
         private string versionOfMod;
 
-        public string VersionOfMod
-        {
-            get
-            {
-                return versionOfMod;
-            }
-        }
+        public string VersionOfMod => versionOfMod;
 
         public override void PostAdd()
         {
@@ -27,7 +21,7 @@ namespace Desynchronized
         {
             base.ExposeData();
             Scribe_Values.Look(ref versionOfMod, "versionOfMod");
-            Version versionWithinSaveFile = new Version(versionOfMod);
+            var versionWithinSaveFile = new Version(versionOfMod);
 
             if (Scribe.mode == LoadSaveMode.LoadingVars)
             {

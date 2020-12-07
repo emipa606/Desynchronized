@@ -1,7 +1,5 @@
 ﻿using Desynchronized.TNDBS;
-using Desynchronized.TNDBS.Utilities;
 using RimWorld;
-using System;
 using Verse;
 
 namespace Desynchronized.Handlers
@@ -66,7 +64,7 @@ namespace Desynchronized.Handlers
             DesynchronizedMain.LogError("Called SendOutNotificationLetter(Pawn) to give out \"Pawn Kidnapped\" letters, which should not happen due to v1.1's own letters.");
 
             string letterLabel = "Kidnapped".Translate() + ": " + victim.LabelShortCap;
-            string letterContent = string.Empty;
+            var letterContent = string.Empty;
             letterContent += "PawnKidnapped".Translate(victim.LabelShort.CapitalizeFirst(), kidnappingFaction.def.pawnsPlural, kidnappingFaction.Name, victim.Named("PAWN"));
 
             Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NegativeEvent, LookTargets.Invalid);
@@ -104,8 +102,7 @@ namespace Desynchronized.Handlers
                 {
                     continue;
                 }
-
-                if (other.IsInSameMapOrCaravan(victim))
+                if (other.IsNearEnough(victim))
                 {
                     other.GetNewsKnowledgeTracker().KnowNews(newsPawnKidnapped);
                 }

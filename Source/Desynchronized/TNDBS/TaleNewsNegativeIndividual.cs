@@ -9,24 +9,12 @@ namespace Desynchronized.TNDBS
         private Pawn primaryVictim;
         protected InstigationInfo instigatorInfo;
 
-        public Pawn PrimaryVictim
-        {
-            get
-            {
-                return primaryVictim;
-            }
-        }
+        public Pawn PrimaryVictim => primaryVictim;
 
         public InstigationInfo InstigationDetails
         {
-            get
-            {
-                return instigatorInfo;
-            }
-            protected set
-            {
-                instigatorInfo = value;
-            }
+            get => instigatorInfo;
+            protected set => instigatorInfo = value;
         }
 
         /// <summary>
@@ -50,7 +38,7 @@ namespace Desynchronized.TNDBS
         [Obsolete("Experimental tech.", true)]
         public static TaleNewsNegativeIndividual GenerateTaleNewsNegativeIndividual(TaleNewsTypeEnum typeEnum, Pawn primaryVictim, InstigationInfo instigatorInfo)
         {
-            TaleNewsNegativeIndividual taleNews = GenerateTaleNewsGenerally(typeEnum) as TaleNewsNegativeIndividual;
+            var taleNews = GenerateTaleNewsGenerally(typeEnum) as TaleNewsNegativeIndividual;
             taleNews.primaryVictim = primaryVictim;
             taleNews.instigatorInfo = instigatorInfo;
             return taleNews;
@@ -78,7 +66,7 @@ namespace Desynchronized.TNDBS
 
         public override bool IsValid()
         {
-            return (PrimaryVictim != null);
+            return PrimaryVictim != null;
         }
 
         internal override void SelfVerify()
@@ -91,7 +79,7 @@ namespace Desynchronized.TNDBS
 
         public override string GetDetailsPrintout()
         {
-            string result = "Victim: ";
+            var result = "Victim: ";
             if (primaryVictim.Name != null)
             {
                 result += primaryVictim.Name;

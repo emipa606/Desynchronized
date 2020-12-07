@@ -21,7 +21,7 @@ namespace Desynchronized.Compatibility.Psychology
             if (__result)
             {
                 // Copied from Desynchronized code.
-                int forcedStage = (int)__instance.BrutalityDegree;
+                var forcedStage = (int)__instance.BrutalityDegree;
                 ThoughtDef thoughtToGive = __instance.Victim.IsColonist ? Psycho_ThoughtDefOf.KnowColonistExecutedBleedingHeart : Psycho_ThoughtDefOf.KnowGuestExecutedBleedingHeart;
                 recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(thoughtToGive, forcedStage), null);
             }

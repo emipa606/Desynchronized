@@ -15,41 +15,17 @@ namespace Desynchronized.TNDBS
 
         private bool isPermanentlyForgotten;
 
-        public int UniqueID
-        {
-            get
-            {
-                return uniqueID;
-            }
-        }
+        public int UniqueID => uniqueID;
 
-        public bool IsRegistered
-        {
-            get
-            {
-                return UniqueID >= 0;
-            }
-        }
+        public bool IsRegistered => UniqueID >= 0;
 
         public LocationInfo LocationOfOccurence
         {
-            get
-            {
-                return locationInfo;
-            }
-            protected set
-            {
-                locationInfo = value;
-            }
+            get => locationInfo;
+            protected set => locationInfo = value;
         }
 
-        public bool PermanentlyForgotten
-        {
-            get
-            {
-                return isPermanentlyForgotten;
-            }
-        }
+        public bool PermanentlyForgotten => isPermanentlyForgotten;
 
         public static readonly TaleNews DefaultTaleNews = new DefaultTaleNews();
 
@@ -76,7 +52,7 @@ namespace Desynchronized.TNDBS
         [Obsolete("Experimental tech.", true)]
         public static TaleNews GenerateTaleNewsGenerally(TaleNewsTypeEnum typeEnum)
         {
-            TaleNews newsInstance = Activator.CreateInstance(typeEnum.GetTypeForEnum()) as TaleNews;
+            var newsInstance = Activator.CreateInstance(typeEnum.GetTypeForEnum()) as TaleNews;
             DesynchronizedMain.TaleNewsDatabaseSystem.RegisterNewTaleNews(newsInstance);
             return newsInstance;
         }

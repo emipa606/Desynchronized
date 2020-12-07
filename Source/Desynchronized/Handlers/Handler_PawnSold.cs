@@ -9,14 +9,14 @@ namespace Desynchronized.Handlers
     {
         public static void HandlePawnSold_ByTrade(Pawn victim, Pawn negotiator)
         {
-            TaleNewsPawnSold news = new TaleNewsPawnSold(victim, (InstigationInfo) negotiator);
+            var news = new TaleNewsPawnSold(victim, (InstigationInfo)negotiator);
             SendOutNotificationLetter(victim);
             DistributeNews(victim, news, negotiator.Map);
         }
 
         public static void HandlePawnSold_ByGiftingViaPods(Pawn victim, Map mapOfSender)
         {
-            TaleNewsPawnSold news = new TaleNewsPawnSold(victim);
+            var news = new TaleNewsPawnSold(victim);
             SendOutNotificationLetter(victim);
             DistributeNews(victim, news, mapOfSender);
         }
@@ -44,7 +44,7 @@ namespace Desynchronized.Handlers
         {
             foreach (Pawn other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
             {
-                if (other.IsInSameMapOrCaravan(victim))
+                if (other.IsNearEnough(victim))
                 {
                     other.GetNewsKnowledgeTracker().KnowNews(salesNews);
                 }

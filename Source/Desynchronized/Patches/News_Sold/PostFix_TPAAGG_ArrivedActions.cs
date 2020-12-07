@@ -1,11 +1,4 @@
-﻿using Desynchronized.Handlers;
-using HarmonyLib;
-using RimWorld;
-using RimWorld.Planet;
-using System.Collections.Generic;
-using Verse;
-
-namespace Desynchronized.Patches.News_Sold
+﻿namespace Desynchronized.Patches.News_Sold
 {
     /*
     /// <summary>

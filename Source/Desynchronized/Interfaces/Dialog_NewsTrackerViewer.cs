@@ -1,6 +1,5 @@
 ﻿using Desynchronized.TNDBS;
 using Desynchronized.TNDBS.Extenders;
-using Desynchronized.TNDBS.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +38,7 @@ namespace Desynchronized.Interfaces
         public Dialog_NewsTrackerViewer(Pawn subject = null)
         {
             subjectPawn = subject;
-            string pawnName = (subject != null ? subject.Name.ToStringFull : (string) "AllPawns".Translate());
+            var pawnName = subject != null ? subject.Name.ToStringFull : (string) "AllPawns".Translate();
             optionalTitle = "ViewingKnowledgeOf".Translate() + pawnName;
             resizeable = false;
             forcePause = DesynchronizedMain.NewsUI_ShouldAutoPause;
@@ -52,14 +51,14 @@ namespace Desynchronized.Interfaces
 
         public override void DoWindowContents(Rect inRect)
         {
-            int mainAreaBegin = 0;
+            var mainAreaBegin = 0;
             DrawToggleDisplayForgottenNews(ref mainAreaBegin);
 
             // Draw first row
-            Rect headerRect = new Rect(0, mainAreaBegin, EntryWidth, EntryHeight);
+            var headerRect = new Rect(0, mainAreaBegin, EntryWidth, EntryHeight);
             DrawHeaderRow(headerRect);
 
-            Rect mainRect = new Rect(0, mainAreaBegin + EntryHeight, inRect.width, inRect.height - TopAreaHeight - EntryHeight - mainAreaBegin);
+            var mainRect = new Rect(0, mainAreaBegin + EntryHeight, inRect.width, inRect.height - TopAreaHeight - EntryHeight - mainAreaBegin);
             DrawRemainingRows(mainRect);
 
             GenUI.ResetLabelAlign();
@@ -74,7 +73,7 @@ namespace Desynchronized.Interfaces
             if (subjectPawn == null)
             {
                 // Button for overall view: filter forgotten news?
-                Rect buttonRect = new Rect(0, 0 + 2, 400, EntryHeight - 4);
+                var buttonRect = new Rect(0, 0 + 2, 400, EntryHeight - 4);
                 // Rect rect4 = new Rect(x, rect.y + 2f, num2, rect.height - 4f);
                 if (Widgets.ButtonText(buttonRect, "ForgottenNewsToggle".Translate()))
                 {
@@ -82,7 +81,7 @@ namespace Desynchronized.Interfaces
                 }
                 mainAreaBeginPos += 30;
 
-                Rect boundingRect = new Rect(400, 0, 400, EntryHeight);
+                var boundingRect = new Rect(400, 0, 400, EntryHeight);
                 Rect textRect = boundingRect;
                 textRect.xMin += 10;
                 textRect.xMax -= 10;
@@ -144,23 +143,23 @@ namespace Desynchronized.Interfaces
                 // Viewing individual pawns
                 taleNewsList = new List<TaleNews>(subjectPawn.GetNewsKnowledgeTracker().GetAllValidNonForgottenNews());
             }
-            int newsCount = taleNewsList.Count;
+            var newsCount = taleNewsList.Count;
 
             // Step 2: Setup the area
-            float scrollableHeight = HeaderLineHeight + newsCount * EntryHeight;
-            Rect viewingRect = new Rect(0, 0, givenArea.width - ScrollerMargin, scrollableHeight);
+            float scrollableHeight = HeaderLineHeight + (newsCount * EntryHeight);
+            var viewingRect = new Rect(0, 0, givenArea.width - ScrollerMargin, scrollableHeight);
             Widgets.BeginScrollView(givenArea, ref scrollPosition, viewingRect);
-            int currentHeight = HeaderLineHeight;
-            float upperPosition = scrollPosition.y - EntryHeight;
-            float lowerPosition = scrollPosition.y + givenArea.height;
+            var currentHeight = HeaderLineHeight;
+            var upperPosition = scrollPosition.y - EntryHeight;
+            var lowerPosition = scrollPosition.y + givenArea.height;
             // Iterate through
             
-            for (int i = 0; i < newsCount; i++)
+            for (var i = 0; i < newsCount; i++)
             {
                 // > or >= ?
                 if (currentHeight > upperPosition && currentHeight < lowerPosition)
                 {
-                    Rect rowRect = new Rect(0, currentHeight, viewingRect.width, EntryHeight);
+                    var rowRect = new Rect(0, currentHeight, viewingRect.width, EntryHeight);
                     DrawRow(rowRect, i, taleNewsList[i]);
                 }
                 currentHeight += EntryHeight;
@@ -211,7 +210,7 @@ namespace Desynchronized.Interfaces
 
         private void DrawNewsID_Header()
         {
-            Rect boundingRect = new Rect(0, 0, 80, EntryHeight);
+            var boundingRect = new Rect(0, 0, 80, EntryHeight);
             Rect textRect = boundingRect;
             textRect.xMin += 10;
             textRect.xMax -= 10;
@@ -220,7 +219,7 @@ namespace Desynchronized.Interfaces
 
         private void DrawNewsID(TaleNews news)
         {
-            Rect boundingRect = new Rect(0, 0, 80, EntryHeight);
+            var boundingRect = new Rect(0, 0, 80, EntryHeight);
             Widgets.DrawHighlightIfMouseover(boundingRect);
             Rect textRect = boundingRect;
             textRect.xMin += 10;
@@ -231,7 +230,7 @@ namespace Desynchronized.Interfaces
 
         private void DrawNewsType_Header()
         {
-            Rect boundingRect = new Rect(80, 0, 240, EntryHeight);
+            var boundingRect = new Rect(80, 0, 240, EntryHeight);
             Rect textRect = boundingRect;
             textRect.xMin += 10;
             textRect.xMax -= 10;
@@ -240,7 +239,7 @@ namespace Desynchronized.Interfaces
 
         private void DrawNewsType(TaleNews news)
         {
-            Rect boundingRect = new Rect(80, 0, 240, EntryHeight);
+            var boundingRect = new Rect(80, 0, 240, EntryHeight);
             Widgets.DrawHighlightIfMouseover(boundingRect);
             Rect textRect = boundingRect;
             textRect.xMin += 10;
@@ -257,7 +256,7 @@ namespace Desynchronized.Interfaces
 
         private void DrawNewsImportanceSpace(TaleNews news)
         {
-            Rect boundingRect = new Rect(320, 0, 80, EntryHeight);
+            var boundingRect = new Rect(320, 0, 80, EntryHeight);
             Widgets.DrawHighlightIfMouseover(boundingRect);
             if (subjectPawn != null)
             {
@@ -265,9 +264,9 @@ namespace Desynchronized.Interfaces
                 Rect textRect = boundingRect;
                 textRect.xMin += 10;
                 textRect.xMax -= 10;
-                float importance = subjectPawn.GetNewsKnowledgeTracker().AttemptToObtainExistingReference(news).NewsImportance;
+                var importance = subjectPawn.GetNewsKnowledgeTracker().AttemptToObtainExistingReference(news).NewsImportance;
                 Widgets.Label(textRect, Math.Round(importance, 2).ToString());
-                StringBuilder builder = new StringBuilder("ImportanceScore".Translate());
+                var builder = new StringBuilder("ImportanceScore".Translate());
                 builder.Append(importance);
                 builder.AppendLine();
                 builder.Append("ImportanceScore_Explanation".Translate());
@@ -283,7 +282,7 @@ namespace Desynchronized.Interfaces
 
         private void DrawNewsDetails_Header()
         {
-            Rect boundingRect = new Rect(400, 0, 400 - ScrollerMargin, EntryHeight);
+            var boundingRect = new Rect(400, 0, 400 - ScrollerMargin, EntryHeight);
             Rect textRect = boundingRect;
             textRect.xMin += 10;
             textRect.xMax -= 10;
@@ -292,14 +291,14 @@ namespace Desynchronized.Interfaces
 
         private void DrawNewsDetails(TaleNews news)
         {
-            Rect boundingRect = new Rect(400, 0, 400 - ScrollerMargin, EntryHeight);
+            var boundingRect = new Rect(400, 0, 400 - ScrollerMargin, EntryHeight);
             Widgets.DrawHighlightIfMouseover(boundingRect);
             Rect textRect = boundingRect;
             textRect.xMin += 10;
             textRect.xMax -= 10;
             // Only the first row is displayed; others are viewed in the tip region.
-            string labelString = "";
-            string readoutString = "";
+            var labelString = "";
+            var readoutString = "";
             // Check if the stuff is forgotten
             if (subjectPawn == null && news.PermanentlyForgotten)
             {
@@ -326,7 +325,7 @@ namespace Desynchronized.Interfaces
                     originalString = DesynchronizedMain.MODPREFIX + "Error: " + ex.Message + "\n" + ex.StackTrace;
                 }
                 // At this stage, originalString guaranteed to be non-zero.
-                string[] splitStrings = originalString.Split('\n');
+                var splitStrings = originalString.Split('\n');
                 labelString = splitStrings[0];
                 readoutString = originalString;
             }

@@ -36,7 +36,7 @@ namespace Desynchronized
             Scribe_Values.Look(ref insideValue, "insideValue");
         }
 
-        public T GetValueOrDefault(T defaultValue = default(T))
+        public T GetValueOrDefault(T defaultValue = default)
         {
             if (HasValue)
             {

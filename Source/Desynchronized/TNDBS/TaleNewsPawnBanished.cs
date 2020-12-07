@@ -10,13 +10,7 @@ namespace Desynchronized.TNDBS
 
         public Pawn BanishmentVictim => PrimaryVictim;
 
-        public bool IsDeadly
-        {
-            get
-            {
-                return isDeadly;
-            }
-        }
+        public bool IsDeadly => isDeadly;
 
         public TaleNewsPawnBanished()
         {
@@ -109,7 +103,7 @@ namespace Desynchronized.TNDBS
 
         public override string GetDetailsPrintout()
         {
-            string basic = base.GetDetailsPrintout();
+            var basic = base.GetDetailsPrintout();
             basic += "\nDeadly? " + isDeadly;
             return basic;
         }

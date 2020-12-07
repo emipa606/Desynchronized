@@ -33,33 +33,15 @@ namespace Desynchronized.TNDBS
         /// </summary>
         public DeathBrutality BrutalityDegree
         {
-            get
-            {
-                return brutalityDegree;
-            }
-            private set
-            {
-                brutalityDegree = value;
-            }
+            get => brutalityDegree;
+            private set => brutalityDegree = value;
         }
 
-        public DamageDef KillingBlowDamageDef
-        {
-            get
-            {
-                return killingBlowDamageType;
-            }
-        }
+        public DamageDef KillingBlowDamageDef => killingBlowDamageType;
 
         private DeathMethod methodOfDeath = DeathMethod.INDETERMINATE;
 
-        public DeathMethod MethodOfDeath
-        {
-            get
-            {
-                return methodOfDeath;
-            }
-        }
+        public DeathMethod MethodOfDeath => methodOfDeath;
 
         public Hediff CulpritHediff => culpritHediff;
 
@@ -128,14 +110,14 @@ namespace Desynchronized.TNDBS
         /// <returns></returns>
         private bool TryProcessAsExecutionEvent(Pawn recipient)
         {
-            bool result = false;
+            var result = false;
 
             if (methodOfDeath == DeathMethod.EXECUTION)
             {
                 result = true;
 
                 // Rather simple. Copied from vanilla code.
-                int forcedStage = (int)BrutalityDegree;
+                var forcedStage = (int)BrutalityDegree;
                 ThoughtDef thoughtToGive = Victim.IsColonist ? ThoughtDefOf.KnowColonistExecuted : ThoughtDefOf.KnowGuestExecuted;
                 recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(thoughtToGive, forcedStage), null);
             }
@@ -251,7 +233,7 @@ namespace Desynchronized.TNDBS
             {
                 recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.KnowColonistDied, Victim);
             }
-            bool prisonerIsInnocent = Victim.IsPrisonerOfColony && !Victim.guilt.IsGuilty && !Victim.InAggroMentalState;
+            var prisonerIsInnocent = Victim.IsPrisonerOfColony && !Victim.guilt.IsGuilty && !Victim.InAggroMentalState;
             if (prisonerIsInnocent && recipient.Faction == Faction.OfPlayer && !recipient.IsPrisoner)
             {
                 recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.KnowPrisonerDiedInnocent, Victim);
@@ -304,7 +286,7 @@ namespace Desynchronized.TNDBS
 
         private void GiveOutHatredTowardsKiller_ForFriendsOrRivals(Pawn recipient)
         {
-            int opinion = recipient.relations.OpinionOf(Victim);
+            var opinion = recipient.relations.OpinionOf(Victim);
             IndividualThoughtToAdd? tempThought = null;
 
             // Woah we got our asses handed with a bad coding style...
@@ -327,7 +309,7 @@ namespace Desynchronized.TNDBS
         /// </summary>
         private void GiveOutFriendOrRivalDiedThoughts(Pawn recipient)
         {
-            int opinion = recipient.relations.OpinionOf(Victim);
+            var opinion = recipient.relations.OpinionOf(Victim);
             if (opinion >= 20)
             {
                 new IndividualThoughtToAdd(ThoughtDefOf.PawnWithGoodOpinionDied, recipient, Victim, Victim.relations.GetFriendDiedThoughtPowerFactor(opinion), 1f).Add();
@@ -405,24 +387,24 @@ namespace Desynchronized.TNDBS
             // Pawn relations scaling: pawns with deeper bonds or deeper toothmarks should be more significant. Scales up to factor of 3.
             mainScore *= 1 + Mathf.Abs(((float)pawn.relations.OpinionOf(Victim)) / 50);
             // Faction relations scaling: factions with stronger relations should be more significant. Scales up to factor of 3.
-            int interFactionGoodwill = pawn.Faction.GetGoodwillWith(Victim.Faction);
+            var interFactionGoodwill = pawn.Faction.GetGoodwillWith(Victim.Faction);
             mainScore *= 1 + Mathf.Abs((float)interFactionGoodwill / 50);
 
             // News importance decays over time. Normal rate is halving per year.
             // Decay factor increased if news is shocking
-            float decayFactor = 0.5f;
+            var decayFactor = 0.5f;
             if (reference.IsShockingNews)
             {
                 decayFactor = 0.75f;
             }
 
             // There are 60000 ticks per day, 15 days per Quadrum, and 4 Quadrums per year.
-            result += mainScore * Mathf.Pow(decayFactor, (1.0f / (60000 * 15 * 4)) * (Find.TickManager.TicksGame - reference.TickReceived));
+            result += mainScore * Mathf.Pow(decayFactor, 1.0f / (60000 * 15 * 4) * (Find.TickManager.TicksGame - reference.TickReceived));
 
             // Memories are faulty.
             // They can be stronger or weaker, depending on how the brain is functioning at that moment.
             // Goes from -2 to +2.
-            result += Rand.Value * 4 - 2;
+            result += (Rand.Value * 4) - 2;
             
             // Check that the result is valid; value should not drop below 0.
             if (result < 0)
@@ -438,10 +420,10 @@ namespace Desynchronized.TNDBS
         public override string GetDetailsPrintout()
         {
             // Victim = [bleh]
-            string basic = base.GetDetailsPrintout();
+            var basic = base.GetDetailsPrintout();
 
             // Determine death message.
-            string deathMessage = "";
+            var deathMessage = "";
             if (KillingBlowDamageDef != null)
             {
                 // Died due to damage.

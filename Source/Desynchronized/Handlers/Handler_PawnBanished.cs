@@ -24,11 +24,11 @@ namespace Desynchronized.Handlers
 
         private static void GenerateAndProcessNews(Pawn victim, bool banishmentIsDeadly)
         {
-            TaleNewsPawnBanished banishmentNews = new TaleNewsPawnBanished(victim, banishmentIsDeadly);
+            var banishmentNews = new TaleNewsPawnBanished(victim, banishmentIsDeadly);
 
             foreach (Pawn other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists)
             {
-                if (other.IsInSameMapOrCaravan(victim))
+                if (other.IsNearEnough(victim))
                 {
                     other.GetNewsKnowledgeTracker().KnowNews(banishmentNews);
                 }

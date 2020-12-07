@@ -1,9 +1,6 @@
 ﻿using RimWorld;
 using RimWorld.Planet;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Verse;
 
 namespace Desynchronized.Utilities
@@ -22,7 +19,7 @@ namespace Desynchronized.Utilities
             DesynchronizedMain.LogWarning("Hi hi! Processing " + self.Name);
             List<Pawn> possibleCandidates = caravan.PawnsListForReading;
             Faction selfFaction = self.Faction;
-            for (int i = possibleCandidates.Count; i >= 0; i++)
+            for (var i = possibleCandidates.Count; i >= 0; i++)
             {
                 if (possibleCandidates[i].Faction != selfFaction)
                 {

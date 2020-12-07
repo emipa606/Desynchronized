@@ -1,12 +1,7 @@
-﻿using Desynchronized.Handlers;
-using HarmonyLib;
+﻿using HarmonyLib;
 using RimWorld;
 using RimWorld.Planet;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Verse;
 
 namespace Desynchronized.Patches.News_Sold
@@ -21,16 +16,15 @@ namespace Desynchronized.Patches.News_Sold
 			Settlement settlement = Traverse.Create(__instance).Field("settlement").GetValue<Settlement>();
 			Map mapOfSender = DesynchronizedMain.ArrivalActionAndSenderLinker.SafelyGetMapOfGivenAction(__instance);
 
-			for (int i = 0; i < pods.Count; i++)
+			for (var i = 0; i < pods.Count; i++)
 			{
-				for (int j = 0; j < pods[i].innerContainer.Count; j++)
+				for (var j = 0; j < pods[i].innerContainer.Count; j++)
 				{
-					Pawn pawn = pods[i].innerContainer[j] as Pawn;
-					if (pawn == null)
-					{
-						continue;
-					}
-				}
+                    if (!(pods[i].innerContainer[j] is Pawn pawn))
+                    {
+                        continue;
+                    }
+                }
 			}
 			FactionGiftUtility.GiveGift(pods, settlement);
 

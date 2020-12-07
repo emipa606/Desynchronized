@@ -1,6 +1,4 @@
 ﻿using Desynchronized.TNDBS;
-using Desynchronized.TNDBS.Utilities;
-using HarmonyLib;
 using RimWorld;
 using Verse;
 
@@ -22,11 +20,11 @@ namespace Desynchronized.Handlers
                 return;
             }
 
-            TaleNewsPawnHarvested harvestNews = new TaleNewsPawnHarvested(victim);
+            var harvestNews = new TaleNewsPawnHarvested(victim);
 
             foreach (Pawn other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
             {
-                if (other.IsInSameMapOrCaravan(victim))
+                if (other.IsNearEnough(victim))
                 {
                     other.GetNewsKnowledgeTracker().KnowNews(harvestNews);
                 }

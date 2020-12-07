@@ -7,21 +7,9 @@ namespace Desynchronized.TNDBS.Datatypes
         private Map mapInWorld;
         private IntVec3 positionInMap;
 
-        public Map Map
-        {
-            get
-            {
-                return mapInWorld;
-            }
-        }
+        public Map Map => mapInWorld;
 
-        public IntVec3 Position
-        {
-            get
-            {
-                return positionInMap;
-            }
-        }
+        public IntVec3 Position => positionInMap;
 
         public LocationInfo()
         {

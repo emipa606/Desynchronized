@@ -30,9 +30,9 @@ namespace Desynchronized.Compatibility.Psychology
             {
                 new IndividualThoughtToAdd(Psycho_ThoughtDefOf.WitnessedDeathNonAllyBleedingHeart, recipient).Add();
             }
-            bool traitsDisallowDesensitization = recipient.story.traits.HasTrait(Psycho_TraitDefOf.BleedingHeart) || recipient.story.traits.HasTrait(TraitDefOf.Psychopath) || recipient.story.traits.HasTrait(TraitDefOf.Bloodlust) || recipient.story.traits.HasTrait(Psycho_TraitDefOf.Desensitized);
+            var traitsDisallowDesensitization = recipient.story.traits.HasTrait(Psycho_TraitDefOf.BleedingHeart) || recipient.story.traits.HasTrait(TraitDefOf.Psychopath) || recipient.story.traits.HasTrait(TraitDefOf.Bloodlust) || recipient.story.traits.HasTrait(Psycho_TraitDefOf.Desensitized);
             // ALL PRAISE GOD RANDY OUR ONE TRUE LORD
-            bool randyAllowsDesensitization = (recipient.GetHashCode() ^ ((GenLocalDate.DayOfYear(recipient) + GenLocalDate.Year(recipient) + (int)(GenLocalDate.DayPercent(recipient) * 5f) * 60) * 391)) % 1000 == 0;
+            var randyAllowsDesensitization = (recipient.GetHashCode() ^ ((GenLocalDate.DayOfYear(recipient) + GenLocalDate.Year(recipient) + ((int)(GenLocalDate.DayPercent(recipient) * 5f) * 60)) * 391)) % 1000 == 0;
             // No Bleeding Heart + No Psychopath + No Bloodlust + No Desensitised + Random Genner
             if (!traitsDisallowDesensitization && randyAllowsDesensitization)
             {

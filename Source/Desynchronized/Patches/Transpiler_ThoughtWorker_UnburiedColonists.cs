@@ -1,10 +1,4 @@
-﻿using HarmonyLib;
-using RimWorld;
-using System.Collections.Generic;
-using System.Reflection.Emit;
-using Verse;
-
-namespace Desynchronized.Patches
+﻿namespace Desynchronized.Patches
 {
     /*
     [HarmonyPatch(typeof(ThoughtWorker_ColonistLeftUnburied))]

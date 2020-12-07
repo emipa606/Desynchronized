@@ -35,7 +35,7 @@ namespace Desynchronized.Interfaces
         {
             base.DoHeader(rect, table);
 
-            Rect rect2 = new Rect(rect.x, rect.y + (rect.height - TopAreaHeight), Mathf.Min(rect.width, 360f), ViewAllTaleNews_Height);
+            var rect2 = new Rect(rect.x, rect.y + (rect.height - TopAreaHeight), Mathf.Min(rect.width, 360f), ViewAllTaleNews_Height);
             if (Widgets.ButtonText(rect2, "ViewAllTaleNews".Translate()))
             {
                 Find.WindowStack.Add(new Dialog_NewsTrackerViewer());
@@ -44,7 +44,7 @@ namespace Desynchronized.Interfaces
 
         public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
         {
-            Rect buttonRect = new Rect(rect.x, rect.y + 2, RecommendedWidth, rect.height - 4);
+            var buttonRect = new Rect(rect.x, rect.y + 2, RecommendedWidth, rect.height - 4);
             // Rect rect4 = new Rect(x, rect.y + 2f, num2, rect.height - 4f);
             if (Widgets.ButtonText(buttonRect, "WhatDoesThisPawnKnow".Translate()))
             {

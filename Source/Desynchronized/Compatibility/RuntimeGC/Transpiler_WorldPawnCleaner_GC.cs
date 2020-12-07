@@ -34,10 +34,10 @@ namespace Desynchronized.Compatibility.RuntimeGC
         {
             // Find the 2nd "call" after the 6th "ldstr"
             // Insert a method after that position to manipulate the list.
-            int occurencesLdstr = 0;
-            int occurencesCall = 0;
-            List<CodeInstruction> instructionList = new List<CodeInstruction>(instructions);
-            int i = 0;
+            var occurencesLdstr = 0;
+            var occurencesCall = 0;
+            var instructionList = new List<CodeInstruction>(instructions);
+            var i = 0;
 
             while (occurencesLdstr < 6)
             {
@@ -59,7 +59,7 @@ namespace Desynchronized.Compatibility.RuntimeGC
 
             // i is at our insert position.
             // Insert new commands.
-            List<CodeInstruction> insertionList = new List<CodeInstruction>
+            var insertionList = new List<CodeInstruction>
             {
                 new CodeInstruction(OpCodes.Ldloc_1),
                 new CodeInstruction(OpCodes.Call, typeof(TalePawnListManipulator).GetMethod("ManipulateListOfPawnsUsedByTales"))

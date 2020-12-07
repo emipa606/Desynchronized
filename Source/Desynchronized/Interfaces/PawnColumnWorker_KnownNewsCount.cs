@@ -1,5 +1,4 @@
 ﻿using Desynchronized.TNDBS.Extenders;
-using Desynchronized.TNDBS.Utilities;
 using RimWorld;
 using System.Linq;
 using System.Text;
@@ -21,7 +20,7 @@ namespace Desynchronized.Interfaces
 
         protected override string GetTip(Pawn pawn)
         {
-            StringBuilder builder = new StringBuilder("KnownNewsTip_01".Translate());
+            var builder = new StringBuilder("KnownNewsTip_01".Translate());
             builder.Append(GetKnownNewsCount(pawn));
             builder.AppendLine("\n");
             builder.Append("KnownNewsTip_02".Translate());

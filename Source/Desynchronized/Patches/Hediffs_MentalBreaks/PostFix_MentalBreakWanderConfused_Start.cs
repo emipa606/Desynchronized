@@ -1,9 +1,4 @@
-﻿using Desynchronized.TNDBS;
-using HarmonyLib;
-using Verse;
-using Verse.AI;
-
-namespace Desynchronized.Patches.Hediffs_MentalBreaks
+﻿namespace Desynchronized.Patches.Hediffs_MentalBreaks
 {
     /*
     /// <summary>

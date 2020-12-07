@@ -25,23 +25,11 @@ namespace Desynchronized.TNDBS
 
         private bool safetyValve_ShouldConductImportanceUpdate = true;
 
-        public IEnumerable<TaleNews> TalesOfImportance_ReadOnly
-        {
-            get
-            {
-                return talesOfImportance;
-            }
-        }
+        public IEnumerable<TaleNews> TalesOfImportance_ReadOnly => talesOfImportance;
 
         internal List<TaleNews> ListOfAllTaleNews => talesOfImportance;
 
-        public List<Pawn_NewsKnowledgeTracker> KnowledgeTrackerMasterList
-        {
-            get
-            {
-                return knowledgeTrackerMasterList;
-            }
-        }
+        public List<Pawn_NewsKnowledgeTracker> KnowledgeTrackerMasterList => knowledgeTrackerMasterList;
 
         private int tickerInternal;
 
@@ -145,7 +133,7 @@ namespace Desynchronized.TNDBS
 
         public int GetNextUID()
         {
-            int result = nextUID;
+            var result = nextUID;
             try
             {
                 nextUID = checked(nextUID + 1);
@@ -217,8 +205,8 @@ namespace Desynchronized.TNDBS
         private void RemoveAllInvalidTaleNews()
         {
             // Step 1: Identify all invalid TaleNews, and label them.
-            Dictionary<int, int> newsIDPairing = new Dictionary<int, int>();
-            int currentNewsID = 0;
+            var newsIDPairing = new Dictionary<int, int>();
+            var currentNewsID = 0;
             const int invalidID = -1;
 
             foreach (TaleNews taleNews in talesOfImportance)
@@ -236,7 +224,7 @@ namespace Desynchronized.TNDBS
 
             // Step 2: Remove all invalid TaleNewsReferences, and update valid ones to point to the new ID.
             // Also drops invalid Pawn_NewsKnowledgeTrackers
-            for (int i = knowledgeTrackerMasterList.Count - 1; i >= 0; i--)
+            for (var i = knowledgeTrackerMasterList.Count - 1; i >= 0; i--)
             {
                 Pawn_NewsKnowledgeTracker knowledgeTracker = knowledgeTrackerMasterList[i];
 
@@ -246,9 +234,9 @@ namespace Desynchronized.TNDBS
                 }
                 else
                 {
-                    for (int j = knowledgeTracker.NewsKnowledgeList.Count - 1; j >= 0; j--)
+                    for (var j = knowledgeTracker.NewsKnowledgeList.Count - 1; j >= 0; j--)
                     {
-                        int mappedResult = newsIDPairing[knowledgeTracker.NewsKnowledgeList[j].ReferencedTaleNews.UniqueID];
+                        var mappedResult = newsIDPairing[knowledgeTracker.NewsKnowledgeList[j].ReferencedTaleNews.UniqueID];
                         if (mappedResult == invalidID)
                         {
                             knowledgeTracker.NewsKnowledgeList.RemoveAt(j);
@@ -262,7 +250,7 @@ namespace Desynchronized.TNDBS
             }
 
             // Step 3: Re-enter TaleNews
-            List<TaleNews> tempList = new List<TaleNews>();
+            var tempList = new List<TaleNews>();
             tempList.AddRange(talesOfImportance);
             talesOfImportance = new List<TaleNews>();
             nextUID = 0;
@@ -323,7 +311,7 @@ namespace Desynchronized.TNDBS
             TaleNewsDatabase database = DesynchronizedMain.TaleNewsDatabaseSystem;
 
             // Establish a counter of all *non-perm-forgot* tale-news
-            Dictionary<TaleNews, int> remembranceCounter = new Dictionary<TaleNews, int>();
+            var remembranceCounter = new Dictionary<TaleNews, int>();
             foreach (TaleNews news in database.GetAllValidNonPermForgottenNews())
             {
                 remembranceCounter.Add(news, 0);
@@ -359,8 +347,8 @@ namespace Desynchronized.TNDBS
 
         public bool PawnIsInvolvedInSomeTaleNews(Pawn pawn)
         {
-            int totalNewsCount = talesOfImportance.Count;
-            for (int i = 0; i < totalNewsCount; i++)
+            var totalNewsCount = talesOfImportance.Count;
+            for (var i = 0; i < totalNewsCount; i++)
             {
                 if (this[i].PawnIsInvolved(pawn))
                 {

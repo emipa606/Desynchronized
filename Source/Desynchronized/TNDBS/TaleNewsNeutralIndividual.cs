@@ -7,13 +7,7 @@ namespace Desynchronized.TNDBS
     {
         private Pawn receiver;
 
-        public Pawn Receiver
-        {
-            get
-            {
-                return receiver;
-            }
-        }
+        public Pawn Receiver => receiver;
 
         public TaleNewsNeutralIndividual()
         {

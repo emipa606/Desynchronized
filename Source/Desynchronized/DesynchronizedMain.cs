@@ -33,7 +33,9 @@ namespace Desynchronized
         public static DesynchronizedVersionTracker DesynchronizedVersionTracker { get; private set; }
         public static  HallOfFigures TheHallOfFigures { get; private set; }
         public static SettingHandle<bool> SettingHandle_AutoPauseNewsInterface { get; private set; }
+        public static SettingHandle<bool> SettingHandle_OnlySpreadInSameRoom { get; private set; }
         public static bool NewsUI_ShouldAutoPause => SettingHandle_AutoPauseNewsInterface.Value;
+        public static bool NewsBehaviour_OnlySpreadInSameRoom => SettingHandle_OnlySpreadInSameRoom.Value;
 
         public override void WorldLoaded()
         {
@@ -57,6 +59,7 @@ namespace Desynchronized
         private void PrepareModSettingHandles()
         {
             SettingHandle_AutoPauseNewsInterface = Settings.GetHandle("toggleAutoPauseNewsInterface", "NewsUIAutoPause_title".Translate(), "NewsUIAutoPause_descr".Translate(), true);
+            SettingHandle_OnlySpreadInSameRoom = Settings.GetHandle("toggleOnlySpreadInSameRoom", "OnlySpreadInSameRoom_title".Translate(), "OnlySpreadInSameRoom_descr".Translate(), false);
         }
 
         public static void LogError(string message, bool ignoreLogLimit = false)

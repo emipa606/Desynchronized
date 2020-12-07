@@ -24,7 +24,7 @@ namespace Desynchronized.Compatibility.Psychology
             {
                 recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf.KnowColonistDiedBleedingHeart);
             }
-            bool prisonerIsInnocent = victim.IsPrisonerOfColony && !victim.guilt.IsGuilty && !victim.InAggroMentalState;
+            var prisonerIsInnocent = victim.IsPrisonerOfColony && !victim.guilt.IsGuilty && !victim.InAggroMentalState;
             if (prisonerIsInnocent && recipient.Faction == Faction.OfPlayer && !recipient.IsPrisoner)
             {
                 recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf.KnowPrisonerDiedInnocentBleedingHeart);

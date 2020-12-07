@@ -1,9 +1,4 @@
-﻿using HarmonyLib;
-using RimWorld.Planet;
-using System.Collections.Generic;
-using System.Reflection.Emit;
-
-namespace Desynchronized.Patches.News_Sold
+﻿namespace Desynchronized.Patches.News_Sold
 {
     /*
     /// <summary>

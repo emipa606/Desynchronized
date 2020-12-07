@@ -33,10 +33,7 @@ namespace Desynchronized.TNDBS
         /// </summary>
         public Pawn CachedSubject
         {
-            get
-            {
-                return cachedSubject;
-            }
+            get => cachedSubject;
             internal set
             {
                 if (cachedSubject == null)
@@ -75,13 +72,7 @@ namespace Desynchronized.TNDBS
         /// </summary>
         public bool NewsIsGloballyForgotten => ReferencedTaleNews.PermanentlyForgotten;
 
-        public bool IsShockingNews
-        {
-            get
-            {
-                return newsIsShocking;
-            }
-        }
+        public bool IsShockingNews => newsIsShocking;
 
         /// <summary>
         /// Default reference. Its UID is 0.
@@ -238,7 +229,7 @@ namespace Desynchronized.TNDBS
             }
             else
             {
-                float result = ReferencedTaleNews.CalculateNewsImportanceForPawn(cachedSubject, this);
+                var result = ReferencedTaleNews.CalculateNewsImportanceForPawn(cachedSubject, this);
 
                 if (result < 1)
                 {

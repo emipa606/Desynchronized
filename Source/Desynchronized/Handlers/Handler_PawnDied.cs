@@ -24,12 +24,12 @@ namespace Desynchronized.Handlers
         {
             // Generate one.
             //TaleNewsPawnDied taleNews = TaleNewsPawnDied.GenerateGenerally(victim, dinfo, culpritHediff);
-            TaleNewsPawnDied taleNews = new TaleNewsPawnDied(victim, dinfo, culpritHediff);
+            var taleNews = new TaleNewsPawnDied(victim, dinfo, culpritHediff);
 
             // Distribute news.
             foreach (Pawn other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists)
             {
-                if (other.IsInSameMapOrCaravan(victim))
+                if (other.IsNearEnough(victim))
                 {
                     other.GetNewsKnowledgeTracker().KnowNews(taleNews);
                 }

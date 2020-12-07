@@ -27,13 +27,7 @@ namespace Desynchronized
 
         public static Version CurrentVersion => typeof(DesynchronizedMain).Assembly.GetName().Version;
 
-        public string VersionOfMod
-        {
-            get
-            {
-                return versionOfMod;
-            }
-        }
+        public string VersionOfMod => versionOfMod;
 
         public override void PostAdd()
         {

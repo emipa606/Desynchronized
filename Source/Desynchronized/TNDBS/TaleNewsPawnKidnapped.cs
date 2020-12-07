@@ -14,13 +14,7 @@ namespace Desynchronized.TNDBS
 
         public Pawn KidnapVictim => PrimaryVictim;
 
-        public Faction KidnapperFaction
-        {
-            get
-            {
-                return kidnapperFaction;
-            }
-        }
+        public Faction KidnapperFaction => kidnapperFaction;
 
         public TaleNewsPawnKidnapped()
         {
@@ -81,7 +75,7 @@ namespace Desynchronized.TNDBS
             // Then give Friend/Rival Kidnapped thoughts
             if (recipient.RaceProps.IsFlesh && PawnUtility.ShouldGetThoughtAbout(KidnapVictim, recipient))
             {
-                int opinion = recipient.relations.OpinionOf(KidnapVictim);
+                var opinion = recipient.relations.OpinionOf(KidnapVictim);
                 if (opinion >= 20)
                 {
                     new IndividualThoughtToAdd(ThoughtDefOf.PawnWithGoodOpinionLost, recipient, KidnapVictim, KidnapVictim.relations.GetFriendDiedThoughtPowerFactor(opinion), 1f).Add();
@@ -114,7 +108,7 @@ namespace Desynchronized.TNDBS
 
         public override string GetDetailsPrintout()
         {
-            string basic = base.GetDetailsPrintout();
+            var basic = base.GetDetailsPrintout();
             basic += "\nKidnapped by faction: ";
             if (kidnapperFaction != null)
             {
