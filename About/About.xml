@@ -26,12 +26,16 @@
   <loadAfter>
     <li>brrainz.harmony</li>
     <li>UnlimitedHugs.HugsLib</li>
+    <li>syrchalis.traitvalue</li>
   </loadAfter>
   <description>[img]https://i.imgur.com/WAEzk68.png[/img]
 Update of Vectorial1024s mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1573233249
 
 - May be inompatible with RuntimeGC-mods. Depending on the settings it might remove pawns from history making news regarding them have no target.
+- Added support for Butchered Humanoid-news
+- Added option that only pawns in the same room or in range and sight of the event (outside) knows of it instantly. The normal behaviour is that all pawns on the same map knows all events instantly.
+- Added support for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2451324814][SYR] Trait Value[/url]
 
 [img]https://i.imgur.com/7Gzt3Rg.png[/img]
 
@@ -54,7 +58,6 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1573233249
 [*]Please [b]do not remove[/b] from existing saves
 [*]Should have no problems with most other mods, see below for more info
 [*][b][i]Only basic support will be provided from me, also now welcome modders to fork this mod; see "The Current State and the Future of this Mod" in the Discussions tab for more info[/i][/b]
-[*]GitHub repo link is here: https://github.com/Vectorial1024/Desynchronized
 [/list]
 [h1]Mod Description[/h1]
 A continuation of [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1315706945]ClosedDoors[/url] made by MoobyNooby, this mod changes how information spreads among your colonists.
@@ -64,7 +67,6 @@ I always find it strange that colonists are able to know things happening basica
 With the news-spreading mechanism well-defined and working smoothly across several thousands of colonies galaxy-wide, I present you this question: how much should your pure, innocent colonists know? Should they know everything that has happened in the game, whether big or small, whether bright or dark?
 
 [h1]Features List[/h1]
-Visit the [url=https://github.com/Vectorial1024/Desynchronized]GitHub repo[/url] for more details, but here are some highlights:
 [list]
 [*]Colonists generally does not react to events that happens "off-map" (i.e. not in the map they are in).
 [*]Colonists have a moderate chance to spread news about past events during chats and talks with each other.
@@ -79,22 +81,26 @@ Help us out in our common pursuit of success on the Rim by:
 [*][b]Inspecting the Code:[/b] sometimes, underlying problems are not obvious to spot. Visit the GitHub page to read the code.
 [*][b]Translating the Texts[/b]: if you are a native speaker of your language, you are most welcome to contribute by translating the texts to your own language. [u]You may now submit GitHub pull requests to provide your latest translations of this mod.[/u]
 [/list]
-[h1]The GitHub Repo of This Mod[/h1]
-To streamline things, I am centralizing many things onto the GitHub repo found at https://github.com/Vectorial1024/Desynchronized
 In the GitHub page, you will find:
 [list]
 [*]The source code and the xml files for this mod
-[*]The [url=https://github.com/Vectorial1024/Desynchronized/issues]issues page[/url] for bug-tracking
 [*]A detailed feature list
 [*]Several decentralized planning lists
-[*][url=https://github.com/Vectorial1024/Desynchronized/releases]Non-Steam downloads[/url]
 [*]Detailed changelogs
 [/list]
-[url=https://github.com/Vectorial1024/Desynchronized/releases][h1]Non-Steam Downloads[/h1][/url]
 
-[url=https://github.com/Vectorial1024/Desynchronized/tree/master/Docs/Compatibility.md][h1]Cross-Mod Compatibility[/h1][/url]
+That's all. Wish y'all a successful run on the Rim!
 
-[url=https://github.com/Vectorial1024/Desynchronized/tree/master/Docs/Credits.md][h1]Credits and Special Thanks[/h1][/url]
 
-That's all. Wish y'all a successful run on the Rim!</description>
+[img]https://i.imgur.com/Rs6T6cr.png[/img]
+[list]
+[*] See if the the error persists if you just have this mod and its requirements active.
+[*] If not, try adding your other mods until it happens again.
+[*] Post your error-log using [url=https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib[/url] and command Ctrl+F12
+[*] For best support, please use the Discord-channel for error-reporting.
+[*] Do not report errors by making a discussion-thread, I get no notification of that.
+[*] If you have the solution for a problem, please post it to the GitHub repository.
+[/list]
+</description>
 </ModMetaData>
+
