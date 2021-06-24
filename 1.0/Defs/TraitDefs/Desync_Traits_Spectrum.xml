@@ -20,7 +20,7 @@
       </li>
       <li>
         <label>gossiper</label>
-        <description>[PAWN_nameDef] enjoys sharing [PAWN_possessive] opinions on many topics with [PAWN_possessive] friends, and will often tell others what [PAWN_possessive] knows.</description>
+        <description>[PAWN_nameDef] enjoys sharing [PAWN_possessive] opinions on many topics with [PAWN_possessive] friends, and will often tell others what [PAWN_pronoun] knows.</description>
         <degree>1</degree>
         <statOffsets>
           <NewsSpreadTendency>0.15</NewsSpreadTendency>
