@@ -1,5 +1,4 @@
-﻿using Desynchronized.TNDBS;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Verse;
 
 namespace Desynchronized.Compatibility.RuntimeGC
@@ -11,9 +10,9 @@ namespace Desynchronized.Compatibility.RuntimeGC
             // Note: currently, the list contains only the pawns that aer married, which is no where near optimal.
 
             var excludedByTaleNews = new List<Pawn>();
-            foreach (Pawn pawn in Find.WorldPawns.AllPawnsAliveOrDead)
+            foreach (var pawn in Find.WorldPawns.AllPawnsAliveOrDead)
             {
-                foreach (TaleNews news in DesynchronizedMain.TaleNewsDatabaseSystem.TalesOfImportance_ReadOnly)
+                foreach (var news in DesynchronizedMain.TaleNewsDatabaseSystem.TalesOfImportance_ReadOnly)
                 {
                     if (news.PawnIsInvolved(pawn) && !excludedByTaleNews.Contains(pawn))
                     {
@@ -23,7 +22,6 @@ namespace Desynchronized.Compatibility.RuntimeGC
             }
 
             original.AddRange(excludedByTaleNews);
-            return;
         }
     }
 }

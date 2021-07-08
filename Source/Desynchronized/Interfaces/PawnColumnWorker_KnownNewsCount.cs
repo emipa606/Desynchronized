@@ -1,7 +1,7 @@
-﻿using Desynchronized.TNDBS.Extenders;
-using RimWorld;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
+using Desynchronized.TNDBS.Extenders;
+using RimWorld;
 using Verse;
 
 namespace Desynchronized.Interfaces
@@ -10,7 +10,9 @@ namespace Desynchronized.Interfaces
     {
         private int GetKnownNewsCount(Pawn pawn)
         {
-            return pawn.GetNewsKnowledgeTracker().GetAllValidNonForgottenNewsReferences().Count();
+            return (int) (pawn.GetNewsKnowledgeTracker() != null
+                ? pawn.GetNewsKnowledgeTracker().GetAllValidNonForgottenNewsReferences().Count()
+                : (int?) 0);
         }
 
         protected override string GetTextFor(Pawn pawn)

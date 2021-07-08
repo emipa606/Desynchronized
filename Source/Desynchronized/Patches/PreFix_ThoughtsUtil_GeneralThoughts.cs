@@ -1,17 +1,17 @@
-﻿using Desynchronized.Handlers;
+﻿using System;
+using Desynchronized.Handlers;
 using HarmonyLib;
 using RimWorld;
-using System;
 using Verse;
 
 namespace Desynchronized.Patches
 {
     /// <summary>
-    /// Note: sooner or later, the features of this patch will be broken down by the respective handlers.
+    ///     Note: sooner or later, the features of this patch will be broken down by the respective handlers.
     /// </summary>
     [HarmonyPatch(typeof(PawnDiedOrDownedThoughtsUtility))]
     [HarmonyPatch("TryGiveThoughts", MethodType.Normal)]
-    [HarmonyPatch(new Type[] { typeof(Pawn), typeof(DamageInfo), typeof(PawnDiedOrDownedThoughtsKind) })]
+    [HarmonyPatch(new[] {typeof(Pawn), typeof(DamageInfo), typeof(PawnDiedOrDownedThoughtsKind)})]
     public class PreFix_ThoughtsUtil_GeneralThoughts
     {
         [HarmonyPrefix]
@@ -50,7 +50,8 @@ namespace Desynchronized.Patches
             }
             catch (Exception arg)
             {
-                Log.Error("[V1024-DESYNC] Could not give thought, falling back to vanilla thought-giving procedures: " + arg, false);
+                Log.Error(
+                    "[V1024-DESYNC] Could not give thought, falling back to vanilla thought-giving procedures: " + arg);
             }
 
             return true;

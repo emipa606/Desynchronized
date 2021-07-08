@@ -17,31 +17,43 @@ namespace Desynchronized.Compatibility.Psychology
         [HarmonyPostfix]
         public static void AddPsychologyThoughts(TaleNewsPawnDied __instance, Pawn recipient)
         {
-            Pawn killer = __instance.Killer;
-            Pawn victim = __instance.Victim;
+            var killer = __instance.Killer;
+            var victim = __instance.Victim;
 
             // Killer != null => DamageInfo != null
-            if (killer != null)
+            if (killer == null)
             {
-                // Currently you can't really kill yourself.
-                if (recipient == killer)
-                {
-                    if (__instance.KillingBlowDamageDef.ExternalViolenceFor(victim))
-                    {
-                        if (killer.story != null)
-                        {
-                            // Try to add "Killed Enemy Humanlike" thought
-                            // Check the conditions
-                            if (victim.RaceProps.Humanlike)
-                            {
-                                if (killer.HostileTo(victim) && killer.Faction != null && killer.Faction.HostileTo(victim.Faction))
-                                {
-                                    new IndividualThoughtToAdd(Psycho_ThoughtDefOf.KilledHumanlikeEnemy, killer, victim).Add();
-                                }
-                            }
-                        }
-                    }
-                }
+                return;
+            }
+
+            // Currently you can't really kill yourself.
+            if (recipient != killer)
+            {
+                return;
+            }
+
+            if (!__instance.KillingBlowDamageDef.ExternalViolenceFor(victim))
+            {
+                return;
+            }
+
+            if (killer.story == null)
+            {
+                return;
+            }
+
+            // Try to add "Killed Enemy Humanlike" thought
+            // Check the conditions
+            if (!victim.RaceProps.Humanlike)
+            {
+                return;
+            }
+
+            if (killer.HostileTo(victim) && killer.Faction != null &&
+                killer.Faction.HostileTo(victim.Faction))
+            {
+                new IndividualThoughtToAdd(Psycho_ThoughtDefOf.KilledHumanlikeEnemy, killer, victim)
+                    .Add();
             }
         }
     }

@@ -8,7 +8,7 @@ namespace Desynchronized.Handlers
     public class Handler_PawnExecuted
     {
         /// <summary>
-        /// Handles a pawn execution event.
+        ///     Handles a pawn execution event.
         /// </summary>
         /// <param name="victim"></param>
         /// <param name="brutality"></param>
@@ -24,7 +24,8 @@ namespace Desynchronized.Handlers
             // string letterContent = string.Empty;
             // letterContent += "PawnKidnapped".Translate(victim.LabelShort.CapitalizeFirst(), kidnapper.Faction.def.pawnsPlural, kidnapper.Faction.Name, victim.Named("PAWN"));
 
-            Find.LetterStack.ReceiveLetter("Colonist/Guest executed", "Colonist/Guest was executed. Name of Pawn: " + victim.Name, LetterDefOf.NegativeEvent, victim, null, null);
+            Find.LetterStack.ReceiveLetter("Colonist/Guest executed",
+                "Colonist/Guest was executed. Name of Pawn: " + victim.Name, LetterDefOf.NegativeEvent, victim);
         }
 
         private static void GenerateAndProcessNews(Pawn victim, DeathBrutality brutality)
@@ -32,11 +33,11 @@ namespace Desynchronized.Handlers
             //TaleNewsPawnDied executionNews = TaleNewsPawnDied.GenerateAsExecution(victim, brutality);
             var executionNews = new TaleNewsPawnDied(victim, brutality);
 
-            foreach (Pawn other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
+            foreach (var other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
             {
                 if (other.IsNearEnough(victim))
                 {
-                    other.GetNewsKnowledgeTracker().KnowNews(executionNews);
+                    other.GetNewsKnowledgeTracker()?.KnowNews(executionNews);
                 }
             }
         }

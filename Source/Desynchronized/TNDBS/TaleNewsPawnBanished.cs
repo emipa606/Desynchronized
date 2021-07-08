@@ -8,19 +8,18 @@ namespace Desynchronized.TNDBS
     {
         private bool isDeadly;
 
-        public Pawn BanishmentVictim => PrimaryVictim;
-
-        public bool IsDeadly => isDeadly;
-
         public TaleNewsPawnBanished()
         {
-
         }
 
-        public TaleNewsPawnBanished(Pawn victim, bool isBanishedToDie): base(victim, InstigationInfo.NoInstigator)
+        public TaleNewsPawnBanished(Pawn victim, bool isBanishedToDie) : base(victim, InstigationInfo.NoInstigator)
         {
             isDeadly = isBanishedToDie;
         }
+
+        public Pawn BanishmentVictim => PrimaryVictim;
+
+        public bool IsDeadly => isDeadly;
 
         public override string GetNewsTypeName()
         {
@@ -54,17 +53,10 @@ namespace Desynchronized.TNDBS
             }
             else
             {
-                ThoughtDef thoughtDefToGain = null;
+                ThoughtDef thoughtDefToGain;
                 if (!BanishmentVictim.IsPrisonerOfColony)
                 {
-                    if (IsDeadly)
-                    {
-                        thoughtDefToGain = ThoughtDefOf.ColonistBanishedToDie;
-                    }
-                    else
-                    {
-                        thoughtDefToGain = ThoughtDefOf.ColonistBanished;
-                    }
+                    thoughtDefToGain = IsDeadly ? ThoughtDefOf.ColonistBanishedToDie : ThoughtDefOf.ColonistBanished;
                 }
                 else
                 {

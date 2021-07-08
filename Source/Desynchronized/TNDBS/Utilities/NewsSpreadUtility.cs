@@ -1,6 +1,6 @@
-﻿using Desynchronized.TNDBS.Extenders;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Desynchronized.TNDBS.Extenders;
 using Verse;
 
 namespace Desynchronized.TNDBS.Utilities
@@ -15,8 +15,8 @@ namespace Desynchronized.TNDBS.Utilities
 
         public static void SpreadNews(Pawn initiator, Pawn receiver, SpreadMode mode = SpreadMode.RANDOM)
         {
-            TaleNewsReference newsToSend = DetermineTaleNewsToTransmit(initiator, receiver, mode);
-            AttemptToTransmitNews(initiator, receiver, newsToSend);
+            var newsToSend = DetermineTaleNewsToTransmit(initiator, receiver, mode);
+            AttemptToTransmitNews(receiver, newsToSend);
         }
 
         private static TaleNewsReference DetermineTaleNewsToTransmit(Pawn initiator, Pawn receiver, SpreadMode mode)
@@ -42,9 +42,9 @@ namespace Desynchronized.TNDBS.Utilities
         private static void SelectNewsRandomly(Pawn initiator, Pawn receiver, out TaleNewsReference result)
         {
             // Is now weighted random.
-            var listInitiator = initiator.GetNewsKnowledgeTracker().GetAllValidNonForgottenNewsReferences().ToList();
+            var listInitiator = initiator.GetNewsKnowledgeTracker()?.GetAllValidNonForgottenNewsReferences().ToList();
 
-            if (listInitiator.Count == 0)
+            if (listInitiator != null && listInitiator.Count == 0)
             {
                 result = TaleNewsReference.DefaultReference;
             }
@@ -53,7 +53,13 @@ namespace Desynchronized.TNDBS.Utilities
                 // Collect weights
                 var weights = new List<float>();
                 float weightSum = 0;
-                foreach (TaleNewsReference reference in listInitiator)
+                if (listInitiator == null)
+                {
+                    result = null;
+                    return;
+                }
+
+                foreach (var reference in listInitiator)
                 {
                     var importanceScore = reference.NewsImportance;
                     weights.Add(importanceScore);
@@ -79,11 +85,13 @@ namespace Desynchronized.TNDBS.Utilities
                     }
 
                     weightSum += temp;
-                    if (weightSum >= randomChoice)
+                    if (!(weightSum >= randomChoice))
                     {
-                        selectedIndex = i;
-                        break;
+                        continue;
                     }
+
+                    selectedIndex = i;
+                    break;
                 }
 
                 result = listInitiator[selectedIndex];
@@ -92,37 +100,39 @@ namespace Desynchronized.TNDBS.Utilities
 
         private static void SelectNewsDistinctly(Pawn initiator, Pawn receiver, out TaleNewsReference result)
         {
-            List<TaleNewsReference> listInitiator = initiator.GetNewsKnowledgeTracker().AllNewsReferences_ReadOnlyList;
+            var listInitiator = initiator.GetNewsKnowledgeTracker()?.AllNewsReferences_ReadOnlyList;
             // DesynchronizedMain.TaleNewsDatabaseSystem.ListAllAwarenessOfPawn(initiator);
-            List<TaleNewsReference> listReceiver = receiver.GetNewsKnowledgeTracker().AllNewsReferences_ReadOnlyList;
+            var listReceiver = receiver.GetNewsKnowledgeTracker()?.AllNewsReferences_ReadOnlyList;
             // DesynchronizedMain.TaleNewsDatabaseSystem.ListAllAwarenessOfPawn(receiver);
 
             // Distinct List
             var listDistinct = new List<TaleNewsReference>();
 
             // Find out the contents of the distinct list
-            foreach (TaleNewsReference reference in listInitiator)
+            if (listInitiator != null)
             {
-                if (!listReceiver.Contains(reference))
+                foreach (var reference in listInitiator)
                 {
-                    listDistinct.Add(reference);
+                    if (listReceiver != null && !listReceiver.Contains(reference))
+                    {
+                        listDistinct.Add(reference);
+                    }
                 }
             }
 
             // Select one random entry from the distinct list
-            if (listDistinct.Count == 0)
-            {
-                result = TaleNewsReference.DefaultReference;
-            }
-            else
-            {
-                result = listDistinct[(int)((uint)Rand.Int % listDistinct.Count)];
-            }
+            result = listDistinct.Count == 0
+                ? TaleNewsReference.DefaultReference
+                : listDistinct[(int) ((uint) Rand.Int % listDistinct.Count)];
         }
 
-        private static void AttemptToTransmitNews(Pawn initiator, Pawn receiver, TaleNewsReference news)
+        private static void AttemptToTransmitNews(Pawn receiver, TaleNewsReference news)
         {
             // DesynchronizedMain.LogError("Attempting to transmit " + news.ToString());
+            if (receiver == null)
+            {
+                return;
+            }
 
             if (news == null || news.IsDefaultReference())
             {
@@ -130,7 +140,7 @@ namespace Desynchronized.TNDBS.Utilities
                 return;
             }
 
-            receiver.GetNewsKnowledgeTracker().KnowNews(news.ReferencedTaleNews);
+            receiver.GetNewsKnowledgeTracker()?.KnowNews(news.ReferencedTaleNews);
         }
     }
 }

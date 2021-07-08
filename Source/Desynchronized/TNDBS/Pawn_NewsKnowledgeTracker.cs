@@ -1,25 +1,23 @@
-﻿using Desynchronized.TNDBS.Extenders;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Desynchronized.TNDBS.Extenders;
 using Verse;
 
 namespace Desynchronized.TNDBS
 {
-    public class Pawn_NewsKnowledgeTracker: IExposable
+    public class Pawn_NewsKnowledgeTracker : IExposable
     {
-        private Pawn pawn;
         private List<TaleNewsReference> newsKnowledgeList = new List<TaleNewsReference>();
+        private Pawn pawn;
 
         public Pawn Pawn => pawn;
 
-        [Obsolete("Unsafe code.")]
-        public List<TaleNewsReference> ListOfAllKnownNews => newsKnowledgeList;
+        [Obsolete("Unsafe code.")] public List<TaleNewsReference> ListOfAllKnownNews => newsKnowledgeList;
 
         internal List<TaleNewsReference> NewsKnowledgeList => newsKnowledgeList;
 
-        [Obsolete("Unsafe code.")]
-        public List<TaleNewsReference> AllNewsReferences_Raw => newsKnowledgeList;
+        [Obsolete("Unsafe code.")] public List<TaleNewsReference> AllNewsReferences_Raw => newsKnowledgeList;
 
         public IEnumerable<TaleNewsReference> AllNewsReferences_ReadOnlyEnumerable => newsKnowledgeList.AsEnumerable();
 
@@ -29,34 +27,40 @@ namespace Desynchronized.TNDBS
         {
             get
             {
-                foreach (TaleNewsReference reference in newsKnowledgeList)
+                foreach (var reference in newsKnowledgeList)
                 {
                     if (reference.ReferenceIsValid)
                     {
                         yield return reference;
                     }
                 }
+            }
+        }
 
-                yield break;
+        public void ExposeData()
+        {
+            Scribe_References.Look(ref pawn, "pawn");
+            Scribe_Collections.Look(ref newsKnowledgeList, "newsKnowledgeList", LookMode.Deep);
+
+            if (Scribe.mode != LoadSaveMode.PostLoadInit)
+            {
+                return;
+            }
+
+            foreach (var reference in newsKnowledgeList)
+            {
+                reference.CachedSubject = pawn;
             }
         }
 
         /// <summary>
-        /// This constructor does nothing; better use the static generator method instead.
-        /// </summary>
-        public Pawn_NewsKnowledgeTracker()
-        {
-
-        }
-
-        /// <summary>
-        /// Generates a new Tracker using verified code for a pawn.
+        ///     Generates a new Tracker using verified code for a pawn.
         /// </summary>
         /// <param name="beneficiary"></param>
         /// <returns></returns>
         public static Pawn_NewsKnowledgeTracker GenerateNewTrackerForPawn(Pawn beneficiary)
         {
-            return new Pawn_NewsKnowledgeTracker()
+            return new Pawn_NewsKnowledgeTracker
             {
                 pawn = beneficiary
             };
@@ -67,43 +71,32 @@ namespace Desynchronized.TNDBS
             return pawn != null;
         }
 
-        public void ExposeData()
-        {
-            Scribe_References.Look(ref pawn, "pawn");
-            Scribe_Collections.Look(ref newsKnowledgeList, "newsKnowledgeList", LookMode.Deep);
-
-            if (Scribe.mode == LoadSaveMode.PostLoadInit)
-            {
-                foreach (TaleNewsReference reference in newsKnowledgeList)
-                {
-                    reference.CachedSubject = pawn;
-                }
-            }
-        }
-
         /// <summary>
-        /// Finds the TaleNewsReference of the given TaleNews in the known list (or generates a new one if it does not exist), and activates it.
+        ///     Finds the TaleNewsReference of the given TaleNews in the known list (or generates a new one if it does not exist),
+        ///     and activates it.
         /// </summary>
         /// <param name="news"></param>
         public void KnowNews(TaleNews news)
         {
-            if (AttemptToObtainExistingReference(news) == null)
+            if (news == null)
             {
-                // Pawn is receiving this for the first time.
-                TaleNewsReference newReference = news.CreateReferenceForReceipient(Pawn);
-                newsKnowledgeList.Add(newReference);
-                newReference.ActivateNews();
+                return;
             }
-            else
+
+            if (AttemptToObtainExistingReference(news) != null)
             {
-                // Pawn might have forgotten about the news, so let's see.
-                // Not implemented for now.
+                return;
             }
+
+            // Pawn is receiving this for the first time.
+            var newReference = news.CreateReferenceForReceipient(Pawn);
+            newsKnowledgeList.Add(newReference);
+            newReference.ActivateNews();
         }
 
         /// <summary>
-        /// Randomly selects a news, and forgets it.
-        /// Does not check for whether the news has already been forgotten before.
+        ///     Randomly selects a news, and forgets it.
+        ///     Does not check for whether the news has already been forgotten before.
         /// </summary>
         public void ForgetRandom()
         {
@@ -113,7 +106,7 @@ namespace Desynchronized.TNDBS
         }
 
         /// <summary>
-        /// Forgets one known tale-news. Returns true if successfully forgetting one.
+        ///     Forgets one known tale-news. Returns true if successfully forgetting one.
         /// </summary>
         /// <returns></returns>
         public bool ForgetOneRandom()
@@ -124,13 +117,13 @@ namespace Desynchronized.TNDBS
                 return false;
             }
 
-            var selectedIndex = (int)(((uint)Rand.Int) % listOfKnownNews.Count);
+            var selectedIndex = (int) ((uint) Rand.Int % listOfKnownNews.Count);
             listOfKnownNews[selectedIndex].Forget();
             return true;
         }
 
         /// <summary>
-        /// Forgets a number of tale-news that this pawn knows.
+        ///     Forgets a number of tale-news that this pawn knows.
         /// </summary>
         /// <param name="count"></param>
         public void ForgetRandomly(int count = 1)
@@ -155,7 +148,7 @@ namespace Desynchronized.TNDBS
 
         public TaleNewsReference AttemptToObtainExistingReference(TaleNews news)
         {
-            foreach (TaleNewsReference reference in newsKnowledgeList)
+            foreach (var reference in newsKnowledgeList)
             {
                 if (reference.ReferencedTaleNews.UniqueID == news.UniqueID)
                 {

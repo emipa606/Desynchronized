@@ -1,6 +1,6 @@
-﻿using Desynchronized.TNDBS.Datatypes;
+﻿using System;
+using Desynchronized.TNDBS.Datatypes;
 using RimWorld;
-using System;
 using Verse;
 
 namespace Desynchronized.TNDBS
@@ -10,18 +10,12 @@ namespace Desynchronized.TNDBS
     {
         private Faction kidnapperFaction;
 
-        public Pawn Kidnapper => Instigator;
-
-        public Pawn KidnapVictim => PrimaryVictim;
-
-        public Faction KidnapperFaction => kidnapperFaction;
-
         public TaleNewsPawnKidnapped()
         {
-
         }
 
-        public TaleNewsPawnKidnapped(Pawn victim, Faction kidnappingFaction): base(victim, InstigationInfo.NoInstigator)
+        public TaleNewsPawnKidnapped(Pawn victim, Faction kidnappingFaction) : base(victim,
+            InstigationInfo.NoInstigator)
         {
             if (kidnappingFaction == null)
             {
@@ -34,7 +28,7 @@ namespace Desynchronized.TNDBS
             }
         }
 
-        public TaleNewsPawnKidnapped(Pawn victim, Pawn kidnapper): base(victim, InstigationInfo.NoInstigator)
+        public TaleNewsPawnKidnapped(Pawn victim, Pawn kidnapper) : base(victim, InstigationInfo.NoInstigator)
         {
             if (kidnapper == null)
             {
@@ -46,6 +40,12 @@ namespace Desynchronized.TNDBS
                 kidnapperFaction = kidnapper.Faction;
             }
         }
+
+        public Pawn Kidnapper => Instigator;
+
+        public Pawn KidnapVictim => PrimaryVictim;
+
+        public Faction KidnapperFaction => kidnapperFaction;
 
         public override string GetNewsTypeName()
         {
@@ -78,25 +78,26 @@ namespace Desynchronized.TNDBS
                 var opinion = recipient.relations.OpinionOf(KidnapVictim);
                 if (opinion >= 20)
                 {
-                    new IndividualThoughtToAdd(ThoughtDefOf.PawnWithGoodOpinionLost, recipient, KidnapVictim, KidnapVictim.relations.GetFriendDiedThoughtPowerFactor(opinion), 1f).Add();
+                    new IndividualThoughtToAdd(ThoughtDefOf.PawnWithGoodOpinionLost, recipient, KidnapVictim,
+                        KidnapVictim.relations.GetFriendDiedThoughtPowerFactor(opinion)).Add();
                 }
                 else if (opinion <= -20)
                 {
-                    new IndividualThoughtToAdd(ThoughtDefOf.PawnWithBadOpinionLost, recipient, KidnapVictim, KidnapVictim.relations.GetRivalDiedThoughtPowerFactor(opinion), 1f).Add();
+                    new IndividualThoughtToAdd(ThoughtDefOf.PawnWithBadOpinionLost, recipient, KidnapVictim,
+                        KidnapVictim.relations.GetRivalDiedThoughtPowerFactor(opinion)).Add();
                 }
             }
 
             // Finally give Family Member Kidnapped thoughts
-            PawnRelationDef mostImportantRelation = recipient.GetMostImportantRelation(KidnapVictim);
-            if (mostImportantRelation != null)
+            var mostImportantRelation = recipient.GetMostImportantRelation(KidnapVictim);
+
+            var genderSpecificLostThought = mostImportantRelation?.GetGenderSpecificLostThought(KidnapVictim);
+            if (genderSpecificLostThought != null)
             {
-                ThoughtDef genderSpecificLostThought = mostImportantRelation.GetGenderSpecificLostThought(KidnapVictim);
-                if (genderSpecificLostThought != null)
-                {
-                    new IndividualThoughtToAdd(genderSpecificLostThought, recipient, KidnapVictim).Add();
-                    // outIndividualThoughts.Add(new IndividualThoughtToAdd(genderSpecificDiedThought, potentiallyRelatedPawn, victim, 1f, 1f));
-                }
+                new IndividualThoughtToAdd(genderSpecificLostThought, recipient, KidnapVictim).Add();
+                // outIndividualThoughts.Add(new IndividualThoughtToAdd(genderSpecificDiedThought, potentiallyRelatedPawn, victim, 1f, 1f));
             }
+
             // TODO
         }
 
@@ -118,6 +119,7 @@ namespace Desynchronized.TNDBS
             {
                 basic += "unknown";
             }
+
             basic += "\nActual kidnapper: ";
             if (Kidnapper != null)
             {

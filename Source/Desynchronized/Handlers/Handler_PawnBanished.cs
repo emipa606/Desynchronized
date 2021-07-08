@@ -7,7 +7,7 @@ namespace Desynchronized.Handlers
     public class Handler_PawnBanished
     {
         /// <summary>
-        /// Handles a pawn banishment event.
+        ///     Handles a pawn banishment event.
         /// </summary>
         /// <param name="victim"></param>
         /// <param name="banishmentIsDeadly"></param>
@@ -19,18 +19,19 @@ namespace Desynchronized.Handlers
 
         private static void SendOutNotificationLetter(Pawn victim)
         {
-            Find.LetterStack.ReceiveLetter("Colonist banished", "Colonist banished. Name of Colonist: " + victim.Name, LetterDefOf.NegativeEvent, victim, null, null);
+            Find.LetterStack.ReceiveLetter("Colonist banished", "Colonist banished. Name of Colonist: " + victim.Name,
+                LetterDefOf.NegativeEvent, victim);
         }
 
         private static void GenerateAndProcessNews(Pawn victim, bool banishmentIsDeadly)
         {
             var banishmentNews = new TaleNewsPawnBanished(victim, banishmentIsDeadly);
 
-            foreach (Pawn other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists)
+            foreach (var other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists)
             {
                 if (other.IsNearEnough(victim))
                 {
-                    other.GetNewsKnowledgeTracker().KnowNews(banishmentNews);
+                    other.GetNewsKnowledgeTracker()?.KnowNews(banishmentNews);
                 }
             }
         }

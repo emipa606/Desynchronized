@@ -5,13 +5,14 @@ using Verse;
 namespace Desynchronized.Handlers
 {
     /// <summary>
-    /// You must signal this class before instructing it to handle the kidnap event so that the correct response can be given.
+    ///     You must signal this class before instructing it to handle the kidnap event so that the correct response can be
+    ///     given.
     /// </summary>
     public class Handler_PawnKidnapped
     {
-        private static Map mapOfOccurence = null;
-        private static Faction kidnappingFaction = null;
-        private static bool flagIsDuringOffensiveBattle = false;
+        private static Map mapOfOccurence;
+        private static Faction kidnappingFaction;
+        private static bool flagIsDuringOffensiveBattle;
 
         public static void Signal_OffensiveBattle_BeginBlock(Map map)
         {
@@ -34,11 +35,6 @@ namespace Desynchronized.Handlers
             // so no need to reinvent the wheel.
             // This results in no need to send out any custom letters.
 
-            if (false && !flagIsDuringOffensiveBattle)
-            {
-                // Vanilla already generates its own letter, so no need to reinvent the wheel.
-                SendOutNotificationLetter(victim);
-            }
             GenerateAndProcessNews(victim, kidnapper);
         }
 
@@ -61,39 +57,32 @@ namespace Desynchronized.Handlers
 
         private static void SendOutNotificationLetter(Pawn victim)
         {
-            DesynchronizedMain.LogError("Called SendOutNotificationLetter(Pawn) to give out \"Pawn Kidnapped\" letters, which should not happen due to v1.1's own letters.");
+            DesynchronizedMain.LogError(
+                "Called SendOutNotificationLetter(Pawn) to give out \"Pawn Kidnapped\" letters, which should not happen due to v1.1's own letters.");
 
             string letterLabel = "Kidnapped".Translate() + ": " + victim.LabelShortCap;
             var letterContent = string.Empty;
-            letterContent += "PawnKidnapped".Translate(victim.LabelShort.CapitalizeFirst(), kidnappingFaction.def.pawnsPlural, kidnappingFaction.Name, victim.Named("PAWN"));
+            letterContent += "PawnKidnapped".Translate(victim.LabelShort.CapitalizeFirst(),
+                kidnappingFaction.def.pawnsPlural, kidnappingFaction.Name, victim.Named("PAWN"));
 
             Find.LetterStack.ReceiveLetter(letterLabel, letterContent, LetterDefOf.NegativeEvent, LookTargets.Invalid);
         }
 
         /// <summary>
-        /// Generate a TaleNews for everybody.
-        /// I have no better idea right now, so this would have to suffice.
+        ///     Generate a TaleNews for everybody.
+        ///     I have no better idea right now, so this would have to suffice.
         /// </summary>
         /// <param name="victim"></param>
         /// <param name="kidnapper"></param>
-        /// 
         private static void GenerateAndProcessNews(Pawn victim, Pawn kidnapper)
         {
             // Confirm instigator, hence the TaleNews to be transmitted
-            TaleNewsPawnKidnapped newsPawnKidnapped;
-            if (kidnapper == null)
-            {
-                // Pawns lost during offensive battles will have null kidnapper
-                newsPawnKidnapped = new TaleNewsPawnKidnapped(victim, kidnappingFaction);
-            }
-            else
-            {
-                // Pawns lost during defensive battles will have non-null kidnapper
-                newsPawnKidnapped = new TaleNewsPawnKidnapped(victim, kidnapper);
-            }
+            var newsPawnKidnapped = kidnapper == null
+                ? new TaleNewsPawnKidnapped(victim, kidnappingFaction)
+                : new TaleNewsPawnKidnapped(victim, kidnapper);
 
             // Distribute news; quite standard procedure
-            foreach (Pawn other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists)
+            foreach (var other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists)
             {
                 // DesynchronizedMain.LogError("Parsing " + other.Name + "; he is in map " + other.MapHeld);
 
@@ -102,9 +91,10 @@ namespace Desynchronized.Handlers
                 {
                     continue;
                 }
+
                 if (other.IsNearEnough(victim))
                 {
-                    other.GetNewsKnowledgeTracker().KnowNews(newsPawnKidnapped);
+                    other.GetNewsKnowledgeTracker()?.KnowNews(newsPawnKidnapped);
                 }
             }
         }

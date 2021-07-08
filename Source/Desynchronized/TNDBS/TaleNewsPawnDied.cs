@@ -1,9 +1,9 @@
-﻿using Desynchronized.TNDBS.Datatypes;
+﻿using System;
+using System.Linq;
+using Desynchronized.TNDBS.Datatypes;
 using Desynchronized.TNDBS.Extenders;
 using Desynchronized.Utilities;
 using RimWorld;
-using System;
-using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -20,16 +20,51 @@ namespace Desynchronized.TNDBS
 
         private DeathBrutality brutalityDegree;
 
+        private Hediff culpritHediff;
+
         private DamageDef killingBlowDamageType;
 
-        private Hediff culpritHediff;
+        private DeathMethod methodOfDeath = DeathMethod.INDETERMINATE;
+
+        public TaleNewsPawnDied()
+        {
+        }
+
+        public TaleNewsPawnDied(Pawn victim, DamageInfo? dinfo) : base(victim, InstigationInfo.NoInstigator)
+        {
+            // DesynchronizedMain.LogError("Dumping stacktrace: " + Environment.StackTrace);
+
+            methodOfDeath = DeathMethod.NON_EXECUTION;
+
+            if (!dinfo.HasValue)
+            {
+                return;
+            }
+
+            var dinfoUnpacked = dinfo.Value;
+            killingBlowDamageType = dinfoUnpacked.Def;
+            if (dinfoUnpacked.Instigator is Pawn instigator)
+            {
+                InstigationDetails = (InstigationInfo) instigator;
+            }
+        }
+
+        public TaleNewsPawnDied(Pawn victim, DamageInfo? dinfo, Hediff culprit) : this(victim, dinfo)
+        {
+            culpritHediff = culprit;
+        }
+
+        public TaleNewsPawnDied(Pawn victim, DeathBrutality brutality) : base(victim, InstigationInfo.NoInstigator)
+        {
+            methodOfDeath = DeathMethod.EXECUTION;
+        }
 
         public Pawn Killer => Instigator;
 
         public Pawn Victim => PrimaryVictim;
 
         /// <summary>
-        /// Defaults to HUMANE if something went wrong.
+        ///     Defaults to HUMANE if something went wrong.
         /// </summary>
         public DeathBrutality BrutalityDegree
         {
@@ -39,43 +74,9 @@ namespace Desynchronized.TNDBS
 
         public DamageDef KillingBlowDamageDef => killingBlowDamageType;
 
-        private DeathMethod methodOfDeath = DeathMethod.INDETERMINATE;
-
         public DeathMethod MethodOfDeath => methodOfDeath;
 
         public Hediff CulpritHediff => culpritHediff;
-
-        public TaleNewsPawnDied()
-        {
-
-        }
-
-        public TaleNewsPawnDied(Pawn victim, DamageInfo? dinfo): base(victim, InstigationInfo.NoInstigator)
-        {
-            // DesynchronizedMain.LogError("Dumping stacktrace: " + Environment.StackTrace);
-
-            methodOfDeath = DeathMethod.NON_EXECUTION;
-
-            if (dinfo.HasValue)
-            {
-                DamageInfo dinfoUnpacked = dinfo.Value;
-                killingBlowDamageType = dinfoUnpacked.Def;
-                if (dinfoUnpacked.Instigator is Pawn instigator)
-                {
-                    InstigationDetails = (InstigationInfo) instigator;
-                }
-            }
-        }
-
-        public TaleNewsPawnDied(Pawn victim, DamageInfo? dinfo, Hediff culprit): this (victim, dinfo)
-        {
-            culpritHediff = culprit;
-        }
-
-        public TaleNewsPawnDied(Pawn victim, DeathBrutality brutality): base(victim, InstigationInfo.NoInstigator)
-        {
-            methodOfDeath = DeathMethod.EXECUTION;
-        }
 
         [Obsolete("Use constructors instead.")]
         public static TaleNewsPawnDied GenerateAsExecution(Pawn victim, DeathBrutality brutality)
@@ -104,93 +105,108 @@ namespace Desynchronized.TNDBS
         }
 
         /// <summary>
-        /// Attempts to process this TaleNews as an execution event. Completes processing and returns true if successful; aborts and returns false otherwise.
+        ///     Attempts to process this TaleNews as an execution event. Completes processing and returns true if successful;
+        ///     aborts and returns false otherwise.
         /// </summary>
         /// <param name="recipient"></param>
         /// <returns></returns>
         private bool TryProcessAsExecutionEvent(Pawn recipient)
         {
-            var result = false;
-
-            if (methodOfDeath == DeathMethod.EXECUTION)
+            if (methodOfDeath != DeathMethod.EXECUTION)
             {
-                result = true;
-
-                // Rather simple. Copied from vanilla code.
-                var forcedStage = (int)BrutalityDegree;
-                ThoughtDef thoughtToGive = Victim.IsColonist ? ThoughtDefOf.KnowColonistExecuted : ThoughtDefOf.KnowGuestExecuted;
-                recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(thoughtToGive, forcedStage), null);
+                return false;
             }
 
-            return result;
+            // Rather simple. Copied from vanilla code.
+            var forcedStage = (int) BrutalityDegree;
+            var thoughtToGive =
+                Victim.IsColonist ? ThoughtDefOf.KnowColonistExecuted : ThoughtDefOf.KnowGuestExecuted;
+            recipient.needs.mood.thoughts.memories.TryGainMemory(
+                ThoughtMaker.MakeThought(thoughtToGive, forcedStage));
+
+            return true;
         }
 
         /// <summary>
-        /// Attempts to give the killer their appropriate excitement (or disappointment). Aborts if there is no killer.
+        ///     Attempts to give the killer their appropriate excitement (or disappointment). Aborts if there is no killer.
         /// </summary>
         /// <param name="recipient"></param>
         private void TryProcessKillerHigh(Pawn recipient)
         {
             // Killer != null => DamageInfo != null
-            if (Killer != null)
+            if (Killer == null)
             {
-                // Currently you can't really kill yourself.
-                // That would be something interesting, but we don't do that here.
-                if (recipient == Killer)
-                {
-                    // IDK, is this something we can consider checking?
-                    if (KillingBlowDamageDef.ExternalViolenceFor(Victim))
-                    {
-                        // Why this check tho
-                        if (recipient.story != null)
-                        {
-                            // Bloodlust thoughts for Bloodlust guys, currently only for human victims
-                            // We can expand upon this, and add in witnessed death (animals) with bloodlust
-                            if (Victim.RaceProps.Humanlike)
-                            {
-                                // Try to add Bloodlust thoughts; will be auto-rejected if recipient does not have Bloodlust
-                                new IndividualThoughtToAdd(ThoughtDefOf.KilledHumanlikeBloodlust, recipient).Add();
+                return;
+            }
 
-                                // Try to add Defeated Hostile Leader thoughts
-                                if (Victim.HostileTo(Killer) && Victim.Faction != null && PawnUtility.IsFactionLeader(Victim) && Victim.Faction.HostileTo(Killer.Faction))
-                                {
-                                    new IndividualThoughtToAdd(ThoughtDefOf.DefeatedHostileFactionLeader, Killer, Victim).Add();
-                                }
-                            }
-                        }
-                    }
-                }
+            // Currently you can't really kill yourself.
+            // That would be something interesting, but we don't do that here.
+            if (recipient != Killer)
+            {
+                return;
+            }
+
+            // IDK, is this something we can consider checking?
+            if (!KillingBlowDamageDef.ExternalViolenceFor(Victim))
+            {
+                return;
+            }
+
+            // Why this check tho
+            if (recipient.story == null)
+            {
+                return;
+            }
+
+            // Bloodlust thoughts for Bloodlust guys, currently only for human victims
+            // We can expand upon this, and add in witnessed death (animals) with bloodlust
+            if (!Victim.RaceProps.Humanlike)
+            {
+                return;
+            }
+
+            // Try to add Bloodlust thoughts; will be auto-rejected if recipient does not have Bloodlust
+            new IndividualThoughtToAdd(ThoughtDefOf.KilledHumanlikeBloodlust, recipient).Add();
+
+            // Try to add Defeated Hostile Leader thoughts
+            if (Victim.HostileTo(Killer) && Victim.Faction != null &&
+                PawnUtility.IsFactionLeader(Victim) && Victim.Faction.HostileTo(Killer.Faction))
+            {
+                new IndividualThoughtToAdd(ThoughtDefOf.DefeatedHostileFactionLeader, Killer,
+                    Victim).Add();
             }
         }
 
         /// <summary>
-        /// Attempts to give the recipient eye-witness thoughts; general thoughts otherwise.
+        ///     Attempts to give the recipient eye-witness thoughts; general thoughts otherwise.
         /// </summary>
         /// <param name="recipient"></param>
         private void TryProcessEyeWitness(Pawn recipient)
         {
             // There is potential to expand upon this condition.
-            if (Victim.RaceProps.Humanlike)
+            if (!Victim.RaceProps.Humanlike)
             {
-                if (recipient.CanWitnessOtherPawn(Victim))
-                {
-                    GiveOutEyewitnessThoughts(recipient);
-                }
-                else
-                {
-                    GiveOutGenericThoughts(recipient);
-                }
+                return;
+            }
+
+            if (recipient.CanWitnessOtherPawn(Victim))
+            {
+                GiveOutEyewitnessThoughts(recipient);
+            }
+            else
+            {
+                GiveOutGenericThoughts(recipient);
             }
         }
 
         /// <summary>
-        /// Attempts to give the recipient thoughts that are derived from their relationship statuses, if there are any.
+        ///     Attempts to give the recipient thoughts that are derived from their relationship statuses, if there are any.
         /// </summary>
         /// <param name="recipient"></param>
         private void TryProcessRelationshipThoughts(Pawn recipient)
         {
             // Check if there is any relationship at all
-            Pawn_RelationsTracker tracker = Victim.relations;
+            var tracker = Victim.relations;
             if (tracker != null && tracker.PotentiallyRelatedPawns.Contains(recipient))
             {
                 GiveOutRelationshipBasedThoughts(recipient);
@@ -198,14 +214,14 @@ namespace Desynchronized.TNDBS
         }
 
         /// <summary>
-        /// Gives out eyewitness Thoughts.
-        /// <para/>
-        /// Only for eyewitnesses, that is, those Pawns whose .CanWitnessOtherPawn(Victim) returns true
+        ///     Gives out eyewitness Thoughts.
+        ///     <para />
+        ///     Only for eyewitnesses, that is, those Pawns whose .CanWitnessOtherPawn(Victim) returns true
         /// </summary>
         private void GiveOutEyewitnessThoughts(Pawn recipient)
         {
             // News is shocking because witnessed by naked eye
-            recipient.GetNewsKnowledgeTracker().AttemptToObtainExistingReference(this).FlagAsShockingNews();
+            recipient.GetNewsKnowledgeTracker()?.AttemptToObtainExistingReference(this).FlagAsShockingNews();
 
             if (recipient.Faction == Victim.Faction)
             {
@@ -215,24 +231,28 @@ namespace Desynchronized.TNDBS
             {
                 new IndividualThoughtToAdd(ThoughtDefOf.WitnessedDeathNonAlly, recipient).Add();
             }
+
             if (recipient.relations.FamilyByBlood.Contains(Victim))
             {
                 new IndividualThoughtToAdd(ThoughtDefOf.WitnessedDeathFamily, recipient).Add();
             }
+
             new IndividualThoughtToAdd(ThoughtDefOf.WitnessedDeathBloodlust, recipient).Add();
         }
 
         /// <summary>
-        /// Gives out generic thoughts such as Colonist Died or Prisoner Died, etc.
-        /// <para/>
-        /// For everyone, though eyewitnesses should preferrably use GiveOutEyewitnessThoughts()
+        ///     Gives out generic thoughts such as Colonist Died or Prisoner Died, etc.
+        ///     <para />
+        ///     For everyone, though eyewitnesses should preferrably use GiveOutEyewitnessThoughts()
         /// </summary>
         private void GiveOutGenericThoughts(Pawn recipient)
         {
-            if (Victim.Faction == Faction.OfPlayer && Victim.Faction == recipient.Faction && Victim.HostFaction != recipient.Faction)
+            if (Victim.Faction == Faction.OfPlayer && Victim.Faction == recipient.Faction &&
+                Victim.HostFaction != recipient.Faction)
             {
                 recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.KnowColonistDied, Victim);
             }
+
             var prisonerIsInnocent = Victim.IsPrisonerOfColony && !Victim.guilt.IsGuilty && !Victim.InAggroMentalState;
             if (prisonerIsInnocent && recipient.Faction == Faction.OfPlayer && !recipient.IsPrisoner)
             {
@@ -241,46 +261,51 @@ namespace Desynchronized.TNDBS
         }
 
         /// <summary>
-        /// Gives out relationship-based Thoughts, such as My Relative Died, and Killer Killed My Relative/Friend/Rival.
-        /// <para/>
-        /// Most thoughts given out here are all social thoughts. The very few excptions to this are the Bonded Animal Died thought
+        ///     Gives out relationship-based Thoughts, such as My Relative Died, and Killer Killed My Relative/Friend/Rival.
+        ///     <para />
+        ///     Most thoughts given out here are all social thoughts. The very few excptions to this are the Bonded Animal Died
+        ///     thought
         /// </summary>
         private void GiveOutRelationshipBasedThoughts(Pawn recipient)
         {
-            PawnRelationDef mostImportantRelation = recipient.GetMostImportantRelation(Victim);
-            if (mostImportantRelation != null)
+            var mostImportantRelation = recipient.GetMostImportantRelation(Victim);
+            if (mostImportantRelation == null)
             {
-                // Step 2.0: News is shocking because relative died.
-                recipient.GetNewsKnowledgeTracker().AttemptToObtainExistingReference(this).FlagAsShockingNews();
+                return;
+            }
 
-                // Step 2.1: My relative died
-                ThoughtDef genderSpecificDiedThought = mostImportantRelation.GetGenderSpecificDiedThought(Victim);
-                if (genderSpecificDiedThought != null)
-                {
-                    new IndividualThoughtToAdd(genderSpecificDiedThought, recipient, Victim, 1f, 1f).Add();
-                }
+            // Step 2.0: News is shocking because relative died.
+            recipient.GetNewsKnowledgeTracker()?.AttemptToObtainExistingReference(this).FlagAsShockingNews();
 
-                // Step 2.2: Hatred towards killer; does not allow self-hating
-                if (Killer != null && Killer != Victim && Killer != recipient)
-                {
-                    // This killer killed my relatives
-                    GiveOutHatredTowardsKiller_ForRelatives(mostImportantRelation, recipient);
+            // Step 2.1: My relative died
+            var genderSpecificDiedThought = mostImportantRelation.GetGenderSpecificDiedThought(Victim);
+            if (genderSpecificDiedThought != null)
+            {
+                new IndividualThoughtToAdd(genderSpecificDiedThought, recipient, Victim).Add();
+            }
 
-                    // This killer killed my friend/rival
-                    if (recipient.RaceProps.IsFlesh)
-                    {
-                        GiveOutHatredTowardsKiller_ForFriendsOrRivals(recipient);
-                    }
-                }
+            // Step 2.2: Hatred towards killer; does not allow self-hating
+            if (Killer == null || Killer == Victim || Killer == recipient)
+            {
+                return;
+            }
+
+            // This killer killed my relatives
+            GiveOutHatredTowardsKiller_ForRelatives(mostImportantRelation, recipient);
+
+            // This killer killed my friend/rival
+            if (recipient.RaceProps.IsFlesh)
+            {
+                GiveOutHatredTowardsKiller_ForFriendsOrRivals(recipient);
             }
         }
 
         private void GiveOutHatredTowardsKiller_ForRelatives(PawnRelationDef mostImportantRelation, Pawn recipient)
         {
-            ThoughtDef genderSpecificKilledThought = mostImportantRelation.GetGenderSpecificKilledThought(Victim);
+            var genderSpecificKilledThought = mostImportantRelation.GetGenderSpecificKilledThought(Victim);
             if (genderSpecificKilledThought != null)
             {
-                new IndividualThoughtToAdd(genderSpecificKilledThought, recipient, Killer, 1f, 1f).Add();
+                new IndividualThoughtToAdd(genderSpecificKilledThought, recipient, Killer).Add();
             }
         }
 
@@ -294,29 +319,33 @@ namespace Desynchronized.TNDBS
             // So here we are using another way to write concise code
             if (opinion >= 20)
             {
-                tempThought = new IndividualThoughtToAdd(ThoughtDefOf.KilledMyFriend, recipient, Killer, 1f, Victim.relations.GetFriendDiedThoughtPowerFactor(opinion));
+                tempThought = new IndividualThoughtToAdd(ThoughtDefOf.KilledMyFriend, recipient, Killer, 1f,
+                    Victim.relations.GetFriendDiedThoughtPowerFactor(opinion));
             }
             else if (opinion <= -20)
             {
-                tempThought = new IndividualThoughtToAdd(ThoughtDefOf.KilledMyRival, recipient, Killer, 1f, Victim.relations.GetRivalDiedThoughtPowerFactor(opinion));
+                tempThought = new IndividualThoughtToAdd(ThoughtDefOf.KilledMyRival, recipient, Killer, 1f,
+                    Victim.relations.GetRivalDiedThoughtPowerFactor(opinion));
             }
-            
+
             tempThought?.Add();
         }
 
         /// <summary>
-        /// Gives My Friend/Rival Died mood thoughts
+        ///     Gives My Friend/Rival Died mood thoughts
         /// </summary>
         private void GiveOutFriendOrRivalDiedThoughts(Pawn recipient)
         {
             var opinion = recipient.relations.OpinionOf(Victim);
             if (opinion >= 20)
             {
-                new IndividualThoughtToAdd(ThoughtDefOf.PawnWithGoodOpinionDied, recipient, Victim, Victim.relations.GetFriendDiedThoughtPowerFactor(opinion), 1f).Add();
+                new IndividualThoughtToAdd(ThoughtDefOf.PawnWithGoodOpinionDied, recipient, Victim,
+                    Victim.relations.GetFriendDiedThoughtPowerFactor(opinion)).Add();
             }
             else if (opinion <= -20)
             {
-                new IndividualThoughtToAdd(ThoughtDefOf.PawnWithBadOpinionDied, recipient, Victim, Victim.relations.GetRivalDiedThoughtPowerFactor(opinion), 1f).Add();
+                new IndividualThoughtToAdd(ThoughtDefOf.PawnWithBadOpinionDied, recipient, Victim,
+                    Victim.relations.GetRivalDiedThoughtPowerFactor(opinion)).Add();
             }
         }
 
@@ -349,7 +378,8 @@ namespace Desynchronized.TNDBS
             // result += (int)reference.ShockGrade * Mathf.Pow(0.5f, (1.0f / (60000 * 15)) * (Find.TickManager.TicksGame - reference.TickReceived));
             //float victimKindScore = Victim.RaceProps.Animal ? 1 : 10;
             // First determine thought by relations
-            ThoughtDef potentialGivenThought = pawn.GetMostImportantRelation(Victim)?.GetGenderSpecificDiedThought(Victim) ?? null;
+            var potentialGivenThought =
+                pawn.GetMostImportantRelation(Victim)?.GetGenderSpecificDiedThought(Victim);
             // If there exists none, then determine by factions
             if (potentialGivenThought == null)
             {
@@ -362,7 +392,7 @@ namespace Desynchronized.TNDBS
             float relationalDeathImpact;
             if (potentialGivenThought != null)
             {
-                Thought tempThought = ThoughtMaker.MakeThought(potentialGivenThought);
+                var tempThought = ThoughtMaker.MakeThought(potentialGivenThought);
                 tempThought.pawn = pawn;
                 relationalDeathImpact = Mathf.Abs(tempThought.MoodOffset());
             }
@@ -381,14 +411,14 @@ namespace Desynchronized.TNDBS
             {
                 mainScore += 5;
             }
-            
+
             // Body size scaling: killing XL animals should be more significant than killing S animals
             mainScore *= PrimaryVictim.BodySize;
             // Pawn relations scaling: pawns with deeper bonds or deeper toothmarks should be more significant. Scales up to factor of 3.
-            mainScore *= 1 + Mathf.Abs(((float)pawn.relations.OpinionOf(Victim)) / 50);
+            mainScore *= 1 + Mathf.Abs((float) pawn.relations.OpinionOf(Victim) / 50);
             // Faction relations scaling: factions with stronger relations should be more significant. Scales up to factor of 3.
             var interFactionGoodwill = pawn.Faction.GetGoodwillWith(Victim.Faction);
-            mainScore *= 1 + Mathf.Abs((float)interFactionGoodwill / 50);
+            mainScore *= 1 + Mathf.Abs((float) interFactionGoodwill / 50);
 
             // News importance decays over time. Normal rate is halving per year.
             // Decay factor increased if news is shocking
@@ -399,22 +429,21 @@ namespace Desynchronized.TNDBS
             }
 
             // There are 60000 ticks per day, 15 days per Quadrum, and 4 Quadrums per year.
-            result += mainScore * Mathf.Pow(decayFactor, 1.0f / (60000 * 15 * 4) * (Find.TickManager.TicksGame - reference.TickReceived));
+            result += mainScore * Mathf.Pow(decayFactor,
+                1.0f / (60000 * 15 * 4) * (Find.TickManager.TicksGame - reference.TickReceived));
 
             // Memories are faulty.
             // They can be stronger or weaker, depending on how the brain is functioning at that moment.
             // Goes from -2 to +2.
             result += (Rand.Value * 4) - 2;
-            
+
             // Check that the result is valid; value should not drop below 0.
             if (result < 0)
             {
                 return 0;
             }
-            else
-            {
-                return result;
-            }
+
+            return result;
         }
 
         public override string GetDetailsPrintout()
@@ -427,34 +456,40 @@ namespace Desynchronized.TNDBS
             if (KillingBlowDamageDef != null)
             {
                 // Died due to damage.
-                deathMessage = KillingBlowDamageDef.deathMessage.Formatted(Victim.LabelShort.CapitalizeFirst(), Victim.Named("PAWN"));
+                deathMessage =
+                    KillingBlowDamageDef.deathMessage.Formatted(Victim.LabelShort.CapitalizeFirst(),
+                        Victim.Named("PAWN"));
             }
             else if (culpritHediff != null)
             {
                 // Died due to health conditions.
-                deathMessage = "PawnDiedBecauseOf".Translate(Victim.LabelShort.CapitalizeFirst(), culpritHediff.def.LabelCap, Victim.Named("PAWN"));
+                deathMessage = "PawnDiedBecauseOf".Translate(Victim.LabelShort.CapitalizeFirst(),
+                    culpritHediff.def.LabelCap, Victim.Named("PAWN"));
             }
             else
             {
                 // Generally died.
                 "PawnDied".Translate(Victim.LabelShort.CapitalizeFirst(), Victim.Named("PAWN"));
             }
+
             basic += "\n" + deathMessage;
 
             // Determine killer id
-            if (Killer != null)
+            if (Killer == null)
             {
-                basic += "\nKilled by: ";
-                if (Killer.Name != null)
-                {
-                    basic += Killer.Name;
-                }
-                else
-                {
-                    basic += Killer.ToString();
-                }
+                return basic;
             }
-            
+
+            basic += "\nKilled by: ";
+            if (Killer.Name != null)
+            {
+                basic += Killer.Name;
+            }
+            else
+            {
+                basic += Killer.ToString();
+            }
+
             return basic;
         }
 

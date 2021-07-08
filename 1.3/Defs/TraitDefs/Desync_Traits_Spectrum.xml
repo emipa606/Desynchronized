@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <TraitDef>
+    <defName>NewsSpreadTendency</defName>
+    <commonality>1</commonality>
+    <degreeDatas>
+      <li>
+        <!-- Special note: the actual label should be "secret keeper", but to maintain consistency with other translations, this label node is "secretkeeper" -->
+        <label>secretkeeper</label>
+        <description>[PAWN_nameDef] is careful with [PAWN_possessive] words, and will often choose to keep all kinds of news close to [PAWN_possessive] heart.</description>
+        <degree>-1</degree>
+        <statOffsets>
+          <NewsSpreadTendency>-0.15</NewsSpreadTendency>
+        </statOffsets>
+        <!--
+        <disallowedInspirations>
+          <li>Frenzy_Go</li>
+        </disallowedInspirations>
+        -->
+      </li>
+      <li>
+        <label>gossiper</label>
+        <description>[PAWN_nameDef] enjoys sharing [PAWN_possessive] opinions on many topics with [PAWN_possessive] friends, and will often tell others what [PAWN_pronoun] knows.</description>
+        <degree>1</degree>
+        <statOffsets>
+          <NewsSpreadTendency>0.15</NewsSpreadTendency>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+</Defs>

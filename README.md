@@ -32,18 +32,18 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1573233249
 
 
 - Also known as *Desynchronised: Tales and News*
-- Requires HugsLib (warning should be given if you don't have HugsLib); place this mod below HugsLib
+- Requires HugsLib (warning should be given if you don&apos;t have HugsLib); place this mod below HugsLib
 - Safe to add to existing saves
 - Please **do not remove** from existing saves
 - Should have no problems with most other mods, see below for more info
-- ***Only basic support will be provided from me, also now welcome modders to fork this mod; see "The Current State and the Future of this Mod" in the Discussions tab for more info***
+- ***Only basic support will be provided from me, also now welcome modders to fork this mod; see &quot;The Current State and the Future of this Mod&quot; in the Discussions tab for more info***
 
 
 # Mod Description
 
 A continuation of https://steamcommunity.com/sharedfiles/filedetails/?id=1315706945]ClosedDoors made by MoobyNooby, this mod changes how information spreads among your colonists.
 
-I always find it strange that colonists are able to know things happening basically out of their sight, knowing to an extreme that they can react instantly. (https://rimworldme.tumblr.com/post/165485304313/innocent-prisoners-of-rimworld]Descriptive comic by SrGrafo) That's why I decide to take the baton, and finish what has been started: to make information spreading more realistic, and to create the inevitable *desynchronization of understanding*.
+I always find it strange that colonists are able to know things happening basically out of their sight, knowing to an extreme that they can react instantly. (https://rimworldme.tumblr.com/post/165485304313/innocent-prisoners-of-rimworld]Descriptive comic by SrGrafo) That&apos;s why I decide to take the baton, and finish what has been started: to make information spreading more realistic, and to create the inevitable *desynchronization of understanding*.
 
 With the news-spreading mechanism well-defined and working smoothly across several thousands of colonies galaxy-wide, I present you this question: how much should your pure, innocent colonists know? Should they know everything that has happened in the game, whether big or small, whether bright or dark?
 
@@ -51,9 +51,9 @@ With the news-spreading mechanism well-defined and working smoothly across sever
 
 
 
-- Colonists generally does not react to events that happens "off-map" (i.e. not in the map they are in).
+- Colonists generally does not react to events that happens &quot;off-map&quot; (i.e. not in the map they are in).
 - Colonists have a moderate chance to spread news about past events during chats and talks with each other.
-- Colonists may find some news more "important" to themselves; they will be more likely to spread them.
+- Colonists may find some news more &quot;important&quot; to themselves; they will be more likely to spread them.
 
 
 
@@ -62,8 +62,8 @@ With the news-spreading mechanism well-defined and working smoothly across sever
 Help us out in our common pursuit of success on the Rim by:
 
 
-- **Reporting Bugs:** no one wants an infestation here. Visit "Reporting Bugs" down there.
-- **Suggesting Features:** we need new ideas to keep things interesting. Visit "Feature Suggestions" down there.
+- **Reporting Bugs:** no one wants an infestation here. Visit &quot;Reporting Bugs&quot; down there.
+- **Suggesting Features:** we need new ideas to keep things interesting. Visit &quot;Feature Suggestions&quot; down there.
 - **Inspecting the Code:** sometimes, underlying problems are not obvious to spot. Visit the GitHub page to read the code.
 - **Translating the Texts**: if you are a native speaker of your language, you are most welcome to contribute by translating the texts to your own language. [u]You may now submit GitHub pull requests to provide your latest translations of this mod.[/u]
 
@@ -78,7 +78,7 @@ In the GitHub page, you will find:
 
 
 
-That's all. Wish y'all a successful run on the Rim!
+That&apos;s all. Wish y&apos;all a successful run on the Rim!
 
 
 ![Image](https://i.imgur.com/Rs6T6cr.png)

@@ -1,11 +1,11 @@
-﻿using HugsLib.Utils;
+﻿using System.Collections.Generic;
+using HugsLib.Utils;
 using RimWorld.Planet;
-using System.Collections.Generic;
 using Verse;
 
 namespace Desynchronized.Handlers
 {
-    public class Linker_ArrivalActionAndSender: UtilityWorldObject
+    public class Linker_ArrivalActionAndSender : UtilityWorldObject
     {
         private Dictionary<TransportPodsArrivalAction_GiveGift, int> internalMapping;
 
@@ -35,7 +35,8 @@ namespace Desynchronized.Handlers
             {
                 return null;
             }
-            Map result = Current.Game.FindMap(internalMapping[actionInstance]);
+
+            var result = Current.Game.FindMap(internalMapping[actionInstance]);
             internalMapping.Remove(actionInstance);
             return result;
         }

@@ -1,7 +1,7 @@
-﻿using Desynchronized.TNDBS;
+﻿using Desynchronized.Patches;
+using Desynchronized.TNDBS;
 using RimWorld;
 using RimWorld.Planet;
-using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
@@ -9,8 +9,10 @@ namespace Desynchronized
 {
     public static class GeneralExtensionHelper
     {
+        private static readonly float maximumRange = 30f;
+
         /// <summary>
-        /// Extension method. Returns true if can have Thoughts. Is NullReference-safe.
+        ///     Extension method. Returns true if can have Thoughts. Is NullReference-safe.
         /// </summary>
         /// <param name="pawn"></param>
         /// <returns></returns>
@@ -26,83 +28,55 @@ namespace Desynchronized
             switch (relation.defName)
             {
                 case "Child":
-                    if (kidnapVictim.gender == Gender.Female)
-                    {
-                        resultingDef = Desynchronized_ThoughtDefOf.MyDaughterWasKidnapped;
-                    }
-                    else
-                    {
-                        resultingDef = Desynchronized_ThoughtDefOf.MySonWasKidnapped;
-                    }
+                    resultingDef = kidnapVictim.gender == Gender.Female
+                        ? Desynchronized_ThoughtDefOf.MyDaughterWasKidnapped
+                        : Desynchronized_ThoughtDefOf.MySonWasKidnapped;
+
                     break;
                 case "Spouse":
-                    if (kidnapVictim.gender == Gender.Female)
-                    {
-                        resultingDef = Desynchronized_ThoughtDefOf.MyWifeWasKidnapped;
-                    }
-                    else
-                    {
-                        resultingDef = Desynchronized_ThoughtDefOf.MyHusbandWasKidnapped;
-                    }
+                    resultingDef = kidnapVictim.gender == Gender.Female
+                        ? Desynchronized_ThoughtDefOf.MyWifeWasKidnapped
+                        : Desynchronized_ThoughtDefOf.MyHusbandWasKidnapped;
+
                     break;
                 case "Fiance":
-                    if (kidnapVictim.gender == Gender.Female)
-                    {
-                        resultingDef = Desynchronized_ThoughtDefOf.MyWifeWasKidnapped;
-                    }
-                    else
-                    {
-                        resultingDef = Desynchronized_ThoughtDefOf.MyHusbandWasKidnapped;
-                    }
+                    resultingDef = kidnapVictim.gender == Gender.Female
+                        ? Desynchronized_ThoughtDefOf.MyWifeWasKidnapped
+                        : Desynchronized_ThoughtDefOf.MyHusbandWasKidnapped;
+
                     break;
                 case "Lover":
                     resultingDef = Desynchronized_ThoughtDefOf.MyLoverWasKidnapped;
                     break;
                 case "Sibling":
-                    if (kidnapVictim.gender == Gender.Female)
-                    {
-                        resultingDef = Desynchronized_ThoughtDefOf.MySisterWasKidnapped;
-                    }
-                    else
-                    {
-                        resultingDef = Desynchronized_ThoughtDefOf.MyBrotherWasKidnapped;
-                    }
+                    resultingDef = kidnapVictim.gender == Gender.Female
+                        ? Desynchronized_ThoughtDefOf.MySisterWasKidnapped
+                        : Desynchronized_ThoughtDefOf.MyBrotherWasKidnapped;
+
                     break;
                 case "Grandchild":
                     resultingDef = Desynchronized_ThoughtDefOf.MyGrandchildWasKidnapped;
                     break;
                 case "Parent":
-                    if (kidnapVictim.gender == Gender.Female)
-                    {
-                        resultingDef = Desynchronized_ThoughtDefOf.MyMotherWasKidnapped;
-                    }
-                    else
-                    {
-                        resultingDef = Desynchronized_ThoughtDefOf.MyFatherWasKidnapped;
-                    }
+                    resultingDef = kidnapVictim.gender == Gender.Female
+                        ? Desynchronized_ThoughtDefOf.MyMotherWasKidnapped
+                        : Desynchronized_ThoughtDefOf.MyFatherWasKidnapped;
+
                     break;
                 case "NephewOrNiece":
-                    if (kidnapVictim.gender == Gender.Female)
-                    {
-                        resultingDef = Desynchronized_ThoughtDefOf.MyNieceWasKidnapped;
-                    }
-                    else
-                    {
-                        resultingDef = Desynchronized_ThoughtDefOf.MyNephewWasKidnapped;
-                    }
+                    resultingDef = kidnapVictim.gender == Gender.Female
+                        ? Desynchronized_ThoughtDefOf.MyNieceWasKidnapped
+                        : Desynchronized_ThoughtDefOf.MyNephewWasKidnapped;
+
                     break;
                 case "HalfSibling":
                     resultingDef = Desynchronized_ThoughtDefOf.MyHalfSiblingWasKidnapped;
                     break;
                 case "UncleOrAunt":
-                    if (kidnapVictim.gender == Gender.Female)
-                    {
-                        resultingDef = Desynchronized_ThoughtDefOf.MyAuntWasKidnapped;
-                    }
-                    else
-                    {
-                        resultingDef = Desynchronized_ThoughtDefOf.MyUncleWasKidnapped;
-                    }
+                    resultingDef = kidnapVictim.gender == Gender.Female
+                        ? Desynchronized_ThoughtDefOf.MyAuntWasKidnapped
+                        : Desynchronized_ThoughtDefOf.MyUncleWasKidnapped;
+
                     break;
                 case "Grandparent":
                     resultingDef = Desynchronized_ThoughtDefOf.MyGrandparentWasKidnapped;
@@ -113,16 +87,15 @@ namespace Desynchronized
                 case "Kin":
                     resultingDef = Desynchronized_ThoughtDefOf.MyKinWasKidnapped;
                     break;
-                default:
-                    break;
             }
+
             return resultingDef;
         }
 
         /// <summary>
-        /// Extension method. Copied from vanilla code because vanilla code does not allow usage of this method.
-        /// <para/>
-        /// Already includes checking whether both pawns are in the same map.
+        ///     Extension method. Copied from vanilla code because vanilla code does not allow usage of this method.
+        ///     <para />
+        ///     Already includes checking whether both pawns are in the same map.
         /// </summary>
         /// <param name="subject"></param>
         /// <param name="other"></param>
@@ -133,29 +106,34 @@ namespace Desynchronized
             {
                 return false;
             }
+
             if (other.IsCaravanMember())
             {
                 return other.GetCaravan() == subject.GetCaravan();
             }
+
             if (!other.Spawned || !subject.Spawned)
             {
                 return false;
             }
+
             if (!subject.Position.InHorDistOf(other.Position, 12f))
             {
                 return false;
             }
+
             if (!GenSight.LineOfSight(other.Position, subject.Position, other.Map))
             {
                 return false;
             }
+
             return true;
         }
 
         /// <summary>
-        /// Extension method. Determines and returns the chance of the provided pawn to spread TaleNews.
-        /// <para/>
-        /// Invalid pawns (e.g. animals) will return 0.
+        ///     Extension method. Determines and returns the chance of the provided pawn to spread TaleNews.
+        ///     <para />
+        ///     Invalid pawns (e.g. animals) will return 0.
         /// </summary>
         /// <param name="instance"></param>
         /// <returns></returns>
@@ -165,11 +143,11 @@ namespace Desynchronized
         }
 
         /// <summary>
-        /// Extension method. This method calculates the cumulative chance
-        /// for news-spreading as if the news-spreading check is done multiple times
-        /// <para/>
-        /// As an analogy, it is as if you rolled n dices, and you are looking for the
-        /// probability that any one of them has a 3 facing up.
+        ///     Extension method. This method calculates the cumulative chance
+        ///     for news-spreading as if the news-spreading check is done multiple times
+        ///     <para />
+        ///     As an analogy, it is as if you rolled n dices, and you are looking for the
+        ///     probability that any one of them has a 3 facing up.
         /// </summary>
         /// <param name="instance"></param>
         /// <param name="iterations"></param>
@@ -190,8 +168,9 @@ namespace Desynchronized
             {
                 return null;
             }
-            List<Pawn_NewsKnowledgeTracker> masterList = DesynchronizedMain.TaleNewsDatabaseSystem.KnowledgeTrackerMasterList;
-            foreach (Pawn_NewsKnowledgeTracker tracker in masterList)
+
+            var masterList = DesynchronizedMain.TaleNewsDatabaseSystem.KnowledgeTrackerMasterList;
+            foreach (var tracker in masterList)
             {
                 if (tracker.Pawn == instance)
                 {
@@ -211,16 +190,17 @@ namespace Desynchronized
                 // Same faction is more than "allied", hence not "allied"
                 return false;
             }
+
             return self.RelationKindWith(other) == FactionRelationKind.Ally;
         }
 
         public static bool IsNearEnough(this Pawn subject, Pawn other = null)
         {
-            Map subjectMap = subject.MapHeld;
+            var subjectMap = subject.MapHeld;
             Map targetMap;
-            Room subjectRoom = subject.GetRoom();
+            var subjectRoom = subject.GetRoom();
             Room targetRoom;
-            IntVec3 subjectPosition = subject.PositionHeld;
+            var subjectPosition = subject.PositionHeld;
             IntVec3 targetPosition;
             if (other != null)
             {
@@ -230,15 +210,16 @@ namespace Desynchronized
                     Log.Message("Is in the same caravan");
                     return true;
                 }
+
                 targetMap = other.MapHeld;
                 targetRoom = other.GetRoom();
                 targetPosition = other.PositionHeld;
             }
             else
             {
-                targetMap = Patches.PreFix_Corpse_ButcherProducts.corpseMap;
-                targetRoom = Patches.PreFix_Corpse_ButcherProducts.corpseRoom;
-                targetPosition = Patches.PreFix_Corpse_ButcherProducts.corpseLocation;
+                targetMap = PreFix_Corpse_ButcherProducts.corpseMap;
+                targetRoom = PreFix_Corpse_ButcherProducts.corpseRoom;
+                targetPosition = PreFix_Corpse_ButcherProducts.corpseLocation;
             }
 
             // Different maps
@@ -247,30 +228,35 @@ namespace Desynchronized
                 Log.Message("Is in different maps");
                 return false;
             }
+
             // Return true if not checking for room and range
-            if(!DesynchronizedMain.NewsBehaviour_OnlySpreadInSameRoom)
+            if (!DesynchronizedMain.NewsBehaviour_OnlySpreadInSameRoom)
             {
                 return true;
             }
+
             // Different rooms
             if (subjectRoom != targetRoom)
             {
                 Log.Message("Is in different rooms");
                 return false;
             }
+
             // Outside but too far apart
-            if (subjectRoom.PsychologicallyOutdoors && (subjectPosition.DistanceTo(targetPosition) > maximumRange || !subject.Awake() || !GenSight.LineOfSight(subjectPosition, targetPosition, subject.Map, true)))
+            if (subjectRoom.PsychologicallyOutdoors && (subjectPosition.DistanceTo(targetPosition) > maximumRange ||
+                                                        !subject.Awake() || !GenSight.LineOfSight(subjectPosition,
+                                                            targetPosition, subject.Map, true)))
             {
-                Log.Message($"{subjectPosition.DistanceTo(targetPosition)} is larger than max: {maximumRange} or {subject.NameShortColored} cannot see corpse");
+                Log.Message(
+                    $"{subjectPosition.DistanceTo(targetPosition)} is larger than max: {maximumRange} or {subject.NameShortColored} cannot see corpse");
                 return false;
             }
 
             Log.Message("1");
-            Log.Message($"{subject.NameShortColored} is close enough to hear about news. Same room/caravan or {subjectPosition.DistanceTo(targetPosition)} is less than {maximumRange}");
+            Log.Message(
+                $"{subject.NameShortColored} is close enough to hear about news. Same room/caravan or {subjectPosition.DistanceTo(targetPosition)} is less than {maximumRange}");
             Log.Message("2");
             return true;
         }
-
-        private static readonly float maximumRange = 30f;
     }
 }

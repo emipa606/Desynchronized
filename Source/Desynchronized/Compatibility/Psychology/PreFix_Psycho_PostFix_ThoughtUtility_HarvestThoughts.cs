@@ -1,5 +1,5 @@
-﻿using HarmonyLib;
-using System.Reflection;
+﻿using System.Reflection;
+using HarmonyLib;
 
 namespace Desynchronized.Compatibility.Psychology
 {

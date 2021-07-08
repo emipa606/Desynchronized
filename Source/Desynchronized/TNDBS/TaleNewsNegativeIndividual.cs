@@ -1,13 +1,24 @@
-﻿using Desynchronized.TNDBS.Datatypes;
-using System;
+﻿using System;
+using Desynchronized.TNDBS.Datatypes;
 using Verse;
 
 namespace Desynchronized.TNDBS
 {
     public abstract class TaleNewsNegativeIndividual : TaleNews
     {
-        private Pawn primaryVictim;
         protected InstigationInfo instigatorInfo;
+        private Pawn primaryVictim;
+
+        public TaleNewsNegativeIndividual()
+        {
+        }
+
+        public TaleNewsNegativeIndividual(Pawn victim, InstigationInfo instigInfo) : base(
+            new LocationInfo(victim.MapHeld, victim.PositionHeld))
+        {
+            primaryVictim = victim;
+            InstigationDetails = instigInfo;
+        }
 
         public Pawn PrimaryVictim => primaryVictim;
 
@@ -18,27 +29,21 @@ namespace Desynchronized.TNDBS
         }
 
         /// <summary>
-        /// The (primary) instigator of this negative tale-news, if there exists one.
-        /// <para/>
-        /// Null-safe.
+        ///     The (primary) instigator of this negative tale-news, if there exists one.
+        ///     <para />
+        ///     Null-safe.
         /// </summary>
-        public Pawn Instigator => InstigationDetails?.InstigatingPawn ?? null;
-
-        public TaleNewsNegativeIndividual()
-        {
-
-        }
-
-        public TaleNewsNegativeIndividual(Pawn victim, InstigationInfo instigInfo): base(new LocationInfo(victim.MapHeld, victim.PositionHeld))
-        {
-            primaryVictim = victim;
-            InstigationDetails = instigInfo;
-        }
+        public Pawn Instigator => InstigationDetails?.InstigatingPawn;
 
         [Obsolete("Experimental tech.", true)]
-        public static TaleNewsNegativeIndividual GenerateTaleNewsNegativeIndividual(TaleNewsTypeEnum typeEnum, Pawn primaryVictim, InstigationInfo instigatorInfo)
+        public static TaleNewsNegativeIndividual GenerateTaleNewsNegativeIndividual(TaleNewsTypeEnum typeEnum,
+            Pawn primaryVictim, InstigationInfo instigatorInfo)
         {
-            var taleNews = GenerateTaleNewsGenerally(typeEnum) as TaleNewsNegativeIndividual;
+            if (GenerateTaleNewsGenerally(typeEnum) is not TaleNewsNegativeIndividual taleNews)
+            {
+                return null;
+            }
+
             taleNews.primaryVictim = primaryVictim;
             taleNews.instigatorInfo = instigatorInfo;
             return taleNews;
@@ -56,6 +61,7 @@ namespace Desynchronized.TNDBS
             {
                 return false;
             }
+
             if (pawn == PrimaryVictim || pawn == Instigator)
             {
                 return true;

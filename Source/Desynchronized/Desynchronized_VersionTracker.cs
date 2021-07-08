@@ -1,11 +1,11 @@
-﻿using HugsLib.Utils;
-using System;
+﻿using System;
+using HugsLib.Utils;
 using Verse;
 
 namespace Desynchronized
 {
     [Obsolete("We are using DesyncVerTracker.", true)]
-    public class Desynchronized_VersionTracker: UtilityWorldObject
+    public class Desynchronized_VersionTracker : UtilityWorldObject
     {
         private string versionOfMod;
 
@@ -32,12 +32,14 @@ namespace Desynchronized
             }
 
             // Sanity check; only do this after the vars are loaded.
-            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            if (Scribe.mode != LoadSaveMode.PostLoadInit)
             {
-                if (versionWithinSaveFile < new Version(1, 4, 5, 0))
-                {
-                    DesynchronizedMain.TaleNewsDatabaseSystem.SelfPatching_NullVictims();
-                }
+                return;
+            }
+
+            if (versionWithinSaveFile < new Version(1, 4, 5, 0))
+            {
+                DesynchronizedMain.TaleNewsDatabaseSystem.SelfPatching_NullVictims();
             }
         }
     }

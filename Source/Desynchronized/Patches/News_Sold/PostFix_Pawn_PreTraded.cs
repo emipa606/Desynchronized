@@ -12,12 +12,14 @@ namespace Desynchronized.Patches.News_Sold
         [HarmonyPostfix]
         public static void SignalRelevantHandlers(Pawn __instance, TradeAction action, Pawn playerNegotiator)
         {
-            if (action == TradeAction.PlayerSells)
+            if (action != TradeAction.PlayerSells)
             {
-                if (__instance.RaceProps.Humanlike)
-                {
-                    Handler_PawnSold.HandlePawnSold_ByTrade(__instance, playerNegotiator);
-                }
+                return;
+            }
+
+            if (__instance.RaceProps.Humanlike)
+            {
+                Handler_PawnSold.HandlePawnSold_ByTrade(__instance, playerNegotiator);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Desynchronized.TNDBS.Datatypes;
+﻿using Desynchronized.Patches;
+using Desynchronized.TNDBS.Datatypes;
 using RimWorld;
 using Verse;
 
@@ -8,12 +9,10 @@ namespace Desynchronized.TNDBS
     {
         public TaleNewsPawnButchered()
         {
-
         }
 
         public TaleNewsPawnButchered(Pawn victim) : base(victim, InstigationInfo.NoInstigator)
         {
-
         }
 
         public override float CalculateNewsImportanceForPawn(Pawn pawn, TaleNewsReference reference)
@@ -36,13 +35,14 @@ namespace Desynchronized.TNDBS
 
         protected override void GiveThoughtsToReceipient(Pawn recipient)
         {
-            if(recipient == null || recipient.Dead)
+            if (recipient == null || recipient.Dead)
             {
                 return;
             }
-            Patches.PreFix_Corpse_ButcherProducts.overrideValue = true;
+
+            PreFix_Corpse_ButcherProducts.overrideValue = true;
             recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.KnowButcheredHumanlikeCorpse);
-            Patches.PreFix_Corpse_ButcherProducts.overrideValue = false;
+            PreFix_Corpse_ButcherProducts.overrideValue = false;
         }
     }
 }

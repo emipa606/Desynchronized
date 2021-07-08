@@ -7,13 +7,8 @@ namespace Desynchronized.TNDBS.Datatypes
         private Map mapInWorld;
         private IntVec3 positionInMap;
 
-        public Map Map => mapInWorld;
-
-        public IntVec3 Position => positionInMap;
-
         public LocationInfo()
         {
-
         }
 
         public LocationInfo(Map map, IntVec3 position)
@@ -21,6 +16,10 @@ namespace Desynchronized.TNDBS.Datatypes
             mapInWorld = map;
             positionInMap = position;
         }
+
+        public Map Map => mapInWorld;
+
+        public IntVec3 Position => positionInMap;
 
         public static LocationInfo EmptyLocationInfo => new LocationInfo(null, IntVec3.Invalid);
 
@@ -36,11 +35,13 @@ namespace Desynchronized.TNDBS.Datatypes
             {
                 return true;
             }
+
             if (Position == IntVec3.Invalid)
             {
                 return true;
             }
-            return false; 
+
+            return false;
         }
     }
 }

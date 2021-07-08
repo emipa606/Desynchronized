@@ -4,16 +4,14 @@ using Verse;
 
 namespace Desynchronized.TNDBS
 {
-    public class TaleNewsPawnHarvested: TaleNewsNegativeIndividual
+    public class TaleNewsPawnHarvested : TaleNewsNegativeIndividual
     {
         public TaleNewsPawnHarvested()
         {
-
         }
 
-        public TaleNewsPawnHarvested(Pawn victim): base(victim, InstigationInfo.NoInstigator)
+        public TaleNewsPawnHarvested(Pawn victim) : base(victim, InstigationInfo.NoInstigator)
         {
-
         }
 
         public override float CalculateNewsImportanceForPawn(Pawn pawn, TaleNewsReference reference)

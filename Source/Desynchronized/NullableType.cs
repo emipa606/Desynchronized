@@ -29,7 +29,7 @@ namespace Desynchronized
             hasValue = true;
             insideValue = initialValue;
         }
-        
+
         public void ExposeData()
         {
             Scribe_Values.Look(ref hasValue, "hasValue");
@@ -42,10 +42,8 @@ namespace Desynchronized
             {
                 return Value;
             }
-            else
-            {
-                return defaultValue;
-            }
+
+            return defaultValue;
         }
 
         public override bool Equals(object obj)
@@ -54,17 +52,13 @@ namespace Desynchronized
             {
                 return obj == null;
             }
-            else
+
+            if (obj == null)
             {
-                if (obj == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return base.Equals(obj);
-                }
+                return false;
             }
+
+            return base.Equals(obj);
         }
 
         public override int GetHashCode()
@@ -73,10 +67,8 @@ namespace Desynchronized
             {
                 return Value.GetHashCode();
             }
-            else
-            {
-                return 0;
-            }
+
+            return 0;
         }
 
         public override string ToString()
@@ -85,10 +77,8 @@ namespace Desynchronized
             {
                 return Value.ToString();
             }
-            else
-            {
-                return "";
-            }
+
+            return "";
         }
 
         public static implicit operator NullableType<T>(T from)
@@ -102,22 +92,18 @@ namespace Desynchronized
             {
                 return new NullableType<T>(from.Value);
             }
-            else
-            {
-                return new NullableType<T>();
-            }
+
+            return new NullableType<T>();
         }
 
         public static implicit operator T?(NullableType<T> from)
         {
             if (from.hasValue)
             {
-                return new T?(from.Value);
+                return from.Value;
             }
-            else
-            {
-                return new T?();
-            }
+
+            return new T?();
         }
 
         public static explicit operator T(NullableType<T> from)

@@ -1,4 +1,4 @@
-﻿using Desynchronized.TNDBS;
+﻿using Desynchronized.Patches;
 using Verse;
 
 namespace Desynchronized.Handlers
@@ -6,7 +6,7 @@ namespace Desynchronized.Handlers
     public class Handler_PawnButchered
     {
         /// <summary>
-        /// Handles a pawn butchered event.
+        ///     Handles a pawn butchered event.
         /// </summary>
         /// <param name="listener"></param>
         public static void HandlePawnButchered(Pawn listener)
@@ -18,7 +18,7 @@ namespace Desynchronized.Handlers
         {
             if (listener.IsNearEnough())
             {
-                listener.GetNewsKnowledgeTracker().KnowNews(Patches.PreFix_Corpse_ButcherProducts.corpseNews);
+                listener.GetNewsKnowledgeTracker()?.KnowNews(PreFix_Corpse_ButcherProducts.corpseNews);
             }
         }
     }

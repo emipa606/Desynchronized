@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A821393C-3B9F-4428-A955-E464C7D11455}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Desynchronized</RootNamespace>
+    <AssemblyName>Desynchronized</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\1.2\Assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.2.0.2\lib\net472\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="HugsLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UnlimitedHugs.Rimworld.HugsLib.8.0.0\lib\net472\HugsLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Compatibility\ModDetector.cs" />
+    <Compile Include="Compatibility\Psychology\PostFix_Desync_TNPawnBanished_GiveThoughts.cs" />
+    <Compile Include="Compatibility\Psychology\PostFix_Desync_TNPawnDied_ExecutionEvent.cs" />
+    <Compile Include="Compatibility\Psychology\PostFix_Desync_TNPawnDied_EyeWitnesses.cs" />
+    <Compile Include="Compatibility\Psychology\PostFix_Desync_TNPawnDied_GenericThoughts.cs" />
+    <Compile Include="Compatibility\Psychology\PostFix_Desync_TNPawnDied_KillerHigh.cs" />
+    <Compile Include="Compatibility\Psychology\PostFix_Desync_TNPawnHarvested_GiveThoughts.cs" />
+    <Compile Include="Compatibility\Psychology\PostFix_Desync_TNPawnSold_GiveThoughts.cs" />
+    <Compile Include="Compatibility\Psychology\PreFix_Psycho_PostFix_ThoughtUtility_HarvestThoughts.cs" />
+    <Compile Include="Compatibility\Psychology\Psycho_ThoughtDefOf.cs" />
+    <Compile Include="Compatibility\Psychology\Psycho_TraitDefOf.cs" />
+    <Compile Include="Compatibility\RuntimeGC\TalePawnListManipulator.cs" />
+    <Compile Include="Compatibility\RuntimeGC\Transpiler_WorldPawnCleaner_GC.cs" />
+    <Compile Include="DesynchronizedMain.cs" />
+    <Compile Include="DesynchronizedVersionTracker.cs" />
+    <Compile Include="Desynchronized_PawnTableDefOf.cs" />
+    <Compile Include="Desynchronized_StatDefOf.cs" />
+    <Compile Include="Desynchronized_ThoughtDefOf.cs" />
+    <Compile Include="Desynchronized_VersionTracker.cs" />
+    <Compile Include="GeneralExtensionHelper.cs" />
+    <Compile Include="Handlers\HandlerUtility.cs" />
+    <Compile Include="Handlers\Handler_PawnButchered.cs" />
+    <Compile Include="Interfaces\Dialog_NewsTrackerViewer.cs" />
+    <Compile Include="Interfaces\MainTabWindow_Desynchronized.cs" />
+    <Compile Include="Interfaces\PawnColumnWorker_ForgottenNewsCount.cs" />
+    <Compile Include="Interfaces\PawnColumnWorker_KnownNewsCount.cs" />
+    <Compile Include="Interfaces\PawnColumnWorker_NewsKnowledgeButton.cs" />
+    <Compile Include="Handlers\Handler_PawnBanished.cs" />
+    <Compile Include="Handlers\Handler_PawnDied.cs" />
+    <Compile Include="Handlers\Handler_PawnExecuted.cs" />
+    <Compile Include="Handlers\Handler_PawnHarvested.cs" />
+    <Compile Include="Handlers\Handler_PawnKidnapped.cs" />
+    <Compile Include="Handlers\Handler_PawnSold.cs" />
+    <Compile Include="Handlers\Linker_ArrivalActionAndSender.cs" />
+    <Compile Include="Jurisdiction\InnocenceDatabase.cs" />
+    <Compile Include="Jurisdiction\PawnInnocenceCard.cs" />
+    <Compile Include="NullableType.cs" />
+    <Compile Include="Patches\NewsTransmit\PostFix_Caravan_Ticking.cs" />
+    <Compile Include="Patches\NewsTransmit\Transpiler_TryInteractRandomly_CaravanBugPatch.cs" />
+    <Compile Include="Patches\News_Kidnap\MultiFix_MapDeiniter.cs" />
+    <Compile Include="Patches\News_Death\PostFix_Pawn_Kill.cs" />
+    <Compile Include="Patches\NewsTransmit\PostFix_InteractionWorker.cs" />
+    <Compile Include="Patches\Hediffs_MentalBreaks\PostFix_MentalBreakWanderConfused_Start.cs" />
+    <Compile Include="Patches\News_Kidnap\PostFix_Pawn_PreKidnapped.cs" />
+    <Compile Include="Patches\News_Sold\PostFix_Pawn_PreTraded.cs" />
+    <Compile Include="Patches\News_Sold\PostFix_TPAAGG_ArrivedActions.cs" />
+    <Compile Include="Patches\News_Sold\PostFix_TransportPods_PostAdd.cs" />
+    <Compile Include="Patches\News_Sold\PreFix_TPAAGG_ArrivedActions.cs" />
+    <Compile Include="Patches\PreFix_MemoryThoughtHandler_TryGainMemory.cs" />
+    <Compile Include="Patches\WorldPawns\PostFix_WorldPawnGC_PawnImportanceReason.cs" />
+    <Compile Include="Patches\News_Sold\PreFix_GenGuest_PrisonerSoldThoughts.cs" />
+    <Compile Include="Patches\News_Sold\PreFix_PawnRelations_PreSold.cs" />
+    <Compile Include="Patches\News_Execution\PreFix_ThoughtsUtil_Executions.cs" />
+    <Compile Include="Patches\PreFix_ThoughtsUtil_GeneralThoughts.cs" />
+    <Compile Include="Patches\News_OrganHarvested\PreFix_ThoughtsUtil_OrganHarvested.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TNDBS\Datatypes\DeathBrutality.cs" />
+    <Compile Include="TNDBS\DefaultTaleNews.cs" />
+    <Compile Include="TNDBS\Datatypes\InstigatorInfo.cs" />
+    <Compile Include="TNDBS\TaleNewsPawnButchered.cs" />
+    <Compile Include="TNDBS\Utilities\NewsSpreadUtility.cs" />
+    <Compile Include="TNDBS\Pawn_NewsKnowledgeTracker.cs" />
+    <Compile Include="TNDBS\TaleNewsColonyEstablished.cs" />
+    <Compile Include="TNDBS\TaleNewsNeutralIndividual.cs" />
+    <Compile Include="TNDBS\TaleNewsPawnBanished.cs" />
+    <Compile Include="TNDBS\TaleNewsPawnDied.cs" />
+    <Compile Include="TNDBS\TaleNewsPawnHarvested.cs" />
+    <Compile Include="TNDBS\TaleNewsPawnKidnapped.cs" />
+    <Compile Include="TNDBS\TaleNews.cs" />
+    <Compile Include="TNDBS\TaleNewsDatabase.cs" />
+    <Compile Include="TNDBS\TaleNewsNegativeIndividual.cs" />
+    <Compile Include="TNDBS\TaleNewsPawnSold.cs" />
+    <Compile Include="TNDBS\TaleNewsReference.cs" />
+    <Compile Include="TNDBS\TaleNewsTypeEnum.cs" />
+    <Compile Include="TNDBS\Datatypes\LocationInfo.cs" />
+    <Compile Include="TNDBS\Extenders\ImportanceScoreCalculator.cs" />
+    <Compile Include="TNDBS\Extenders\NewsSelector.cs" />
+    <Compile Include="Patches\News_Sold\Transpiler_Pawn_PreTraded.cs" />
+    <Compile Include="Patches\Transpiler_ThoughtWorker_UnburiedColonists.cs" />
+    <Compile Include="Patches\News_Sold\Transpiler_TPAAGG_Arrived.cs" />
+    <Compile Include="Utilities\CaravanUtilities.cs" />
+    <Compile Include="Utilities\FactionUtilities.cs" />
+    <Compile Include="Utilities\HallOfFigures.cs" />
+    <Compile Include="Vanilla_HediffDefOf.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

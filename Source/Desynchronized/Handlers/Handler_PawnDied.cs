@@ -7,7 +7,7 @@ namespace Desynchronized.Handlers
     public class Handler_PawnDied
     {
         /// <summary>
-        /// Handles a pawn death situation.
+        ///     Handles a pawn death situation.
         /// </summary>
         public static void HandlePawnDied(Pawn victim, DamageInfo? killingBlow, Hediff culpritHediff)
         {
@@ -15,7 +15,7 @@ namespace Desynchronized.Handlers
         }
 
         /// <summary>
-        /// Protocol updated in v1.6.3. Now also reports the hediff that is causing the death.
+        ///     Protocol updated in v1.6.3. Now also reports the hediff that is causing the death.
         /// </summary>
         /// <param name="victim"></param>
         /// <param name="dinfo"></param>
@@ -27,11 +27,11 @@ namespace Desynchronized.Handlers
             var taleNews = new TaleNewsPawnDied(victim, dinfo, culpritHediff);
 
             // Distribute news.
-            foreach (Pawn other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists)
+            foreach (var other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists)
             {
                 if (other.IsNearEnough(victim))
                 {
-                    other.GetNewsKnowledgeTracker().KnowNews(taleNews);
+                    other.GetNewsKnowledgeTracker()?.KnowNews(taleNews);
                 }
             }
         }

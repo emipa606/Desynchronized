@@ -10,17 +10,14 @@ namespace Desynchronized.TNDBS
 
         public TaleNewsPawnSold()
         {
-
         }
 
-        public TaleNewsPawnSold(Pawn victim): this(victim, InstigationInfo.NoInstigator)
+        public TaleNewsPawnSold(Pawn victim) : this(victim, InstigationInfo.NoInstigator)
         {
-
         }
 
-        public TaleNewsPawnSold(Pawn victim, InstigationInfo info): base (victim, info)
+        public TaleNewsPawnSold(Pawn victim, InstigationInfo info) : base(victim, info)
         {
-
         }
 
         public override float CalculateNewsImportanceForPawn(Pawn pawn, TaleNewsReference reference)
@@ -41,6 +38,7 @@ namespace Desynchronized.TNDBS
             {
                 basic += "unknown group";
             }
+
             return basic;
         }
 
@@ -54,12 +52,14 @@ namespace Desynchronized.TNDBS
             base.ConductSaveFileIO();
 
             Scribe_References.Look(ref tradeDeal_OtherParty, "tradeDeal_OtherParty");
-            if (Scribe.mode == LoadSaveMode.LoadingVars)
+            if (Scribe.mode != LoadSaveMode.LoadingVars)
             {
-                if (tradeDeal_OtherParty == null)
-                {
-                    tradeDeal_OtherParty = PrimaryVictim?.Faction ?? PrimaryVictim?.HostFaction ?? null;
-                }
+                return;
+            }
+
+            if (tradeDeal_OtherParty == null)
+            {
+                tradeDeal_OtherParty = PrimaryVictim?.Faction ?? PrimaryVictim?.HostFaction;
             }
         }
 
@@ -80,11 +80,14 @@ namespace Desynchronized.TNDBS
                 if (PrimaryVictim.RaceProps.Animal)
                 {
                     // Vanilla v1.1, there are new features here
-                    Pawn firstDirectRelationPawn = PrimaryVictim.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Bond);
-                    if (firstDirectRelationPawn != null && firstDirectRelationPawn == recipient && firstDirectRelationPawn.needs.mood != null)
+                    var firstDirectRelationPawn =
+                        PrimaryVictim.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Bond);
+                    if (firstDirectRelationPawn != null && firstDirectRelationPawn == recipient &&
+                        firstDirectRelationPawn.needs.mood != null)
                     {
                         PrimaryVictim.relations.RemoveDirectRelation(PawnRelationDefOf.Bond, recipient);
-                        firstDirectRelationPawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.SoldMyBondedAnimalMood);
+                        firstDirectRelationPawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf
+                            .SoldMyBondedAnimalMood);
                     }
                 }
                 else if (PrimaryVictim.RaceProps.Humanlike)
@@ -97,23 +100,25 @@ namespace Desynchronized.TNDBS
                 }
 
                 // Relationship was sold, if there is any
-                PawnRelationDef relation = recipient.GetMostImportantRelation(PrimaryVictim);
+                var relation = recipient.GetMostImportantRelation(PrimaryVictim);
                 if (relation != null)
                 {
-                    foreach (ThoughtDef soldThought in relation.soldThoughts)
+                    foreach (var soldThought in relation.soldThoughts)
                     {
                         recipient.needs.mood.thoughts.memories.TryGainMemory(soldThought, Instigator);
                     }
                 }
 
                 // Remove marriage-related memories, etc.
-                Pawn spouse = PrimaryVictim.GetSpouse();
-                if (spouse != null && recipient == spouse && !recipient.Dead)
+                var spouse = PrimaryVictim.GetFirstSpouse();
+                if (spouse == null || recipient != spouse || recipient.Dead)
                 {
-                    MemoryThoughtHandler memories = recipient.needs.mood.thoughts.memories;
-                    memories.RemoveMemoriesOfDef(ThoughtDefOf.GotMarried);
-                    memories.RemoveMemoriesOfDef(ThoughtDefOf.HoneymoonPhase);
+                    return;
                 }
+
+                var memories = recipient.needs.mood.thoughts.memories;
+                memories.RemoveMemoriesOfDef(ThoughtDefOf.GotMarried);
+                memories.RemoveMemoriesOfDef(ThoughtDefOf.HoneymoonPhase);
             }
         }
     }

@@ -17,20 +17,24 @@ namespace Desynchronized.Compatibility.Psychology
         [HarmonyPostfix]
         public static void ApplyPsychologyThoughts(TaleNewsPawnHarvested __instance, Pawn recipient)
         {
-            Pawn primaryVictim = __instance.PrimaryVictim;
+            var primaryVictim = __instance.PrimaryVictim;
 
-            if (recipient != primaryVictim)
+            if (recipient == primaryVictim)
             {
-                // Not the same guy
-                // Determine the correct Bleeding Heart thought to be given out
-                if (primaryVictim.IsColonist)
-                {
-                    recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf.KnowColonistOrganHarvestedBleedingHeart);
-                }
-                else if (primaryVictim.HostFaction == Faction.OfPlayer)
-                {
-                    recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf.KnowGuestOrganHarvestedBleedingHeart);
-                }
+                return;
+            }
+
+            // Not the same guy
+            // Determine the correct Bleeding Heart thought to be given out
+            if (primaryVictim.IsColonist)
+            {
+                recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf
+                    .KnowColonistOrganHarvestedBleedingHeart);
+            }
+            else if (primaryVictim.HostFaction == Faction.OfPlayer)
+            {
+                recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf
+                    .KnowGuestOrganHarvestedBleedingHeart);
             }
         }
     }

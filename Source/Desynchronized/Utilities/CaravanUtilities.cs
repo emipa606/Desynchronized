@@ -1,6 +1,5 @@
-﻿using RimWorld;
+﻿using System.Collections.Generic;
 using RimWorld.Planet;
-using System.Collections.Generic;
 using Verse;
 
 namespace Desynchronized.Utilities
@@ -9,7 +8,7 @@ namespace Desynchronized.Utilities
     {
         public static void ManipulateInteractionTargetsList(List<Pawn> original, Pawn self)
         {
-            Caravan caravan = self.GetCaravan();
+            var caravan = self.GetCaravan();
             if (caravan == null)
             {
                 // No caravan, no modification needed
@@ -17,8 +16,8 @@ namespace Desynchronized.Utilities
             }
 
             DesynchronizedMain.LogWarning("Hi hi! Processing " + self.Name);
-            List<Pawn> possibleCandidates = caravan.PawnsListForReading;
-            Faction selfFaction = self.Faction;
+            var possibleCandidates = caravan.PawnsListForReading;
+            var selfFaction = self.Faction;
             for (var i = possibleCandidates.Count; i >= 0; i++)
             {
                 if (possibleCandidates[i].Faction != selfFaction)
@@ -26,6 +25,7 @@ namespace Desynchronized.Utilities
                     possibleCandidates.RemoveAt(i);
                 }
             }
+
             original.Clear();
             original.AddRange(possibleCandidates);
         }

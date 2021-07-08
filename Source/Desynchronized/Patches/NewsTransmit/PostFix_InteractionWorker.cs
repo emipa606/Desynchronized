@@ -16,7 +16,7 @@ namespace Desynchronized.Patches.NewsTransmit
             {
                 if (Rand.Value <= initiator.GetActualNewsSpreadChance())
                 {
-                    NewsSpreadUtility.SpreadNews(initiator, recipient, NewsSpreadUtility.SpreadMode.RANDOM);
+                    NewsSpreadUtility.SpreadNews(initiator, recipient);
                 }
             }
             else if (__instance is InteractionWorker_DeepTalk deeptalkWorker)

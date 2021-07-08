@@ -15,17 +15,22 @@ namespace Desynchronized.Compatibility.Psychology
 
         public static void ApplyPsychologyThoughts(TaleNewsPawnSold __instance, Pawn recipient)
         {
-            if (recipient.IsCapableOfThought())
+            if (!recipient.IsCapableOfThought())
             {
-                Pawn primaryVictim = __instance.PrimaryVictim;
-                if (primaryVictim.RaceProps.Humanlike)
-                {
-                    // Some prisoner was sold
-                    if (primaryVictim.IsPrisonerOfColony)
-                    {
-                        recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf.KnowPrisonerSoldBleedingHeart, __instance.Instigator);
-                    }
-                }
+                return;
+            }
+
+            var primaryVictim = __instance.PrimaryVictim;
+            if (!primaryVictim.RaceProps.Humanlike)
+            {
+                return;
+            }
+
+            // Some prisoner was sold
+            if (primaryVictim.IsPrisonerOfColony)
+            {
+                recipient.needs.mood.thoughts.memories.TryGainMemory(
+                    Psycho_ThoughtDefOf.KnowPrisonerSoldBleedingHeart, __instance.Instigator);
             }
         }
     }

@@ -17,32 +17,29 @@ namespace Desynchronized.Compatibility.Psychology
         [HarmonyPostfix]
         public static void ApplyPsychologyThoughts_BleedingHeart(TaleNewsPawnBanished __instance, Pawn recipient)
         {
-            Pawn banishmentVictim = __instance.BanishmentVictim;
+            var banishmentVictim = __instance.BanishmentVictim;
 
-            if (banishmentVictim.RaceProps.Humanlike && recipient != banishmentVictim)
+            if (!banishmentVictim.RaceProps.Humanlike || recipient == banishmentVictim)
             {
-                ThoughtDef thoughtDefToGain = null;
-                if (!banishmentVictim.IsPrisonerOfColony)
-                {
-                    if (__instance.IsDeadly)
-                    {
-                        thoughtDefToGain = Psycho_ThoughtDefOf.ColonistAbandonedToDieBleedingHeart;
-                    }
-                    else
-                    {
-                        thoughtDefToGain = Psycho_ThoughtDefOf.ColonistAbandonedBleedingHeart;
-                    }
-                }
-                else
-                {
-                    if (__instance.IsDeadly)
-                    {
-                        thoughtDefToGain = Psycho_ThoughtDefOf.PrisonerAbandonedToDieBleedingHeart;
-                    }
-                }
-
-                recipient.needs.mood.thoughts.memories.TryGainMemory(thoughtDefToGain, banishmentVictim);
+                return;
             }
+
+            ThoughtDef thoughtDefToGain = null;
+            if (!banishmentVictim.IsPrisonerOfColony)
+            {
+                thoughtDefToGain = __instance.IsDeadly
+                    ? Psycho_ThoughtDefOf.ColonistAbandonedToDieBleedingHeart
+                    : Psycho_ThoughtDefOf.ColonistAbandonedBleedingHeart;
+            }
+            else
+            {
+                if (__instance.IsDeadly)
+                {
+                    thoughtDefToGain = Psycho_ThoughtDefOf.PrisonerAbandonedToDieBleedingHeart;
+                }
+            }
+
+            recipient.needs.mood.thoughts.memories.TryGainMemory(thoughtDefToGain, banishmentVictim);
         }
     }
 }

@@ -6,15 +6,14 @@ namespace Desynchronized.Interfaces
 {
     public class PawnColumnWorker_NewsKnowledgeButton : PawnColumnWorker
     {
-        public readonly int ViewAllTaleNews_Width = 0;
-
-        public readonly int ViewAllTaleNews_Height = 32;
-
-        public readonly int TopAreaHeight = 65;
-
         public readonly int MinimumWidth = 175;
 
         public readonly int RecommendedWidth = 250;
+
+        public readonly int TopAreaHeight = 65;
+
+        public readonly int ViewAllTaleNews_Height = 32;
+        public readonly int ViewAllTaleNews_Width = 0;
 
         public override int GetMinHeaderHeight(PawnTable table)
         {
@@ -35,7 +34,8 @@ namespace Desynchronized.Interfaces
         {
             base.DoHeader(rect, table);
 
-            var rect2 = new Rect(rect.x, rect.y + (rect.height - TopAreaHeight), Mathf.Min(rect.width, 360f), ViewAllTaleNews_Height);
+            var rect2 = new Rect(rect.x, rect.y + (rect.height - TopAreaHeight), Mathf.Min(rect.width, 360f),
+                ViewAllTaleNews_Height);
             if (Widgets.ButtonText(rect2, "ViewAllTaleNews".Translate()))
             {
                 Find.WindowStack.Add(new Dialog_NewsTrackerViewer());

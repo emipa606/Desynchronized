@@ -1,19 +1,20 @@
-﻿using HarmonyLib;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using HarmonyLib;
 using Verse;
 
 namespace Desynchronized.Compatibility.RuntimeGC
 {
     /// <summary>
-    /// Uses dynamic targetting to ensure better compatibility.
+    ///     Uses dynamic targetting to ensure better compatibility.
     /// </summary>
     [HarmonyPatch]
     public class Transpiler_WorldPawnCleaner_GC
     {
-        private static bool PresenceOfRuntimeGC => LoadedModManager.RunningMods.Any((ModContentPack pack) => pack.Name.Contains("RuntimeGC"));
+        private static bool PresenceOfRuntimeGC =>
+            LoadedModManager.RunningMods.Any(pack => pack.Name.Contains("RuntimeGC"));
 
         public static MethodBase TargetMethod()
         {
@@ -21,14 +22,14 @@ namespace Desynchronized.Compatibility.RuntimeGC
         }
 
         /// <summary>
-        /// DetectRuntimeGC
+        ///     DetectRuntimeGC
         /// </summary>
         /// <returns></returns>
         public static bool Prepare()
         {
             return PresenceOfRuntimeGC;
         }
-        
+
         [HarmonyTranspiler]
         public static IEnumerable<CodeInstruction> ManipulateTalePawnList(IEnumerable<CodeInstruction> instructions)
         {
@@ -45,6 +46,7 @@ namespace Desynchronized.Compatibility.RuntimeGC
                 {
                     occurencesLdstr++;
                 }
+
                 i++;
             }
 
@@ -54,6 +56,7 @@ namespace Desynchronized.Compatibility.RuntimeGC
                 {
                     occurencesCall++;
                 }
+
                 i++;
             }
 
@@ -62,7 +65,8 @@ namespace Desynchronized.Compatibility.RuntimeGC
             var insertionList = new List<CodeInstruction>
             {
                 new CodeInstruction(OpCodes.Ldloc_1),
-                new CodeInstruction(OpCodes.Call, typeof(TalePawnListManipulator).GetMethod("ManipulateListOfPawnsUsedByTales"))
+                new CodeInstruction(OpCodes.Call,
+                    typeof(TalePawnListManipulator).GetMethod("ManipulateListOfPawnsUsedByTales"))
             };
             instructionList.InsertRange(i, insertionList);
 

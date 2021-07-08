@@ -17,17 +17,19 @@ namespace Desynchronized.Compatibility.Psychology
         [HarmonyPostfix]
         public static void ApplyPsychologyThoughts(TaleNewsPawnDied __instance, Pawn recipient)
         {
-            Pawn killer = __instance.Killer;
-            Pawn victim = __instance.Victim;
+            var victim = __instance.Victim;
 
-            if (victim.Faction == Faction.OfPlayer && victim.Faction == recipient.Faction && victim.HostFaction != recipient.Faction)
+            if (victim.Faction == Faction.OfPlayer && victim.Faction == recipient.Faction &&
+                victim.HostFaction != recipient.Faction)
             {
                 recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf.KnowColonistDiedBleedingHeart);
             }
+
             var prisonerIsInnocent = victim.IsPrisonerOfColony && !victim.guilt.IsGuilty && !victim.InAggroMentalState;
             if (prisonerIsInnocent && recipient.Faction == Faction.OfPlayer && !recipient.IsPrisoner)
             {
-                recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf.KnowPrisonerDiedInnocentBleedingHeart);
+                recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf
+                    .KnowPrisonerDiedInnocentBleedingHeart);
             }
         }
     }

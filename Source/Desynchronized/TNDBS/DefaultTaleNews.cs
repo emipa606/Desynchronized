@@ -5,11 +5,6 @@ namespace Desynchronized.TNDBS
 {
     public class DefaultTaleNews : TaleNews
     {
-        public DefaultTaleNews()
-        {
-
-        }
-
         public override float CalculateNewsImportanceForPawn(Pawn pawn, TaleNewsReference reference)
         {
             throw new NotImplementedException();
@@ -28,7 +23,6 @@ namespace Desynchronized.TNDBS
         internal override void SelfVerify()
         {
             // No need to self-verify; this is always valid.
-            return;
         }
 
         public override bool PawnIsInvolved(Pawn pawn)
@@ -38,12 +32,13 @@ namespace Desynchronized.TNDBS
 
         protected override void ConductSaveFileIO()
         {
-            return;
         }
 
         protected override void GiveThoughtsToReceipient(Pawn recipient)
         {
-            DesynchronizedMain.LogError("Somebody tried to trigger a thought-giving process using a default TaleNews. Nothing was done.\n" + Environment.StackTrace);
+            DesynchronizedMain.LogError(
+                "Somebody tried to trigger a thought-giving process using a default TaleNews. Nothing was done.\n" +
+                Environment.StackTrace);
         }
 
         public override string GetDetailsPrintout()
@@ -54,7 +49,6 @@ namespace Desynchronized.TNDBS
         protected override void DiscardNewsDetails()
         {
             // We have nothing to discard.
-            return;
         }
     }
 }

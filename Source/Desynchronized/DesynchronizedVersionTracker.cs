@@ -1,5 +1,5 @@
-﻿using HugsLib.Utils;
-using System;
+﻿using System;
+using HugsLib.Utils;
 using Verse;
 
 namespace Desynchronized
@@ -18,10 +18,8 @@ namespace Desynchronized
                 {
                     return new Version(0, 0, 0, 0);
                 }
-                else
-                {
-                    return new Version(versionOfMod);
-                }
+
+                return new Version(versionOfMod);
             }
         }
 
@@ -42,14 +40,16 @@ namespace Desynchronized
             Scribe_Values.Look(ref versionOfMod, "versionOfMod");
 
             // The actual processing
-            if (Scribe.mode == LoadSaveMode.LoadingVars)
+            if (Scribe.mode != LoadSaveMode.LoadingVars)
             {
-                // For some reason this value did not get included in the save-file.
-                // Just making sure the string is stored properly, so it could be saved properly too.
-                if (versionOfMod == null)
-                {
-                    versionOfMod = typeof(DesynchronizedMain).Assembly.GetName().Version.ToString();
-                }
+                return;
+            }
+
+            // For some reason this value did not get included in the save-file.
+            // Just making sure the string is stored properly, so it could be saved properly too.
+            if (versionOfMod == null)
+            {
+                versionOfMod = typeof(DesynchronizedMain).Assembly.GetName().Version.ToString();
             }
         }
     }

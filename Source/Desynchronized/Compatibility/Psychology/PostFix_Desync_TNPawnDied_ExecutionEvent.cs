@@ -18,13 +18,18 @@ namespace Desynchronized.Compatibility.Psychology
         public static void ApplyPsychologyThoughts(TaleNewsPawnDied __instance, bool __result, Pawn recipient)
         {
             // Original method returns true if successfully identifying execution event.
-            if (__result)
+            if (!__result)
             {
-                // Copied from Desynchronized code.
-                var forcedStage = (int)__instance.BrutalityDegree;
-                ThoughtDef thoughtToGive = __instance.Victim.IsColonist ? Psycho_ThoughtDefOf.KnowColonistExecutedBleedingHeart : Psycho_ThoughtDefOf.KnowGuestExecutedBleedingHeart;
-                recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(thoughtToGive, forcedStage), null);
+                return;
             }
+
+            // Copied from Desynchronized code.
+            var forcedStage = (int) __instance.BrutalityDegree;
+            var thoughtToGive = __instance.Victim.IsColonist
+                ? Psycho_ThoughtDefOf.KnowColonistExecutedBleedingHeart
+                : Psycho_ThoughtDefOf.KnowGuestExecutedBleedingHeart;
+            recipient.needs.mood.thoughts.memories.TryGainMemory(
+                ThoughtMaker.MakeThought(thoughtToGive, forcedStage));
         }
     }
 }

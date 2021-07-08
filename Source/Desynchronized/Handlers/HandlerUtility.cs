@@ -1,6 +1,6 @@
-﻿using RimWorld;
+﻿using System.Collections.Generic;
+using RimWorld;
 using RimWorld.Planet;
-using System.Collections.Generic;
 using Verse;
 
 namespace Desynchronized.Handlers
@@ -8,7 +8,8 @@ namespace Desynchronized.Handlers
     public class HandlerUtility
     {
         /// <summary>
-        /// If subject is in an active map, returns all Colonists in the map. If subject is in a caravan, return all Colonist caravan members.
+        ///     If subject is in an active map, returns all Colonists in the map. If subject is in a caravan, return all Colonist
+        ///     caravan members.
         /// </summary>
         /// <returns></returns>
         public static IEnumerable<Pawn> GetNewsCandidatesForNewsInvolvingPawn_ColonistsOnly(Pawn subject)
@@ -16,9 +17,9 @@ namespace Desynchronized.Handlers
             if (subject.MapHeld != null)
             {
                 // In map
-                Map mapOfOccurence = subject.MapHeld;
-                
-                foreach (Pawn potential in PawnsFinder.AllMapsWorldAndTemporary_Alive)
+                var mapOfOccurence = subject.MapHeld;
+
+                foreach (var potential in PawnsFinder.AllMapsWorldAndTemporary_Alive)
                 {
                     if (potential.IsColonist && potential.MapHeld == mapOfOccurence)
                     {
@@ -29,9 +30,9 @@ namespace Desynchronized.Handlers
             else if (subject.IsCaravanMember())
             {
                 // In caravan
-                Caravan caravan = subject.GetCaravan();
-                
-                foreach (Pawn potential in PawnsFinder.AllCaravansAndTravelingTransportPods_Alive)
+                var caravan = subject.GetCaravan();
+
+                foreach (var potential in PawnsFinder.AllCaravansAndTravelingTransportPods_Alive)
                 {
                     if (potential.IsColonist && potential.GetCaravan() == caravan)
                     {
@@ -39,17 +40,11 @@ namespace Desynchronized.Handlers
                     }
                 }
             }
-            else
-            {
-                // IDK now.
-            }
-
-            yield break;
         }
 
         public static IEnumerable<Pawn> GetNewsCandidatesForNewsInvolvingPawn_ColonistsAndPrisoners(Pawn subject)
         {
-            foreach (Pawn pawn in GetNewsCandidatesForNewsInvolvingPawn_ColonistsOnly(subject))
+            foreach (var pawn in GetNewsCandidatesForNewsInvolvingPawn_ColonistsOnly(subject))
             {
                 yield return pawn;
             }
@@ -57,9 +52,9 @@ namespace Desynchronized.Handlers
             if (subject.MapHeld != null)
             {
                 // In map
-                Map mapOfOccurence = subject.MapHeld;
+                var mapOfOccurence = subject.MapHeld;
 
-                foreach (Pawn potential in PawnsFinder.AllMapsWorldAndTemporary_Alive)
+                foreach (var potential in PawnsFinder.AllMapsWorldAndTemporary_Alive)
                 {
                     if (potential.IsPrisonerOfColony && potential.MapHeld == mapOfOccurence)
                     {
@@ -70,9 +65,9 @@ namespace Desynchronized.Handlers
             else if (subject.IsCaravanMember())
             {
                 // In caravan
-                Caravan caravan = subject.GetCaravan();
+                var caravan = subject.GetCaravan();
 
-                foreach (Pawn potential in PawnsFinder.AllCaravansAndTravelingTransportPods_Alive)
+                foreach (var potential in PawnsFinder.AllCaravansAndTravelingTransportPods_Alive)
                 {
                     if (potential.IsPrisonerOfColony && potential.GetCaravan() == caravan)
                     {
@@ -80,12 +75,6 @@ namespace Desynchronized.Handlers
                     }
                 }
             }
-            else
-            {
-                // IDK now.
-            }
-
-            yield break;
         }
     }
 }

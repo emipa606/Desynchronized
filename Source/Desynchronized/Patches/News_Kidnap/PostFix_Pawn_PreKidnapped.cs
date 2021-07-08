@@ -5,7 +5,7 @@ using Verse;
 namespace Desynchronized.Patches.News_Kidnap
 {
     /// <summary>
-    /// Post-fixes to generate relevant kidnapped thoughts.
+    ///     Post-fixes to generate relevant kidnapped thoughts.
     /// </summary>
     [HarmonyPatch(typeof(Pawn))]
     [HarmonyPatch("PreKidnapped", MethodType.Normal)]

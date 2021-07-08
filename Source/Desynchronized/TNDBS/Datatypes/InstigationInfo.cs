@@ -3,24 +3,30 @@ using Verse;
 
 namespace Desynchronized.TNDBS.Datatypes
 {
-    public class InstigationInfo: IExposable
+    public class InstigationInfo : IExposable
     {
+        private Faction instigatingFaction;
+        private Pawn instigator;
+
+        private bool playerIsInstigator;
+
         /// <summary>
-        /// Our patch-mod should override this with Psychology mayor. Value can be null.
+        ///     Do not use this constructor explicitly.
         /// </summary>
-        /// <returns></returns>
-        public static Pawn GetRepresentativeOfPlayerInGame()
+        public InstigationInfo()
         {
-            return Faction.OfPlayer.leader;
+        }
+
+        public InstigationInfo(Faction instigFaction = null, Pawn instigPawn = null)
+        {
+            instigatingFaction = instigFaction;
+            instigator = instigPawn;
+            playerIsInstigator = false;
         }
 
         public static Pawn RepresentativeOfPlayer => GetRepresentativeOfPlayerInGame();
 
         public static InstigationInfo NoInstigator => new InstigationInfo();
-
-        private bool playerIsInstigator;
-        private Pawn instigator;
-        private Faction instigatingFaction;
 
         public bool PlayerIsInstigator
         {
@@ -29,7 +35,7 @@ namespace Desynchronized.TNDBS.Datatypes
         }
 
         /// <summary>
-        /// The instigator. Can be null.
+        ///     The instigator. Can be null.
         /// </summary>
         public Pawn InstigatingPawn
         {
@@ -43,30 +49,6 @@ namespace Desynchronized.TNDBS.Datatypes
             internal set => instigatingFaction = value;
         }
 
-        /// <summary>
-        /// Do not use this constructor explicitly.
-        /// </summary>
-        public InstigationInfo()
-        {
-
-        }
-
-        public InstigationInfo(Faction instigFaction = null, Pawn instigPawn = null)
-        {
-            instigatingFaction = instigFaction;
-            instigator = instigPawn;
-            playerIsInstigator = false;
-        }
-
-        public static InstigationInfo GenerateAsPlayerInstigated()
-        {
-            return new InstigationInfo()
-            {
-                PlayerIsInstigator = true,
-                InstigatingPawn = null
-            };
-        }
-
         public void ExposeData()
         {
             if (Scribe.mode == LoadSaveMode.Saving)
@@ -74,22 +56,42 @@ namespace Desynchronized.TNDBS.Datatypes
                 // Do some init here
                 if (instigatingFaction == null)
                 {
-                    instigatingFaction = instigator?.Faction ?? null;
+                    instigatingFaction = instigator?.Faction;
                 }
             }
 
-            Scribe_Values.Look(ref playerIsInstigator, "playerIsInstigator", false);
+            Scribe_Values.Look(ref playerIsInstigator, "playerIsInstigator");
             Scribe_References.Look(ref instigator, "instigator");
             Scribe_References.Look(ref instigatingFaction, "instigatingFaction");
 
-            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            if (Scribe.mode != LoadSaveMode.PostLoadInit)
             {
-                // Do some init here
-                if (instigatingFaction == null)
-                {
-                    instigatingFaction = instigator?.Faction ?? null;
-                }
+                return;
             }
+
+            // Do some init here
+            if (instigatingFaction == null)
+            {
+                instigatingFaction = instigator?.Faction;
+            }
+        }
+
+        /// <summary>
+        ///     Our patch-mod should override this with Psychology mayor. Value can be null.
+        /// </summary>
+        /// <returns></returns>
+        public static Pawn GetRepresentativeOfPlayerInGame()
+        {
+            return Faction.OfPlayer.leader;
+        }
+
+        public static InstigationInfo GenerateAsPlayerInstigated()
+        {
+            return new InstigationInfo
+            {
+                PlayerIsInstigator = true,
+                InstigatingPawn = null
+            };
         }
 
         public static explicit operator InstigationInfo(Faction faction)

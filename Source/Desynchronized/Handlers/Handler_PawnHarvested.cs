@@ -22,11 +22,11 @@ namespace Desynchronized.Handlers
 
             var harvestNews = new TaleNewsPawnHarvested(victim);
 
-            foreach (Pawn other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
+            foreach (var other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
             {
                 if (other.IsNearEnough(victim))
                 {
-                    other.GetNewsKnowledgeTracker().KnowNews(harvestNews);
+                    other.GetNewsKnowledgeTracker()?.KnowNews(harvestNews);
                 }
             }
         }
