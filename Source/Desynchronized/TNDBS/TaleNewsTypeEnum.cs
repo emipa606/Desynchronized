@@ -1,15 +1,14 @@
 ﻿using System;
 
-namespace Desynchronized.TNDBS
+namespace Desynchronized.TNDBS;
+
+[Obsolete("Ancient.", true)]
+public enum TaleNewsTypeEnum
 {
-    [Obsolete("Ancient.", true)]
-    public enum TaleNewsTypeEnum
-    {
-        Default = 0,
-        PawnDied,
-        PawnBanished,
-        PawnKidnapped,
-        PawnHarvested,
-        PawnSold
-    }
+    Default = 0,
+    PawnDied,
+    PawnBanished,
+    PawnKidnapped,
+    PawnHarvested,
+    PawnSold
 }

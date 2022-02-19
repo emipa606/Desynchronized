@@ -3,43 +3,42 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace Desynchronized.Compatibility.Psychology
+namespace Desynchronized.Compatibility.Psychology;
+
+[HarmonyPatch(typeof(TaleNewsPawnBanished))]
+[HarmonyPatch("GiveThoughtsToReceipient", MethodType.Normal)]
+public class PostFix_Desync_TNPawnBanished_GiveThoughts
 {
-    [HarmonyPatch(typeof(TaleNewsPawnBanished))]
-    [HarmonyPatch("GiveThoughtsToReceipient", MethodType.Normal)]
-    public class PostFix_Desync_TNPawnBanished_GiveThoughts
+    public static bool Prepare()
     {
-        public static bool Prepare()
+        return ModDetector.PsychologyIsLoaded;
+    }
+
+    [HarmonyPostfix]
+    public static void ApplyPsychologyThoughts_BleedingHeart(TaleNewsPawnBanished __instance, Pawn recipient)
+    {
+        var banishmentVictim = __instance.BanishmentVictim;
+
+        if (!banishmentVictim.RaceProps.Humanlike || recipient == banishmentVictim)
         {
-            return ModDetector.PsychologyIsLoaded;
+            return;
         }
 
-        [HarmonyPostfix]
-        public static void ApplyPsychologyThoughts_BleedingHeart(TaleNewsPawnBanished __instance, Pawn recipient)
+        ThoughtDef thoughtDefToGain = null;
+        if (!banishmentVictim.IsPrisonerOfColony)
         {
-            var banishmentVictim = __instance.BanishmentVictim;
-
-            if (!banishmentVictim.RaceProps.Humanlike || recipient == banishmentVictim)
-            {
-                return;
-            }
-
-            ThoughtDef thoughtDefToGain = null;
-            if (!banishmentVictim.IsPrisonerOfColony)
-            {
-                thoughtDefToGain = __instance.IsDeadly
-                    ? Psycho_ThoughtDefOf.ColonistAbandonedToDieBleedingHeart
-                    : Psycho_ThoughtDefOf.ColonistAbandonedBleedingHeart;
-            }
-            else
-            {
-                if (__instance.IsDeadly)
-                {
-                    thoughtDefToGain = Psycho_ThoughtDefOf.PrisonerAbandonedToDieBleedingHeart;
-                }
-            }
-
-            recipient.needs.mood.thoughts.memories.TryGainMemory(thoughtDefToGain, banishmentVictim);
+            thoughtDefToGain = __instance.IsDeadly
+                ? Psycho_ThoughtDefOf.ColonistAbandonedToDieBleedingHeart
+                : Psycho_ThoughtDefOf.ColonistAbandonedBleedingHeart;
         }
+        else
+        {
+            if (__instance.IsDeadly)
+            {
+                thoughtDefToGain = Psycho_ThoughtDefOf.PrisonerAbandonedToDieBleedingHeart;
+            }
+        }
+
+        recipient.needs.mood.thoughts.memories.TryGainMemory(thoughtDefToGain, banishmentVictim);
     }
 }

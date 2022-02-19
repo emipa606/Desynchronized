@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>Desynchronized: Tales and News (Continued)</name>
   <packageId>Mlie.Desynchronized</packageId>
@@ -29,7 +29,7 @@
     <li>UnlimitedHugs.HugsLib</li>
     <li>syrchalis.traitvalue</li>
   </loadAfter>
-  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+  <description>[img]https://i.imgur.com/buuPQel.png[/img]
 Update of Vectorial1024s mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1573233249
 
@@ -38,7 +38,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1573233249
 - Added option that only pawns in the same room or in range and sight of the event (outside) knows of it instantly. The normal behaviour is that all pawns on the same map knows all events instantly.
 - Added support for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2451324814][SYR] Trait Value[/url]
 
-[img]https://i.imgur.com/7Gzt3Rg.png[/img]
+[img]https://i.imgur.com/pufA0kM.png[/img]
 
 [table]
 	[tr]
@@ -47,38 +47,38 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1573233249
 	[/tr]
 [/table]
 	
-[img]https://i.imgur.com/NOW7jU1.png[/img]
+[img]https://i.imgur.com/Z4GOv8H.png[/img]
 
 [i]Information spreads from one to another.[/i]
 
 [h1]Quick Info and Compatibility[/h1]
 [list]
 [*]Also known as [i]Desynchronised: Tales and News[/i]
-[*]Requires HugsLib (warning should be given if you don&apos;t have HugsLib); place this mod below HugsLib
+[*]Requires HugsLib (warning should be given if you don't have HugsLib); place this mod below HugsLib
 [*]Safe to add to existing saves
 [*]Please [b]do not remove[/b] from existing saves
 [*]Should have no problems with most other mods, see below for more info
-[*][b][i]Only basic support will be provided from me, also now welcome modders to fork this mod; see &quot;The Current State and the Future of this Mod&quot; in the Discussions tab for more info[/i][/b]
+[*][b][i]Only basic support will be provided from me, also now welcome modders to fork this mod; see "The Current State and the Future of this Mod" in the Discussions tab for more info[/i][/b]
 [/list]
 [h1]Mod Description[/h1]
 A continuation of [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1315706945]ClosedDoors[/url] made by MoobyNooby, this mod changes how information spreads among your colonists.
 
-I always find it strange that colonists are able to know things happening basically out of their sight, knowing to an extreme that they can react instantly. ([url=https://rimworldme.tumblr.com/post/165485304313/innocent-prisoners-of-rimworld]Descriptive comic by SrGrafo[/url]) That&apos;s why I decide to take the baton, and finish what has been started: to make information spreading more realistic, and to create the inevitable [i]desynchronization of understanding[/i].
+I always find it strange that colonists are able to know things happening basically out of their sight, knowing to an extreme that they can react instantly. ([url=https://rimworldme.tumblr.com/post/165485304313/innocent-prisoners-of-rimworld]Descriptive comic by SrGrafo[/url]) That's why I decide to take the baton, and finish what has been started: to make information spreading more realistic, and to create the inevitable [i]desynchronization of understanding[/i].
 
 With the news-spreading mechanism well-defined and working smoothly across several thousands of colonies galaxy-wide, I present you this question: how much should your pure, innocent colonists know? Should they know everything that has happened in the game, whether big or small, whether bright or dark?
 
 [h1]Features List[/h1]
 [list]
-[*]Colonists generally does not react to events that happens &quot;off-map&quot; (i.e. not in the map they are in).
+[*]Colonists generally does not react to events that happens "off-map" (i.e. not in the map they are in).
 [*]Colonists have a moderate chance to spread news about past events during chats and talks with each other.
-[*]Colonists may find some news more &quot;important&quot; to themselves; they will be more likely to spread them.
+[*]Colonists may find some news more "important" to themselves; they will be more likely to spread them.
 [/list]
 
 [h1]Join Our Cause![/h1]
 Help us out in our common pursuit of success on the Rim by:
 [list]
-[*][b]Reporting Bugs:[/b] no one wants an infestation here. Visit &quot;Reporting Bugs&quot; down there.
-[*][b]Suggesting Features:[/b] we need new ideas to keep things interesting. Visit &quot;Feature Suggestions&quot; down there.
+[*][b]Reporting Bugs:[/b] no one wants an infestation here. Visit "Reporting Bugs" down there.
+[*][b]Suggesting Features:[/b] we need new ideas to keep things interesting. Visit "Feature Suggestions" down there.
 [*][b]Inspecting the Code:[/b] sometimes, underlying problems are not obvious to spot. Visit the GitHub page to read the code.
 [*][b]Translating the Texts[/b]: if you are a native speaker of your language, you are most welcome to contribute by translating the texts to your own language. [u]You may now submit GitHub pull requests to provide your latest translations of this mod.[/u]
 [/list]
@@ -90,10 +90,10 @@ In the GitHub page, you will find:
 [*]Detailed changelogs
 [/list]
 
-That&apos;s all. Wish y&apos;all a successful run on the Rim!
+That's all. Wish y'all a successful run on the Rim!
 
 
-[img]https://i.imgur.com/Rs6T6cr.png[/img]
+[img]https://i.imgur.com/PwoNOj4.png[/img]
 [list]
 [*] See if the the error persists if you just have this mod and its requirements active.
 [*] If not, try adding your other mods until it happens again.
@@ -102,6 +102,5 @@ That&apos;s all. Wish y&apos;all a successful run on the Rim!
 [*] Do not report errors by making a discussion-thread, I get no notification of that.
 [*] If you have the solution for a problem, please post it to the GitHub repository.
 [/list]
-
 </description>
 </ModMetaData>

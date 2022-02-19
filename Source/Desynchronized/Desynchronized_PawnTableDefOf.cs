@@ -1,10 +1,9 @@
 ﻿using RimWorld;
 
-namespace Desynchronized
+namespace Desynchronized;
+
+[DefOf]
+public class Desynchronized_PawnTableDefOf
 {
-    [DefOf]
-    public class Desynchronized_PawnTableDefOf
-    {
-        public static PawnTableDef NewsKnowledge;
-    }
+    public static PawnTableDef NewsKnowledge;
 }

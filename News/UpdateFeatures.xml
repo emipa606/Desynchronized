@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  <HugsLib.UpdateFeatureDef Abstract="true" Name="UpdateFeatureBase">
+  <HugsLib.UpdateFeatureDef Abstract="true" Name="Desynchronized_UpdateFeatureBase">
     <modNameReadable>Desynchronized</modNameReadable>
     <linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2222607126</linkUrl>
   </HugsLib.UpdateFeatureDef>
-  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
+  <HugsLib.UpdateFeatureDef ParentName="Desynchronized_UpdateFeatureBase">
     <defName>Desynchronized_1_0_2_0</defName>
     <assemblyVersion>1.0.2.0</assemblyVersion>
     <content>First real update since I took over the mod. A lot of you asks if you can use this to butcher humans in secret. 

@@ -2,32 +2,31 @@
 using RimWorld;
 using Verse;
 
-namespace Desynchronized.Handlers
+namespace Desynchronized.Handlers;
+
+public class Handler_PawnHarvested
 {
-    public class Handler_PawnHarvested
+    public static void HandlePawnHarvested(Pawn victim)
     {
-        public static void HandlePawnHarvested(Pawn victim)
+        // No need to send out letters, the player has full control of the entire operation.
+        GenerateAndProcessNews(victim);
+    }
+
+    private static void GenerateAndProcessNews(Pawn victim)
+    {
+        // Definitely has potential here.
+        if (!victim.RaceProps.Humanlike)
         {
-            // No need to send out letters, the player has full control of the entire operation.
-            GenerateAndProcessNews(victim);
+            return;
         }
 
-        private static void GenerateAndProcessNews(Pawn victim)
+        var harvestNews = new TaleNewsPawnHarvested(victim);
+
+        foreach (var other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
         {
-            // Definitely has potential here.
-            if (!victim.RaceProps.Humanlike)
+            if (other.IsNearEnough(victim))
             {
-                return;
-            }
-
-            var harvestNews = new TaleNewsPawnHarvested(victim);
-
-            foreach (var other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
-            {
-                if (other.IsNearEnough(victim))
-                {
-                    other.GetNewsKnowledgeTracker()?.KnowNews(harvestNews);
-                }
+                other.GetNewsKnowledgeTracker()?.KnowNews(harvestNews);
             }
         }
     }

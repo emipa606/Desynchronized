@@ -1,114 +1,113 @@
 ﻿using System;
 using Verse;
 
-namespace Desynchronized
+namespace Desynchronized;
+
+public struct NullableType<T> : IExposable where T : struct
 {
-    public struct NullableType<T> : IExposable where T : struct
+    private bool hasValue;
+
+    private T insideValue;
+
+    public bool HasValue => hasValue;
+
+    public T Value
     {
-        private bool hasValue;
-
-        private T insideValue;
-
-        public bool HasValue => hasValue;
-
-        public T Value
+        get
         {
-            get
+            if (!HasValue)
             {
-                if (!HasValue)
-                {
-                    throw new InvalidOperationException("NullableType<T> : IExposable has no value.");
-                }
-
-                return insideValue;
-            }
-        }
-
-        public NullableType(T initialValue)
-        {
-            hasValue = true;
-            insideValue = initialValue;
-        }
-
-        public void ExposeData()
-        {
-            Scribe_Values.Look(ref hasValue, "hasValue");
-            Scribe_Values.Look(ref insideValue, "insideValue");
-        }
-
-        public T GetValueOrDefault(T defaultValue = default)
-        {
-            if (HasValue)
-            {
-                return Value;
+                throw new InvalidOperationException("NullableType<T> : IExposable has no value.");
             }
 
-            return defaultValue;
+            return insideValue;
         }
+    }
 
-        public override bool Equals(object obj)
+    public NullableType(T initialValue)
+    {
+        hasValue = true;
+        insideValue = initialValue;
+    }
+
+    public void ExposeData()
+    {
+        Scribe_Values.Look(ref hasValue, "hasValue");
+        Scribe_Values.Look(ref insideValue, "insideValue");
+    }
+
+    public T GetValueOrDefault(T defaultValue = default)
+    {
+        if (HasValue)
         {
-            if (!hasValue)
-            {
-                return obj == null;
-            }
-
-            if (obj == null)
-            {
-                return false;
-            }
-
-            return base.Equals(obj);
+            return Value;
         }
 
-        public override int GetHashCode()
+        return defaultValue;
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (!hasValue)
         {
-            if (hasValue)
-            {
-                return Value.GetHashCode();
-            }
-
-            return 0;
+            return obj == null;
         }
 
-        public override string ToString()
+        if (obj == null)
         {
-            if (hasValue)
-            {
-                return Value.ToString();
-            }
-
-            return "";
+            return false;
         }
 
-        public static implicit operator NullableType<T>(T from)
+        return base.Equals(obj);
+    }
+
+    public override int GetHashCode()
+    {
+        if (hasValue)
         {
-            return new NullableType<T>(from);
+            return Value.GetHashCode();
         }
 
-        public static implicit operator NullableType<T>(T? from)
+        return 0;
+    }
+
+    public override string ToString()
+    {
+        if (hasValue)
         {
-            if (from.HasValue)
-            {
-                return new NullableType<T>(from.Value);
-            }
-
-            return new NullableType<T>();
+            return Value.ToString();
         }
 
-        public static implicit operator T?(NullableType<T> from)
+        return "";
+    }
+
+    public static implicit operator NullableType<T>(T from)
+    {
+        return new NullableType<T>(from);
+    }
+
+    public static implicit operator NullableType<T>(T? from)
+    {
+        if (from.HasValue)
         {
-            if (from.hasValue)
-            {
-                return from.Value;
-            }
-
-            return new T?();
+            return new NullableType<T>(from.Value);
         }
 
-        public static explicit operator T(NullableType<T> from)
+        return new NullableType<T>();
+    }
+
+    public static implicit operator T?(NullableType<T> from)
+    {
+        if (from.hasValue)
         {
             return from.Value;
         }
+
+        return new T?();
+    }
+
+    public static explicit operator T(NullableType<T> from)
+    {
+        return from.Value;
     }
 }

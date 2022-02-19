@@ -3,39 +3,38 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace Desynchronized.Compatibility.Psychology
+namespace Desynchronized.Compatibility.Psychology;
+
+[HarmonyPatch(typeof(TaleNewsPawnHarvested))]
+[HarmonyPatch("GiveThoughtsToReceipient", MethodType.Normal)]
+public class PostFix_Desync_TNPawnHarvested_GiveThoughts
 {
-    [HarmonyPatch(typeof(TaleNewsPawnHarvested))]
-    [HarmonyPatch("GiveThoughtsToReceipient", MethodType.Normal)]
-    public class PostFix_Desync_TNPawnHarvested_GiveThoughts
+    public static bool Prepare()
     {
-        public static bool Prepare()
+        return ModDetector.PsychologyIsLoaded;
+    }
+
+    [HarmonyPostfix]
+    public static void ApplyPsychologyThoughts(TaleNewsPawnHarvested __instance, Pawn recipient)
+    {
+        var primaryVictim = __instance.PrimaryVictim;
+
+        if (recipient == primaryVictim)
         {
-            return ModDetector.PsychologyIsLoaded;
+            return;
         }
 
-        [HarmonyPostfix]
-        public static void ApplyPsychologyThoughts(TaleNewsPawnHarvested __instance, Pawn recipient)
+        // Not the same guy
+        // Determine the correct Bleeding Heart thought to be given out
+        if (primaryVictim.IsColonist)
         {
-            var primaryVictim = __instance.PrimaryVictim;
-
-            if (recipient == primaryVictim)
-            {
-                return;
-            }
-
-            // Not the same guy
-            // Determine the correct Bleeding Heart thought to be given out
-            if (primaryVictim.IsColonist)
-            {
-                recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf
-                    .KnowColonistOrganHarvestedBleedingHeart);
-            }
-            else if (primaryVictim.HostFaction == Faction.OfPlayer)
-            {
-                recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf
-                    .KnowGuestOrganHarvestedBleedingHeart);
-            }
+            recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf
+                .KnowColonistOrganHarvestedBleedingHeart);
+        }
+        else if (primaryVictim.HostFaction == Faction.OfPlayer)
+        {
+            recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf
+                .KnowGuestOrganHarvestedBleedingHeart);
         }
     }
 }

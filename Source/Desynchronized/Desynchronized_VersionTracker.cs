@@ -2,45 +2,44 @@
 using HugsLib.Utils;
 using Verse;
 
-namespace Desynchronized
+namespace Desynchronized;
+
+[Obsolete("We are using DesyncVerTracker.", true)]
+public class Desynchronized_VersionTracker : UtilityWorldObject
 {
-    [Obsolete("We are using DesyncVerTracker.", true)]
-    public class Desynchronized_VersionTracker : UtilityWorldObject
+    private string versionOfMod;
+
+    public string VersionOfMod => versionOfMod;
+
+    public override void PostAdd()
     {
-        private string versionOfMod;
+        base.PostAdd();
+        versionOfMod = typeof(DesynchronizedMain).Assembly.GetName().Version.ToString();
+    }
 
-        public string VersionOfMod => versionOfMod;
+    public override void ExposeData()
+    {
+        base.ExposeData();
+        Scribe_Values.Look(ref versionOfMod, "versionOfMod");
+        var versionWithinSaveFile = new Version(versionOfMod);
 
-        public override void PostAdd()
+        if (Scribe.mode == LoadSaveMode.LoadingVars)
         {
-            base.PostAdd();
-            versionOfMod = typeof(DesynchronizedMain).Assembly.GetName().Version.ToString();
+            if (versionOfMod == null)
+            {
+                versionOfMod = typeof(DesynchronizedMain).Assembly.GetName().Version.ToString();
+            }
         }
 
-        public override void ExposeData()
+        // Sanity check; only do this after the vars are loaded.
+        if (Scribe.mode != LoadSaveMode.PostLoadInit)
         {
-            base.ExposeData();
-            Scribe_Values.Look(ref versionOfMod, "versionOfMod");
-            var versionWithinSaveFile = new Version(versionOfMod);
+            return;
+        }
 
-            if (Scribe.mode == LoadSaveMode.LoadingVars)
-            {
-                if (versionOfMod == null)
-                {
-                    versionOfMod = typeof(DesynchronizedMain).Assembly.GetName().Version.ToString();
-                }
-            }
-
-            // Sanity check; only do this after the vars are loaded.
-            if (Scribe.mode != LoadSaveMode.PostLoadInit)
-            {
-                return;
-            }
-
-            if (versionWithinSaveFile < new Version(1, 4, 5, 0))
-            {
-                DesynchronizedMain.TaleNewsDatabaseSystem.SelfPatching_NullVictims();
-            }
+        if (versionWithinSaveFile < new Version(1, 4, 5, 0))
+        {
+            DesynchronizedMain.TaleNewsDatabaseSystem.SelfPatching_NullVictims();
         }
     }
 }

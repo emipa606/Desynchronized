@@ -1,6 +1,5 @@
-﻿namespace Desynchronized.Jurisdiction
+﻿namespace Desynchronized.Jurisdiction;
+
+public class InnocenceDatabase
 {
-    public class InnocenceDatabase
-    {
-    }
 }

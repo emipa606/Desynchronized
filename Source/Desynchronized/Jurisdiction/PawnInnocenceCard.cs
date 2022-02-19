@@ -1,13 +1,12 @@
 ﻿using System;
 
-namespace Desynchronized.Jurisdiction
+namespace Desynchronized.Jurisdiction;
+
+[Obsolete("NotImplementedException()", true)]
+public class PawnInnocenceCard
 {
-    [Obsolete("NotImplementedException()", true)]
-    public class PawnInnocenceCard
-    {
-        /*
-        Pawn subject;
-        int lastGuiltyTick;
-        */
-    }
+    /*
+    Pawn subject;
+    int lastGuiltyTick;
+    */
 }

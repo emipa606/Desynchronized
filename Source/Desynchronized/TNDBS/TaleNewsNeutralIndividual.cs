@@ -1,27 +1,26 @@
 ﻿using System;
 using Verse;
 
-namespace Desynchronized.TNDBS
+namespace Desynchronized.TNDBS;
+
+public abstract class TaleNewsNeutralIndividual : TaleNews
 {
-    public abstract class TaleNewsNeutralIndividual : TaleNews
+    private Pawn receiver;
+
+    public TaleNewsNeutralIndividual()
     {
-        private Pawn receiver;
+    }
 
-        public TaleNewsNeutralIndividual()
-        {
-        }
+    public TaleNewsNeutralIndividual(Pawn receiver) : base(null)
+    {
+        this.receiver = receiver;
+    }
 
-        public TaleNewsNeutralIndividual(Pawn receiver) : base(null)
-        {
-            this.receiver = receiver;
-        }
+    public Pawn Receiver => receiver;
 
-        public Pawn Receiver => receiver;
-
-        protected override void ConductSaveFileIO()
-        {
-            Scribe_References.Look(ref receiver, "receiver");
-            throw new NotImplementedException();
-        }
+    protected override void ConductSaveFileIO()
+    {
+        Scribe_References.Look(ref receiver, "receiver");
+        throw new NotImplementedException();
     }
 }

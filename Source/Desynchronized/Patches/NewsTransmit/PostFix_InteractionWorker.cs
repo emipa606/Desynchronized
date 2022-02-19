@@ -3,28 +3,27 @@ using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace Desynchronized.Patches.NewsTransmit
+namespace Desynchronized.Patches.NewsTransmit;
+
+[HarmonyPatch(typeof(InteractionWorker))]
+[HarmonyPatch("Interacted", MethodType.Normal)]
+public class PostFix_InteractionWorker
 {
-    [HarmonyPatch(typeof(InteractionWorker))]
-    [HarmonyPatch("Interacted", MethodType.Normal)]
-    public class PostFix_InteractionWorker
+    [HarmonyPostfix]
+    public static void ExecuteNewsTarnsmission(InteractionWorker __instance, Pawn initiator, Pawn recipient)
     {
-        [HarmonyPostfix]
-        public static void ExecuteNewsTarnsmission(InteractionWorker __instance, Pawn initiator, Pawn recipient)
+        if (__instance is InteractionWorker_Chitchat chitchatWorker)
         {
-            if (__instance is InteractionWorker_Chitchat chitchatWorker)
+            if (Rand.Value <= initiator.GetActualNewsSpreadChance())
             {
-                if (Rand.Value <= initiator.GetActualNewsSpreadChance())
-                {
-                    NewsSpreadUtility.SpreadNews(initiator, recipient);
-                }
+                NewsSpreadUtility.SpreadNews(initiator, recipient);
             }
-            else if (__instance is InteractionWorker_DeepTalk deeptalkWorker)
+        }
+        else if (__instance is InteractionWorker_DeepTalk deeptalkWorker)
+        {
+            if (Rand.Value <= initiator.GetActualNewsSpreadChance(5))
             {
-                if (Rand.Value <= initiator.GetActualNewsSpreadChance(5))
-                {
-                    NewsSpreadUtility.SpreadNews(initiator, recipient, NewsSpreadUtility.SpreadMode.DISTINCT);
-                }
+                NewsSpreadUtility.SpreadNews(initiator, recipient, NewsSpreadUtility.SpreadMode.DISTINCT);
             }
         }
     }

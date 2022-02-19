@@ -1,19 +1,18 @@
 ﻿using System;
 
-namespace Desynchronized.TNDBS
+namespace Desynchronized.TNDBS;
+
+[Obsolete("Ancient.", true)]
+public static class TaleNewsTypeMapperUtility
 {
-    [Obsolete("Ancient.", true)]
-    public static class TaleNewsTypeMapperUtility
+    public static Type GetTypeForEnum(this TaleNewsTypeEnum typeEnum)
     {
-        public static Type GetTypeForEnum(this TaleNewsTypeEnum typeEnum)
+        switch (typeEnum)
         {
-            switch (typeEnum)
-            {
-                case TaleNewsTypeEnum.PawnDied:
-                    return typeof(TaleNewsPawnDied);
-                default:
-                    return typeof(object);
-            }
+            case TaleNewsTypeEnum.PawnDied:
+                return typeof(TaleNewsPawnDied);
+            default:
+                return typeof(object);
         }
     }
 }

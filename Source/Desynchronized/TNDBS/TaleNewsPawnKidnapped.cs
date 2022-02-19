@@ -3,134 +3,133 @@ using Desynchronized.TNDBS.Datatypes;
 using RimWorld;
 using Verse;
 
-namespace Desynchronized.TNDBS
+namespace Desynchronized.TNDBS;
+
+[Obsolete("Use [] instead.")]
+public class TaleNewsPawnKidnapped : TaleNewsNegativeIndividual
 {
-    [Obsolete("Use [] instead.")]
-    public class TaleNewsPawnKidnapped : TaleNewsNegativeIndividual
+    private Faction kidnapperFaction;
+
+    public TaleNewsPawnKidnapped()
     {
-        private Faction kidnapperFaction;
+    }
 
-        public TaleNewsPawnKidnapped()
+    public TaleNewsPawnKidnapped(Pawn victim, Faction kidnappingFaction) : base(victim,
+        InstigationInfo.NoInstigator)
+    {
+        if (kidnappingFaction == null)
         {
+            DesynchronizedMain.LogError("Kidnapping faction cannot be null! Fake news!\n" + Environment.StackTrace);
+        }
+        else
+        {
+            InstigationDetails = (InstigationInfo)kidnappingFaction;
+            kidnapperFaction = kidnappingFaction;
+        }
+    }
+
+    public TaleNewsPawnKidnapped(Pawn victim, Pawn kidnapper) : base(victim, InstigationInfo.NoInstigator)
+    {
+        if (kidnapper == null)
+        {
+            DesynchronizedMain.LogError("Kidnapper cannot be null! Fake News!\n" + Environment.StackTrace);
+        }
+        else
+        {
+            InstigationDetails = (InstigationInfo)kidnapper;
+            kidnapperFaction = kidnapper.Faction;
+        }
+    }
+
+    public Pawn Kidnapper => Instigator;
+
+    public Pawn KidnapVictim => PrimaryVictim;
+
+    public Faction KidnapperFaction => kidnapperFaction;
+
+    public override string GetNewsTypeName()
+    {
+        return "Pawn Kidnapped";
+    }
+
+    protected override void ConductSaveFileIO()
+    {
+        base.ConductSaveFileIO();
+        Scribe_References.Look(ref kidnapperFaction, "kidnapperFaction");
+    }
+
+    protected override void GiveThoughtsToReceipient(Pawn recipient)
+    {
+        // Check if the receipient can receive any thoughts at all.
+        // No need to check for victim's raceprops; only Colonists can be targetted to be kidnapped.
+        if (!recipient.IsCapableOfThought())
+        {
+            return;
         }
 
-        public TaleNewsPawnKidnapped(Pawn victim, Faction kidnappingFaction) : base(victim,
-            InstigationInfo.NoInstigator)
+        // Change to vanilla "pawn lost" thoughts
+
+        // Give generic Colonist Kidnapped thoughts
+        recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.ColonistLost);
+
+        // Then give Friend/Rival Kidnapped thoughts
+        if (recipient.RaceProps.IsFlesh && PawnUtility.ShouldGetThoughtAbout(KidnapVictim, recipient))
         {
-            if (kidnappingFaction == null)
+            var opinion = recipient.relations.OpinionOf(KidnapVictim);
+            if (opinion >= 20)
             {
-                DesynchronizedMain.LogError("Kidnapping faction cannot be null! Fake news!\n" + Environment.StackTrace);
+                new IndividualThoughtToAdd(ThoughtDefOf.PawnWithGoodOpinionLost, recipient, KidnapVictim,
+                    KidnapVictim.relations.GetFriendDiedThoughtPowerFactor(opinion)).Add();
             }
-            else
+            else if (opinion <= -20)
             {
-                InstigationDetails = (InstigationInfo) kidnappingFaction;
-                kidnapperFaction = kidnappingFaction;
+                new IndividualThoughtToAdd(ThoughtDefOf.PawnWithBadOpinionLost, recipient, KidnapVictim,
+                    KidnapVictim.relations.GetRivalDiedThoughtPowerFactor(opinion)).Add();
             }
         }
 
-        public TaleNewsPawnKidnapped(Pawn victim, Pawn kidnapper) : base(victim, InstigationInfo.NoInstigator)
+        // Finally give Family Member Kidnapped thoughts
+        var mostImportantRelation = recipient.GetMostImportantRelation(KidnapVictim);
+
+        var genderSpecificLostThought = mostImportantRelation?.GetGenderSpecificLostThought(KidnapVictim);
+        if (genderSpecificLostThought != null)
         {
-            if (kidnapper == null)
-            {
-                DesynchronizedMain.LogError("Kidnapper cannot be null! Fake News!\n" + Environment.StackTrace);
-            }
-            else
-            {
-                InstigationDetails = (InstigationInfo) kidnapper;
-                kidnapperFaction = kidnapper.Faction;
-            }
+            new IndividualThoughtToAdd(genderSpecificLostThought, recipient, KidnapVictim).Add();
+            // outIndividualThoughts.Add(new IndividualThoughtToAdd(genderSpecificDiedThought, potentiallyRelatedPawn, victim, 1f, 1f));
         }
 
-        public Pawn Kidnapper => Instigator;
+        // TODO
+    }
 
-        public Pawn KidnapVictim => PrimaryVictim;
+    public override float CalculateNewsImportanceForPawn(Pawn pawn, TaleNewsReference reference)
+    {
+        // Placeholder
+        return 3;
+    }
 
-        public Faction KidnapperFaction => kidnapperFaction;
-
-        public override string GetNewsTypeName()
+    public override string GetDetailsPrintout()
+    {
+        var basic = base.GetDetailsPrintout();
+        basic += "\nKidnapped by faction: ";
+        if (kidnapperFaction != null)
         {
-            return "Pawn Kidnapped";
+            basic += kidnapperFaction.Name;
+        }
+        else
+        {
+            basic += "unknown";
         }
 
-        protected override void ConductSaveFileIO()
+        basic += "\nActual kidnapper: ";
+        if (Kidnapper != null)
         {
-            base.ConductSaveFileIO();
-            Scribe_References.Look(ref kidnapperFaction, "kidnapperFaction");
+            basic += Kidnapper.Name;
+        }
+        else
+        {
+            basic += "unknown";
         }
 
-        protected override void GiveThoughtsToReceipient(Pawn recipient)
-        {
-            // Check if the receipient can receive any thoughts at all.
-            // No need to check for victim's raceprops; only Colonists can be targetted to be kidnapped.
-            if (!recipient.IsCapableOfThought())
-            {
-                return;
-            }
-
-            // Change to vanilla "pawn lost" thoughts
-
-            // Give generic Colonist Kidnapped thoughts
-            recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.ColonistLost);
-
-            // Then give Friend/Rival Kidnapped thoughts
-            if (recipient.RaceProps.IsFlesh && PawnUtility.ShouldGetThoughtAbout(KidnapVictim, recipient))
-            {
-                var opinion = recipient.relations.OpinionOf(KidnapVictim);
-                if (opinion >= 20)
-                {
-                    new IndividualThoughtToAdd(ThoughtDefOf.PawnWithGoodOpinionLost, recipient, KidnapVictim,
-                        KidnapVictim.relations.GetFriendDiedThoughtPowerFactor(opinion)).Add();
-                }
-                else if (opinion <= -20)
-                {
-                    new IndividualThoughtToAdd(ThoughtDefOf.PawnWithBadOpinionLost, recipient, KidnapVictim,
-                        KidnapVictim.relations.GetRivalDiedThoughtPowerFactor(opinion)).Add();
-                }
-            }
-
-            // Finally give Family Member Kidnapped thoughts
-            var mostImportantRelation = recipient.GetMostImportantRelation(KidnapVictim);
-
-            var genderSpecificLostThought = mostImportantRelation?.GetGenderSpecificLostThought(KidnapVictim);
-            if (genderSpecificLostThought != null)
-            {
-                new IndividualThoughtToAdd(genderSpecificLostThought, recipient, KidnapVictim).Add();
-                // outIndividualThoughts.Add(new IndividualThoughtToAdd(genderSpecificDiedThought, potentiallyRelatedPawn, victim, 1f, 1f));
-            }
-
-            // TODO
-        }
-
-        public override float CalculateNewsImportanceForPawn(Pawn pawn, TaleNewsReference reference)
-        {
-            // Placeholder
-            return 3;
-        }
-
-        public override string GetDetailsPrintout()
-        {
-            var basic = base.GetDetailsPrintout();
-            basic += "\nKidnapped by faction: ";
-            if (kidnapperFaction != null)
-            {
-                basic += kidnapperFaction.Name;
-            }
-            else
-            {
-                basic += "unknown";
-            }
-
-            basic += "\nActual kidnapper: ";
-            if (Kidnapper != null)
-            {
-                basic += Kidnapper.Name;
-            }
-            else
-            {
-                basic += "unknown";
-            }
-
-            return basic;
-        }
+        return basic;
     }
 }

@@ -2,37 +2,36 @@
 using RimWorld;
 using Verse;
 
-namespace Desynchronized.Handlers
+namespace Desynchronized.Handlers;
+
+public class Handler_PawnBanished
 {
-    public class Handler_PawnBanished
+    /// <summary>
+    ///     Handles a pawn banishment event.
+    /// </summary>
+    /// <param name="victim"></param>
+    /// <param name="banishmentIsDeadly"></param>
+    public static void HandlePawnBanished(Pawn victim, bool banishmentIsDeadly)
     {
-        /// <summary>
-        ///     Handles a pawn banishment event.
-        /// </summary>
-        /// <param name="victim"></param>
-        /// <param name="banishmentIsDeadly"></param>
-        public static void HandlePawnBanished(Pawn victim, bool banishmentIsDeadly)
-        {
-            SendOutNotificationLetter(victim);
-            GenerateAndProcessNews(victim, banishmentIsDeadly);
-        }
+        SendOutNotificationLetter(victim);
+        GenerateAndProcessNews(victim, banishmentIsDeadly);
+    }
 
-        private static void SendOutNotificationLetter(Pawn victim)
-        {
-            Find.LetterStack.ReceiveLetter("Colonist banished", "Colonist banished. Name of Colonist: " + victim.Name,
-                LetterDefOf.NegativeEvent, victim);
-        }
+    private static void SendOutNotificationLetter(Pawn victim)
+    {
+        Find.LetterStack.ReceiveLetter("Colonist banished", "Colonist banished. Name of Colonist: " + victim.Name,
+            LetterDefOf.NegativeEvent, victim);
+    }
 
-        private static void GenerateAndProcessNews(Pawn victim, bool banishmentIsDeadly)
-        {
-            var banishmentNews = new TaleNewsPawnBanished(victim, banishmentIsDeadly);
+    private static void GenerateAndProcessNews(Pawn victim, bool banishmentIsDeadly)
+    {
+        var banishmentNews = new TaleNewsPawnBanished(victim, banishmentIsDeadly);
 
-            foreach (var other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists)
+        foreach (var other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists)
+        {
+            if (other.IsNearEnough(victim))
             {
-                if (other.IsNearEnough(victim))
-                {
-                    other.GetNewsKnowledgeTracker()?.KnowNews(banishmentNews);
-                }
+                other.GetNewsKnowledgeTracker()?.KnowNews(banishmentNews);
             }
         }
     }

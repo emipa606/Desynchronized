@@ -1,25 +1,24 @@
 ﻿using Desynchronized.Patches;
 using Verse;
 
-namespace Desynchronized.Handlers
-{
-    public class Handler_PawnButchered
-    {
-        /// <summary>
-        ///     Handles a pawn butchered event.
-        /// </summary>
-        /// <param name="listener"></param>
-        public static void HandlePawnButchered(Pawn listener)
-        {
-            GenerateAndProcessNews(listener);
-        }
+namespace Desynchronized.Handlers;
 
-        private static void GenerateAndProcessNews(Pawn listener)
+public class Handler_PawnButchered
+{
+    /// <summary>
+    ///     Handles a pawn butchered event.
+    /// </summary>
+    /// <param name="listener"></param>
+    public static void HandlePawnButchered(Pawn listener)
+    {
+        GenerateAndProcessNews(listener);
+    }
+
+    private static void GenerateAndProcessNews(Pawn listener)
+    {
+        if (listener.IsNearEnough())
         {
-            if (listener.IsNearEnough())
-            {
-                listener.GetNewsKnowledgeTracker()?.KnowNews(PreFix_Corpse_ButcherProducts.corpseNews);
-            }
+            listener.GetNewsKnowledgeTracker()?.KnowNews(PreFix_Corpse_ButcherProducts.corpseNews);
         }
     }
 }
