@@ -36,11 +36,6 @@ public class LocationInfo : IExposable
             return true;
         }
 
-        if (Position == IntVec3.Invalid)
-        {
-            return true;
-        }
-
-        return false;
+        return Position == IntVec3.Invalid;
     }
 }

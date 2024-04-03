@@ -7,8 +7,7 @@ namespace Desynchronized.Patches.News_Kidnap;
 /// <summary>
 ///     Post-fixes to generate relevant kidnapped thoughts.
 /// </summary>
-[HarmonyPatch(typeof(Pawn))]
-[HarmonyPatch("PreKidnapped", MethodType.Normal)]
+[HarmonyPatch(typeof(Pawn), nameof(Pawn.PreKidnapped), MethodType.Normal)]
 public class PostFix_Pawn_PreKidnapped
 {
     [HarmonyPostfix]

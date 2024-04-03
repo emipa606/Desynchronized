@@ -7,9 +7,7 @@ namespace Desynchronized.Patches;
 /// <summary>
 ///     Prefix to catch the corpse location
 /// </summary>
-[HarmonyPatch(typeof(Corpse))]
-[HarmonyPatch("ButcherProducts", MethodType.Normal)]
-[HarmonyPatch(new[] { typeof(Pawn), typeof(float) })]
+[HarmonyPatch(typeof(Corpse), nameof(Corpse.ButcherProducts), typeof(Pawn), typeof(float))]
 public class PreFix_Corpse_ButcherProducts
 {
     public static Corpse corpse;
@@ -20,7 +18,7 @@ public class PreFix_Corpse_ButcherProducts
     public static TaleNewsPawnButchered corpseNews;
 
     [HarmonyPrefix]
-    public static void PreFix(Pawn butcher, float efficiency, ref Corpse __instance)
+    public static void PreFix(ref Corpse __instance)
     {
         corpse = __instance;
         corpseLocation = __instance.PositionHeld;

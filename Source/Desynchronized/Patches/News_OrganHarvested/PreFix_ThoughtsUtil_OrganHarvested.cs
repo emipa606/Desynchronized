@@ -5,8 +5,7 @@ using Verse;
 
 namespace Desynchronized.Patches.News_OrganHarvested;
 
-[HarmonyPatch(typeof(ThoughtUtility))]
-[HarmonyPatch("GiveThoughtsForPawnOrganHarvested", MethodType.Normal)]
+[HarmonyPatch(typeof(ThoughtUtility), nameof(ThoughtUtility.GiveThoughtsForPawnOrganHarvested), MethodType.Normal)]
 public class PreFix_ThoughtsUtil_OrganHarvested
 {
     [HarmonyPrefix]

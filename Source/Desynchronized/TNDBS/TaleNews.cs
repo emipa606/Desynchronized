@@ -74,8 +74,8 @@ public abstract class TaleNews : IExposable
     public override string ToString()
     {
         return GetNewsTypeName() + (IsRegistered
-            ? " (ID: " + UniqueID + ") "
-            : " " + (LocationOfOccurence != null ? "(from " + LocationOfOccurence + ")" : ""));
+            ? $" (ID: {UniqueID}) "
+            : $" {(LocationOfOccurence != null ? $"(from {LocationOfOccurence})" : "")}");
     }
 
     internal void ReRegisterWithID(int ID)
@@ -118,7 +118,7 @@ public abstract class TaleNews : IExposable
         if (isPermanentlyForgotten)
         {
             DesynchronizedMain.LogError(
-                "Illegal state. This tale-news should be permanently forgotten. Tale-news: " + ToString());
+                $"Illegal state. This tale-news should be permanently forgotten. Tale-news: {ToString()}");
         }
 
         try
@@ -127,7 +127,7 @@ public abstract class TaleNews : IExposable
         }
         catch (Exception ex)
         {
-            DesynchronizedMain.LogError("Cannot give thought(s). Something went wrong.\n" + ex);
+            DesynchronizedMain.LogError($"Cannot give thought(s). Something went wrong.\n{ex}");
         }
     }
 
@@ -170,7 +170,7 @@ public abstract class TaleNews : IExposable
     public abstract bool PawnIsInvolved(Pawn pawn);
 
     /// <summary>
-    ///     Determines if the TaleNews is valid; the TaleNews should be able to convey its meaning with the variables it have.
+    ///     Determines if the TaleNews is valid; the TaleNews should be able to convey its meaning with the variables it has.
     /// </summary>
     /// <returns></returns>
     public abstract bool IsValid();

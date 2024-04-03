@@ -19,7 +19,7 @@ public class Handler_PawnBanished
 
     private static void SendOutNotificationLetter(Pawn victim)
     {
-        Find.LetterStack.ReceiveLetter("Colonist banished", "Colonist banished. Name of Colonist: " + victim.Name,
+        Find.LetterStack.ReceiveLetter("Colonist banished", $"Colonist banished. Name of Colonist: {victim.Name}",
             LetterDefOf.NegativeEvent, victim);
     }
 

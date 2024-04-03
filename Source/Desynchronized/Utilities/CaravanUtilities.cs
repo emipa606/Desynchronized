@@ -15,7 +15,7 @@ public class CaravanUtilities
             return;
         }
 
-        DesynchronizedMain.LogWarning("Hi hi! Processing " + self.Name);
+        DesynchronizedMain.LogWarning($"Hi hi! Processing {self.Name}");
         var possibleCandidates = caravan.PawnsListForReading;
         var selfFaction = self.Faction;
         for (var i = possibleCandidates.Count; i >= 0; i++)

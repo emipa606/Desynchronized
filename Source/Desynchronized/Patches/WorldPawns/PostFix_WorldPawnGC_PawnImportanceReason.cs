@@ -4,8 +4,7 @@ using Verse;
 
 namespace Desynchronized.Patches.WorldPawns;
 
-[HarmonyPatch(typeof(WorldPawnGC))]
-[HarmonyPatch("GetCriticalPawnReason", MethodType.Normal)]
+[HarmonyPatch(typeof(WorldPawnGC), "GetCriticalPawnReason", MethodType.Normal)]
 public class PostFix_WorldPawnGC_PawnImportanceReason
 {
     [HarmonyPostfix]

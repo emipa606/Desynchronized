@@ -6,8 +6,7 @@ namespace Desynchronized.Patches.News_Sold;
 /// <summary>
 ///     Marks down all the Gift Sender pods leaving their launching map.
 /// </summary>
-[HarmonyPatch(typeof(TravelingTransportPods))]
-[HarmonyPatch("PostAdd", MethodType.Normal)]
+[HarmonyPatch(typeof(TravelingTransportPods), nameof(TravelingTransportPods.PostAdd), MethodType.Normal)]
 public class PostFix_TransportPods_PostAdd
 {
     [HarmonyPostfix]

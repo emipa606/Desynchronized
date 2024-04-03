@@ -6,8 +6,8 @@ using Verse;
 
 namespace Desynchronized.Patches.News_Sold;
 
-[HarmonyPatch(typeof(TransportPodsArrivalAction_GiveGift))]
-[HarmonyPatch("Arrived", MethodType.Normal)]
+[HarmonyPatch(typeof(TransportPodsArrivalAction_GiveGift), nameof(TransportPodsArrivalAction_GiveGift.Arrived),
+    MethodType.Normal)]
 public class PreFix_TPAAGG_ArrivedActions
 {
     [HarmonyPrefix]
@@ -15,13 +15,13 @@ public class PreFix_TPAAGG_ArrivedActions
         List<ActiveDropPodInfo> pods)
     {
         var settlement = Traverse.Create(__instance).Field("settlement").GetValue<Settlement>();
-        var unused = DesynchronizedMain.ArrivalActionAndSenderLinker.SafelyGetMapOfGivenAction(__instance);
+        _ = DesynchronizedMain.ArrivalActionAndSenderLinker.SafelyGetMapOfGivenAction(__instance);
 
         foreach (var activeDropPodInfo in pods)
         {
             foreach (var thing in activeDropPodInfo.innerContainer)
             {
-                if (!(thing is Pawn))
+                if (thing is not Pawn)
                 {
                 }
             }

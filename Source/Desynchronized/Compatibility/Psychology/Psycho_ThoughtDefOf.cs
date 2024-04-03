@@ -6,43 +6,43 @@ namespace Desynchronized.Compatibility.Psychology;
 public class Psycho_ThoughtDefOf
 {
     // Using DefDatabase instead of the DefOf annotation to allow for silent errors.
-    public static ThoughtDef KnowColonistDiedBleedingHeart =
+    public static readonly ThoughtDef KnowColonistDiedBleedingHeart =
         DefDatabase<ThoughtDef>.GetNamed("KnowColonistDiedBleedingHeart");
 
-    public static ThoughtDef KnowPrisonerDiedInnocentBleedingHeart =
+    public static readonly ThoughtDef KnowPrisonerDiedInnocentBleedingHeart =
         DefDatabase<ThoughtDef>.GetNamed("KnowPrisonerDiedInnocentBleedingHeart");
 
-    public static ThoughtDef ColonistAbandonedBleedingHeart =
+    public static readonly ThoughtDef ColonistAbandonedBleedingHeart =
         DefDatabase<ThoughtDef>.GetNamed("ColonistAbandonedBleedingHeart");
 
-    public static ThoughtDef ColonistAbandonedToDieBleedingHeart =
+    public static readonly ThoughtDef ColonistAbandonedToDieBleedingHeart =
         DefDatabase<ThoughtDef>.GetNamed("ColonistAbandonedToDieBleedingHeart");
 
-    public static ThoughtDef PrisonerAbandonedToDieBleedingHeart =
+    public static readonly ThoughtDef PrisonerAbandonedToDieBleedingHeart =
         DefDatabase<ThoughtDef>.GetNamed("PrisonerAbandonedToDieBleedingHeart");
 
-    public static ThoughtDef KnowColonistExecutedBleedingHeart =
+    public static readonly ThoughtDef KnowColonistExecutedBleedingHeart =
         DefDatabase<ThoughtDef>.GetNamed("KnowColonistExecutedBleedingHeart");
 
-    public static ThoughtDef KnowGuestExecutedBleedingHeart =
+    public static readonly ThoughtDef KnowGuestExecutedBleedingHeart =
         DefDatabase<ThoughtDef>.GetNamed("KnowGuestExecutedBleedingHeart");
 
-    public static ThoughtDef WitnessedDeathAllyBleedingHeart =
+    public static readonly ThoughtDef WitnessedDeathAllyBleedingHeart =
         DefDatabase<ThoughtDef>.GetNamed("WitnessedDeathAllyBleedingHeart");
 
-    public static ThoughtDef WitnessedDeathNonAllyBleedingHeart =
+    public static readonly ThoughtDef WitnessedDeathNonAllyBleedingHeart =
         DefDatabase<ThoughtDef>.GetNamed("WitnessedDeathNonAllyBleedingHeart");
 
-    public static ThoughtDef RecentlyDesensitized = DefDatabase<ThoughtDef>.GetNamed("RecentlyDesensitized");
+    public static readonly ThoughtDef RecentlyDesensitized = DefDatabase<ThoughtDef>.GetNamed("RecentlyDesensitized");
 
-    public static ThoughtDef KnowColonistOrganHarvestedBleedingHeart =
+    public static readonly ThoughtDef KnowColonistOrganHarvestedBleedingHeart =
         DefDatabase<ThoughtDef>.GetNamed("KnowColonistOrganHarvestedBleedingHeart");
 
-    public static ThoughtDef KnowGuestOrganHarvestedBleedingHeart =
+    public static readonly ThoughtDef KnowGuestOrganHarvestedBleedingHeart =
         DefDatabase<ThoughtDef>.GetNamed("KnowGuestOrganHarvestedBleedingHeart");
 
-    public static ThoughtDef KilledHumanlikeEnemy = DefDatabase<ThoughtDef>.GetNamed("KilledHumanlikeEnemy");
+    public static readonly ThoughtDef KilledHumanlikeEnemy = DefDatabase<ThoughtDef>.GetNamed("KilledHumanlikeEnemy");
 
-    public static ThoughtDef KnowPrisonerSoldBleedingHeart =
+    public static readonly ThoughtDef KnowPrisonerSoldBleedingHeart =
         DefDatabase<ThoughtDef>.GetNamed("KnowPrisonerSoldBleedingHeart");
 }

@@ -14,14 +14,13 @@ public static class FactionUtilities
     {
         if (subject == other)
         {
-            if (subject == null)
-            {
+            return subject == null
+                ?
                 // Both are null
-                return 0;
-            }
-
-            // Both are non-null
-            return 100;
+                0
+                :
+                // Both are non-null
+                100;
         }
 
         if (subject == null || other == null)

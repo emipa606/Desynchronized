@@ -37,8 +37,7 @@ public class DefaultTaleNews : TaleNews
     protected override void GiveThoughtsToReceipient(Pawn recipient)
     {
         DesynchronizedMain.LogError(
-            "Somebody tried to trigger a thought-giving process using a default TaleNews. Nothing was done.\n" +
-            Environment.StackTrace);
+            $"Somebody tried to trigger a thought-giving process using a default TaleNews. Nothing was done.\n{Environment.StackTrace}");
     }
 
     public override string GetDetailsPrintout()

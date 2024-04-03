@@ -4,8 +4,7 @@ using Verse;
 
 namespace Desynchronized.Patches.News_Death;
 
-[HarmonyPatch(typeof(Pawn))]
-[HarmonyPatch("Kill", MethodType.Normal)]
+[HarmonyPatch(typeof(Pawn), nameof(Pawn.Kill), MethodType.Normal)]
 public class PostFix_Pawn_Kill
 {
     [HarmonyPostfix]

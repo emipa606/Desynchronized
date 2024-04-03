@@ -34,13 +34,11 @@ public static class NewsSelector
     /// <returns></returns>
     public static IEnumerable<TaleNews> GetAllValidNonForgottenNews(this Pawn_NewsKnowledgeTracker tracker)
     {
-        if (tracker == null)
-        {
-            return Enumerable.Empty<TaleNews>();
-        }
-
-        // EMBRACE THE POWER OF LINQ; LINQ PROTECTS
-        return GetAllValidNonForgottenNewsReferences(tracker).Select(reference => reference.ReferencedTaleNews);
+        return tracker == null
+            ? Enumerable.Empty<TaleNews>()
+            :
+            // EMBRACE THE POWER OF LINQ; LINQ PROTECTS
+            GetAllValidNonForgottenNewsReferences(tracker).Select(reference => reference.ReferencedTaleNews);
     }
 
     /// <summary>
@@ -51,13 +49,8 @@ public static class NewsSelector
     public static IEnumerable<TaleNewsReference> GetAllForgottenNewsReferences(
         this Pawn_NewsKnowledgeTracker tracker)
     {
-        if (tracker == null)
-        {
-            return Enumerable.Empty<TaleNewsReference>();
-        }
-
-        // EMBRACE THE POWER OF LINQ; LINQ PROTECTS
-        return tracker.AllNewsReferences_ReadOnlyList.FindAll(reference => reference.NewsIsLocallyForgotten);
+        return tracker?.AllNewsReferences_ReadOnlyList.FindAll(reference => reference.NewsIsLocallyForgotten) ??
+               Enumerable.Empty<TaleNewsReference>();
     }
 
     /// <summary>
@@ -67,12 +60,7 @@ public static class NewsSelector
     /// <returns></returns>
     public static IEnumerable<TaleNews> GetAllValidNonPermForgottenNews(this TaleNewsDatabase database)
     {
-        if (database == null)
-        {
-            // This is highly unlikely, but be prepared.
-            return Enumerable.Empty<TaleNews>();
-        }
-
-        return database.ListOfAllTaleNews.FindAll(news => news.IsValid() && !news.PermanentlyForgotten);
+        return database?.ListOfAllTaleNews.FindAll(news => news.IsValid() && !news.PermanentlyForgotten) ??
+               Enumerable.Empty<TaleNews>();
     }
 }

@@ -4,8 +4,7 @@ using Verse;
 
 namespace Desynchronized.Compatibility.Psychology;
 
-[HarmonyPatch(typeof(TaleNewsPawnSold))]
-[HarmonyPatch("GiveThoughtsToReceipient", MethodType.Normal)]
+[HarmonyPatch(typeof(TaleNewsPawnSold), "GiveThoughtsToReceipient", MethodType.Normal)]
 public class PostFix_Desync_TNPawnSold_GiveThoughts
 {
     public static bool Prepare()

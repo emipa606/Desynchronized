@@ -120,7 +120,9 @@ public class TaleNewsPawnDied : TaleNewsNegativeIndividual
         // Rather simple. Copied from vanilla code.
         var forcedStage = (int)BrutalityDegree;
         var thoughtToGive =
-            Victim.IsColonist ? ThoughtDefOf.KnowColonistExecuted : ThoughtDefOf.KnowGuestExecuted;
+            Victim.IsColonist
+                ? Desynchronized_ThoughtDefOf.KnowColonistExecuted
+                : Desynchronized_ThoughtDefOf.KnowGuestExecuted;
         recipient.needs.mood.thoughts.memories.TryGainMemory(
             ThoughtMaker.MakeThought(thoughtToGive, forcedStage));
 
@@ -178,7 +180,7 @@ public class TaleNewsPawnDied : TaleNewsNegativeIndividual
     }
 
     /// <summary>
-    ///     Attempts to give the recipient eye-witness thoughts; general thoughts otherwise.
+    ///     Attempts to give the recipient eyewitness thoughts; general thoughts otherwise.
     /// </summary>
     /// <param name="recipient"></param>
     private void TryProcessEyeWitness(Pawn recipient)
@@ -263,7 +265,7 @@ public class TaleNewsPawnDied : TaleNewsNegativeIndividual
     /// <summary>
     ///     Gives out relationship-based Thoughts, such as My Relative Died, and Killer Killed My Relative/Friend/Rival.
     ///     <para />
-    ///     Most thoughts given out here are all social thoughts. The very few excptions to this are the Bonded Animal Died
+    ///     Most thoughts given out here are all social thoughts. The very few excptions to this are the Bonded AnimalDied
     ///     thought
     /// </summary>
     private void GiveOutRelationshipBasedThoughts(Pawn recipient)
@@ -472,7 +474,7 @@ public class TaleNewsPawnDied : TaleNewsNegativeIndividual
             "PawnDied".Translate(Victim.LabelShort.CapitalizeFirst(), Victim.Named("PAWN"));
         }
 
-        basic += "\n" + deathMessage;
+        basic += $"\n{deathMessage}";
 
         // Determine killer id
         if (Killer == null)

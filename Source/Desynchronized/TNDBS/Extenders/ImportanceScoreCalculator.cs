@@ -65,12 +65,7 @@ public static class ImportanceScoreCalculator
                 return 2;
             }
 
-            if (subjectFaction.AlliedTo(otherFaction))
-            {
-                return 1;
-            }
-
-            return 0;
+            return subjectFaction.AlliedTo(otherFaction) ? 1 : 0;
         }
 
         if (otherFaction == null)
@@ -78,11 +73,6 @@ public static class ImportanceScoreCalculator
             return 0;
         }
 
-        if (otherFaction.AlliedTo(null))
-        {
-            return 1;
-        }
-
-        return 0;
+        return otherFaction.AlliedTo(null) ? 1 : 0;
     }
 }

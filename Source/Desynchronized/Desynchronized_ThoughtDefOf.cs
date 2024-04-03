@@ -33,4 +33,11 @@ public static class Desynchronized_ThoughtDefOf
     public static ThoughtDef MyGrandparentWasKidnapped;
     public static ThoughtDef MyCousinWasKidnapped;
     public static ThoughtDef MyKinWasKidnapped;
+    public static ThoughtDef KnowButcheredHumanlikeCorpse;
+    public static ThoughtDef ButcheredHumanlikeCorpse;
+    public static ThoughtDef KnowColonistExecuted;
+    public static ThoughtDef KnowGuestExecuted;
+    public static ThoughtDef KnowPrisonerSold;
+    public static ThoughtDef KnowColonistOrganHarvested;
+    public static ThoughtDef KnowGuestOrganHarvested;
 }

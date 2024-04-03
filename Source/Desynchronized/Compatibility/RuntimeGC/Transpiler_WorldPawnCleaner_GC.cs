@@ -60,7 +60,7 @@ public class Transpiler_WorldPawnCleaner_GC
             i++;
         }
 
-        // i is at our insert position.
+        // I am at our insert position.
         // Insert new commands.
         var insertionList = new List<CodeInstruction>
         {

@@ -8,7 +8,7 @@ namespace Desynchronized.Utilities;
 [Obsolete("Not sure if feature will be used again.")]
 public class HallOfFigures : UtilityWorldObject
 {
-    private HashSet<Pawn> pawnsRetained = new HashSet<Pawn>();
+    private HashSet<Pawn> pawnsRetained = [];
 
     public IEnumerable<Pawn> PawnsRetainedByTaleNews => pawnsRetained;
 

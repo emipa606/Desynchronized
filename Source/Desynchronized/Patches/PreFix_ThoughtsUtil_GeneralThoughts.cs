@@ -9,13 +9,12 @@ namespace Desynchronized.Patches;
 /// <summary>
 ///     Note: sooner or later, the features of this patch will be broken down by the respective handlers.
 /// </summary>
-[HarmonyPatch(typeof(PawnDiedOrDownedThoughtsUtility))]
-[HarmonyPatch("TryGiveThoughts", MethodType.Normal)]
-[HarmonyPatch(new[] { typeof(Pawn), typeof(DamageInfo), typeof(PawnDiedOrDownedThoughtsKind) })]
+[HarmonyPatch(typeof(PawnDiedOrDownedThoughtsUtility), nameof(PawnDiedOrDownedThoughtsUtility.TryGiveThoughts),
+    [typeof(Pawn), typeof(DamageInfo), typeof(PawnDiedOrDownedThoughtsKind)])]
 public class PreFix_ThoughtsUtil_GeneralThoughts
 {
     [HarmonyPrefix]
-    public static bool PreFix(Pawn victim, DamageInfo? dinfo, PawnDiedOrDownedThoughtsKind thoughtsKind)
+    public static bool PreFix(Pawn victim, PawnDiedOrDownedThoughtsKind thoughtsKind)
     {
         try
         {
@@ -51,7 +50,7 @@ public class PreFix_ThoughtsUtil_GeneralThoughts
         catch (Exception arg)
         {
             Log.Error(
-                "[V1024-DESYNC] Could not give thought, falling back to vanilla thought-giving procedures: " + arg);
+                $"[V1024-DESYNC] Could not give thought, falling back to vanilla thought-giving procedures: {arg}");
         }
 
         return true;

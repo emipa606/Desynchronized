@@ -33,7 +33,7 @@ public class Handler_PawnSold
         // Right now, I have thought that Bonded Sold and Prisoner Sold would work well.
 
         Find.LetterStack.ReceiveLetter("Pawn Sold",
-            "A Pawn of your own has been sold away. Pawn name: " + victim.Name, LetterDefOf.NeutralEvent,
+            $"A Pawn of your own has been sold away. Pawn name: {victim.Name}", LetterDefOf.NeutralEvent,
             LookTargets.Invalid);
     }
 

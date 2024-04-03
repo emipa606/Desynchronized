@@ -6,8 +6,7 @@ using Verse;
 
 namespace Desynchronized.Patches.News_Execution;
 
-[HarmonyPatch(typeof(ThoughtUtility))]
-[HarmonyPatch("GiveThoughtsForPawnExecuted", MethodType.Normal)]
+[HarmonyPatch(typeof(ThoughtUtility), nameof(ThoughtUtility.GiveThoughtsForPawnExecuted), MethodType.Normal)]
 public class PreFix_ThoughtsUtil_Executions
 {
     [HarmonyPrefix]

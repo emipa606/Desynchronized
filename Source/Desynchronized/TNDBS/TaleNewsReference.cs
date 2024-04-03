@@ -89,7 +89,7 @@ public class TaleNewsReference : IExposable
         get
         {
             var tempTaleNews = ReferencedTaleNews;
-            return CachedSubject != null && tempTaleNews != null && !(tempTaleNews is DefaultTaleNews) &&
+            return CachedSubject != null && tempTaleNews != null && tempTaleNews is not DefaultTaleNews &&
                    tempTaleNews.IsValid();
         }
     }
@@ -122,12 +122,9 @@ public class TaleNewsReference : IExposable
 
     public override string ToString()
     {
-        if (IsDefaultReference())
-        {
-            return "Default Reference";
-        }
-
-        return "Reference to tale-news with id = " + uidOfReferencedTaleNews;
+        return IsDefaultReference()
+            ? "Default Reference"
+            : $"Reference to tale-news with id = {uidOfReferencedTaleNews}";
     }
 
     /// <summary>

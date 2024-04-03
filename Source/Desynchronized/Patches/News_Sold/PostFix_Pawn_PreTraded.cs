@@ -5,8 +5,7 @@ using Verse;
 
 namespace Desynchronized.Patches.News_Sold;
 
-[HarmonyPatch(typeof(Pawn))]
-[HarmonyPatch("PreTraded", MethodType.Normal)]
+[HarmonyPatch(typeof(Pawn), nameof(Pawn.PreTraded), MethodType.Normal)]
 public class PostFix_Pawn_PreTraded
 {
     [HarmonyPostfix]

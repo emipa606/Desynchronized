@@ -29,7 +29,7 @@ public class NewsSpreadUtility
                 SelectNewsDistinctly(initiator, receiver, out result);
                 break;
             case SpreadMode.RANDOM:
-                SelectNewsRandomly(initiator, receiver, out result);
+                SelectNewsRandomly(initiator, out result);
                 break;
             default:
                 result = TaleNewsReference.DefaultReference;
@@ -39,12 +39,12 @@ public class NewsSpreadUtility
         return result;
     }
 
-    private static void SelectNewsRandomly(Pawn initiator, Pawn receiver, out TaleNewsReference result)
+    private static void SelectNewsRandomly(Pawn initiator, out TaleNewsReference result)
     {
         // Is now weighted random.
         var listInitiator = initiator.GetNewsKnowledgeTracker()?.GetAllValidNonForgottenNewsReferences().ToList();
 
-        if (listInitiator != null && listInitiator.Count == 0)
+        if (listInitiator is { Count: 0 })
         {
             result = TaleNewsReference.DefaultReference;
         }

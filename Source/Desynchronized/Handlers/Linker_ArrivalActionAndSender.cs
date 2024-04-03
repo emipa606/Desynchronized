@@ -23,20 +23,17 @@ public class Linker_ArrivalActionAndSender : UtilityWorldObject
 
     public void EstablishRelationship(TransportPodsArrivalAction_GiveGift actionInstance, int senderTileID)
     {
-        if (!internalMapping.ContainsKey(actionInstance))
-        {
-            internalMapping.Add(actionInstance, senderTileID);
-        }
+        internalMapping.TryAdd(actionInstance, senderTileID);
     }
 
     public Map SafelyGetMapOfGivenAction(TransportPodsArrivalAction_GiveGift actionInstance)
     {
-        if (!internalMapping.ContainsKey(actionInstance))
+        if (!internalMapping.TryGetValue(actionInstance, out var value))
         {
             return null;
         }
 
-        var result = Current.Game.FindMap(internalMapping[actionInstance]);
+        var result = Current.Game.FindMap(value);
         internalMapping.Remove(actionInstance);
         return result;
     }

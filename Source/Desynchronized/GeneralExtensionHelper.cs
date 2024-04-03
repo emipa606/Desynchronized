@@ -12,7 +12,7 @@ public static class GeneralExtensionHelper
     private static readonly float maximumRange = 30f;
 
     /// <summary>
-    ///     Extension method. Returns true if can have Thoughts. Is NullReference-safe.
+    ///     Extension method. Returns true if you can have Thoughts. Is NullReference-safe.
     /// </summary>
     /// <param name="pawn"></param>
     /// <returns></returns>
@@ -117,17 +117,8 @@ public static class GeneralExtensionHelper
             return false;
         }
 
-        if (!subject.Position.InHorDistOf(other.Position, 12f))
-        {
-            return false;
-        }
-
-        if (!GenSight.LineOfSight(other.Position, subject.Position, other.Map))
-        {
-            return false;
-        }
-
-        return true;
+        return subject.Position.InHorDistOf(other.Position, 12f) &&
+               GenSight.LineOfSight(other.Position, subject.Position, other.Map);
     }
 
     /// <summary>

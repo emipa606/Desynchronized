@@ -95,7 +95,8 @@ public class TaleNewsPawnSold : TaleNewsNegativeIndividual
                 // Some prisoner was sold
                 if (PrimaryVictim.IsPrisonerOfColony)
                 {
-                    recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.KnowPrisonerSold, Instigator);
+                    recipient.needs.mood.thoughts.memories.TryGainMemory(Desynchronized_ThoughtDefOf.KnowPrisonerSold,
+                        Instigator);
                 }
             }
 

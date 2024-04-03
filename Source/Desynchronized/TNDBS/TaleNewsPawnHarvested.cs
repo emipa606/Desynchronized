@@ -44,11 +44,13 @@ public class TaleNewsPawnHarvested : TaleNewsNegativeIndividual
             // Determine the correct thought to be given out
             if (PrimaryVictim.IsColonist)
             {
-                recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.KnowColonistOrganHarvested);
+                recipient.needs.mood.thoughts.memories.TryGainMemory(Desynchronized_ThoughtDefOf
+                    .KnowColonistOrganHarvested);
             }
             else if (PrimaryVictim.HostFaction == Faction.OfPlayer)
             {
-                recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.KnowGuestOrganHarvested);
+                recipient.needs.mood.thoughts.memories.TryGainMemory(
+                    Desynchronized_ThoughtDefOf.KnowGuestOrganHarvested);
             }
         }
     }

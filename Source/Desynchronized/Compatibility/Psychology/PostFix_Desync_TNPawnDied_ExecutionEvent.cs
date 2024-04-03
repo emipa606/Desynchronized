@@ -5,8 +5,7 @@ using Verse;
 
 namespace Desynchronized.Compatibility.Psychology;
 
-[HarmonyPatch(typeof(TaleNewsPawnDied))]
-[HarmonyPatch("TryProcessAsExecutionEvent", MethodType.Normal)]
+[HarmonyPatch(typeof(TaleNewsPawnDied), "TryProcessAsExecutionEvent", MethodType.Normal)]
 public class PostFix_Desync_TNPawnDied_ExecutionEvent
 {
     public static bool Prepare()

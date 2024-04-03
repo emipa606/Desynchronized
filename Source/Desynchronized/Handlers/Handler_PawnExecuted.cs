@@ -25,7 +25,7 @@ public class Handler_PawnExecuted
         // letterContent += "PawnKidnapped".Translate(victim.LabelShort.CapitalizeFirst(), kidnapper.Faction.def.pawnsPlural, kidnapper.Faction.Name, victim.Named("PAWN"));
 
         Find.LetterStack.ReceiveLetter("Colonist/Guest executed",
-            "Colonist/Guest was executed. Name of Pawn: " + victim.Name, LetterDefOf.NegativeEvent, victim);
+            $"Colonist/Guest was executed. Name of Pawn: {victim.Name}", LetterDefOf.NegativeEvent, victim);
     }
 
     private static void GenerateAndProcessNews(Pawn victim, DeathBrutality brutality)

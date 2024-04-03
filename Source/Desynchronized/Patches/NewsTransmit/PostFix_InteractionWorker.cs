@@ -5,21 +5,20 @@ using Verse;
 
 namespace Desynchronized.Patches.NewsTransmit;
 
-[HarmonyPatch(typeof(InteractionWorker))]
-[HarmonyPatch("Interacted", MethodType.Normal)]
+[HarmonyPatch(typeof(InteractionWorker), nameof(InteractionWorker.Interacted), MethodType.Normal)]
 public class PostFix_InteractionWorker
 {
     [HarmonyPostfix]
     public static void ExecuteNewsTarnsmission(InteractionWorker __instance, Pawn initiator, Pawn recipient)
     {
-        if (__instance is InteractionWorker_Chitchat chitchatWorker)
+        if (__instance is InteractionWorker_Chitchat)
         {
             if (Rand.Value <= initiator.GetActualNewsSpreadChance())
             {
                 NewsSpreadUtility.SpreadNews(initiator, recipient);
             }
         }
-        else if (__instance is InteractionWorker_DeepTalk deeptalkWorker)
+        else if (__instance is InteractionWorker_DeepTalk)
         {
             if (Rand.Value <= initiator.GetActualNewsSpreadChance(5))
             {

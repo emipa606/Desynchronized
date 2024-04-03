@@ -19,6 +19,8 @@ public class Dialog_NewsTrackerViewer : Window
 
     public readonly int ScrollerMargin = 16;
 
+    public readonly Pawn subjectPawn;
+
     public readonly int TopAreaHeight = 58;
 
     public List<TaleNewsReference> knownNews;
@@ -26,8 +28,6 @@ public class Dialog_NewsTrackerViewer : Window
     public Vector2 scrollPosition = Vector2.zero;
 
     private bool shouldDisplayForgottenNews = true;
-
-    public Pawn subjectPawn;
 
     /// <summary>
     ///     Instantiates a new Tale-News Knowledge Tracker dialog.
@@ -140,12 +140,12 @@ public class Dialog_NewsTrackerViewer : Window
         {
             // Viewing individual pawns
             taleNewsList =
-                new List<TaleNews>(subjectPawn.GetNewsKnowledgeTracker()?.GetAllValidNonForgottenNews()!);
+                [..subjectPawn.GetNewsKnowledgeTracker()?.GetAllValidNonForgottenNews()!];
         }
 
         var newsCount = taleNewsList.Count;
 
-        // Step 2: Setup the area
+        // Step 2: Set up the area
         float scrollableHeight = HeaderLineHeight + (newsCount * EntryHeight);
         var viewingRect = new Rect(0, 0, givenArea.width - ScrollerMargin, scrollableHeight);
         Widgets.BeginScrollView(givenArea, ref scrollPosition, viewingRect);
@@ -334,7 +334,7 @@ public class Dialog_NewsTrackerViewer : Window
                 }
                 catch (Exception ex)
                 {
-                    originalString = DesynchronizedMain.MODPREFIX + "Error: " + ex.Message + "\n" + ex.StackTrace;
+                    originalString = $"{DesynchronizedMain.MODPREFIX}Error: {ex.Message}\n{ex.StackTrace}";
                 }
 
                 // At this stage, originalString guaranteed to be non-zero.

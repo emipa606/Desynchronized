@@ -4,8 +4,7 @@ using Verse;
 
 namespace Desynchronized.Patches.News_Kidnap;
 
-[HarmonyPatch(typeof(MapDeiniter))]
-[HarmonyPatch("Deinit", MethodType.Normal)]
+[HarmonyPatch(typeof(MapDeiniter), nameof(MapDeiniter.Deinit), MethodType.Normal)]
 public class MultiFix_MapDeiniter
 {
     // Just in case we have pawns lost in offensive battles.

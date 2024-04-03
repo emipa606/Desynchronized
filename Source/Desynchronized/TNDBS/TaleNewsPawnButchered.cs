@@ -1,6 +1,5 @@
 ﻿using Desynchronized.Patches;
 using Desynchronized.TNDBS.Datatypes;
-using RimWorld;
 using Verse;
 
 namespace Desynchronized.TNDBS;
@@ -41,7 +40,7 @@ public class TaleNewsPawnButchered : TaleNewsNegativeIndividual
         }
 
         PreFix_Corpse_ButcherProducts.overrideValue = true;
-        recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.KnowButcheredHumanlikeCorpse);
+        recipient.needs.mood.thoughts.memories.TryGainMemory(Desynchronized_ThoughtDefOf.KnowButcheredHumanlikeCorpse);
         PreFix_Corpse_ButcherProducts.overrideValue = false;
     }
 }

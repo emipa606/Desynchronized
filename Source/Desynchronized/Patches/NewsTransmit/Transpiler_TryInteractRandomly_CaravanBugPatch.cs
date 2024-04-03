@@ -6,8 +6,7 @@ using RimWorld;
 
 namespace Desynchronized.Patches.NewsTransmit;
 
-[HarmonyPatch(typeof(Pawn_InteractionsTracker))]
-[HarmonyPatch("TryInteractRandomly", MethodType.Normal)]
+[HarmonyPatch(typeof(Pawn_InteractionsTracker), "TryInteractRandomly", MethodType.Normal)]
 public class Transpiler_TryInteractRandomly_CaravanBugPatch
 {
     /// <summary>

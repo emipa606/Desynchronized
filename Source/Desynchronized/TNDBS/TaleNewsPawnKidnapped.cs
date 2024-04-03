@@ -19,7 +19,7 @@ public class TaleNewsPawnKidnapped : TaleNewsNegativeIndividual
     {
         if (kidnappingFaction == null)
         {
-            DesynchronizedMain.LogError("Kidnapping faction cannot be null! Fake news!\n" + Environment.StackTrace);
+            DesynchronizedMain.LogError($"Kidnapping faction cannot be null! Fake news!\n{Environment.StackTrace}");
         }
         else
         {
@@ -32,7 +32,7 @@ public class TaleNewsPawnKidnapped : TaleNewsNegativeIndividual
     {
         if (kidnapper == null)
         {
-            DesynchronizedMain.LogError("Kidnapper cannot be null! Fake News!\n" + Environment.StackTrace);
+            DesynchronizedMain.LogError($"Kidnapper cannot be null! Fake News!\n{Environment.StackTrace}");
         }
         else
         {

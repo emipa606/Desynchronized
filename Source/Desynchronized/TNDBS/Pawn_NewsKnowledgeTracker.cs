@@ -8,7 +8,7 @@ namespace Desynchronized.TNDBS;
 
 public class Pawn_NewsKnowledgeTracker : IExposable
 {
-    private List<TaleNewsReference> newsKnowledgeList = new List<TaleNewsReference>();
+    private List<TaleNewsReference> newsKnowledgeList = [];
     private Pawn pawn;
 
     public Pawn Pawn => pawn;
@@ -21,7 +21,7 @@ public class Pawn_NewsKnowledgeTracker : IExposable
 
     public IEnumerable<TaleNewsReference> AllNewsReferences_ReadOnlyEnumerable => newsKnowledgeList.AsEnumerable();
 
-    public List<TaleNewsReference> AllNewsReferences_ReadOnlyList => new List<TaleNewsReference>(newsKnowledgeList);
+    public List<TaleNewsReference> AllNewsReferences_ReadOnlyList => [..newsKnowledgeList];
 
     public IEnumerable<TaleNewsReference> AllValidNewsReferences
     {
@@ -130,7 +130,7 @@ public class Pawn_NewsKnowledgeTracker : IExposable
     {
         if (count <= 0)
         {
-            throw new ArgumentException("You cannot forget " + count + " tale-news.");
+            throw new ArgumentException($"You cannot forget {count} tale-news.");
         }
 
         while (count > 0)

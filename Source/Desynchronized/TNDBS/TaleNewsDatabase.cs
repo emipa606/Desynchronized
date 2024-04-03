@@ -54,12 +54,7 @@ public class TaleNewsDatabase : UtilityWorldObject
                 return null;
             }
 
-            if (param < talesOfImportance.Count)
-            {
-                return talesOfImportance[param];
-            }
-
-            return null;
+            return param < talesOfImportance.Count ? talesOfImportance[param] : null;
         }
     }
 
@@ -68,7 +63,7 @@ public class TaleNewsDatabase : UtilityWorldObject
         nextUID = 0;
         if (talesOfImportance == null)
         {
-            talesOfImportance = new List<TaleNews>();
+            talesOfImportance = [];
         }
         else
         {
@@ -79,7 +74,7 @@ public class TaleNewsDatabase : UtilityWorldObject
         RegisterNewTaleNews(TaleNews.DefaultTaleNews);
         if (knowledgeTrackerMasterList == null)
         {
-            knowledgeTrackerMasterList = new List<Pawn_NewsKnowledgeTracker>();
+            knowledgeTrackerMasterList = [];
         }
         else
         {
@@ -120,7 +115,7 @@ public class TaleNewsDatabase : UtilityWorldObject
 
         if (knowledgeTrackerMasterList == null)
         {
-            knowledgeTrackerMasterList = new List<Pawn_NewsKnowledgeTracker>();
+            knowledgeTrackerMasterList = [];
         }
     }
 
@@ -142,11 +137,10 @@ public class TaleNewsDatabase : UtilityWorldObject
         }
         catch (OverflowException ex)
         {
-            Find.LetterStack.ReceiveLetter(DesynchronizedMain.MODPREFIX + "Overflow Occured",
+            Find.LetterStack.ReceiveLetter($"{DesynchronizedMain.MODPREFIX}Overflow Occured",
                 "Report this situation to Desynchronized; it is time for an upgrade.", LetterDefOf.ThreatBig);
             DesynchronizedMain.LogError(
-                "Greetings, Ancient One. You have sucessfully broken this mod without exploiting any bug.\n" +
-                ex.StackTrace);
+                $"Greetings, Ancient One. You have sucessfully broken this mod without exploiting any bug.\n{ex.StackTrace}");
             nextUID = 0;
         }
 
@@ -164,8 +158,7 @@ public class TaleNewsDatabase : UtilityWorldObject
         if (news == null)
         {
             DesynchronizedMain.LogError(
-                "An unexpected null TaleNews was received. Report this to Desynchronized.\n" +
-                Environment.StackTrace);
+                $"An unexpected null TaleNews was received. Report this to Desynchronized.\n{Environment.StackTrace}");
             return;
         }
 
@@ -197,12 +190,12 @@ public class TaleNewsDatabase : UtilityWorldObject
         // Confirm all variables/structs are initialized.
         if (talesOfImportance == null)
         {
-            talesOfImportance = new List<TaleNews>();
+            talesOfImportance = [];
         }
 
         if (knowledgeTrackerMasterList == null)
         {
-            knowledgeTrackerMasterList = new List<Pawn_NewsKnowledgeTracker>();
+            knowledgeTrackerMasterList = [];
         }
 
         // Validate all variables/structs
@@ -263,7 +256,7 @@ public class TaleNewsDatabase : UtilityWorldObject
         // Step 3: Re-enter TaleNews
         var tempList = new List<TaleNews>();
         tempList.AddRange(talesOfImportance);
-        talesOfImportance = new List<TaleNews>();
+        talesOfImportance = [];
         nextUID = 0;
 
         foreach (var taleNews in tempList)

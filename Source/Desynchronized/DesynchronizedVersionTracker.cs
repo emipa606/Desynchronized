@@ -10,18 +10,7 @@ public class DesynchronizedVersionTracker : UtilityWorldObject
 
     private string versionOfMod;
 
-    public Version VersionOfModWithinSave
-    {
-        get
-        {
-            if (versionOfMod == null)
-            {
-                return new Version(0, 0, 0, 0);
-            }
-
-            return new Version(versionOfMod);
-        }
-    }
+    public Version VersionOfModWithinSave => versionOfMod == null ? new Version(0, 0, 0, 0) : new Version(versionOfMod);
 
     public static Version CurrentVersion => typeof(DesynchronizedMain).Assembly.GetName().Version;
 

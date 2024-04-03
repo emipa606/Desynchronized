@@ -49,7 +49,7 @@ public class TaleNewsPawnBanished : TaleNewsNegativeIndividual
         }
         else if (recipient == BanishmentVictim)
         {
-            // We have potential here. Next version perhaps.
+            // We have potential here. Next version, perhaps.
         }
         else
         {
@@ -96,7 +96,7 @@ public class TaleNewsPawnBanished : TaleNewsNegativeIndividual
     public override string GetDetailsPrintout()
     {
         var basic = base.GetDetailsPrintout();
-        basic += "\nDeadly? " + isDeadly;
+        basic += $"\nDeadly? {isDeadly}";
         return basic;
     }
 }

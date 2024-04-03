@@ -62,12 +62,7 @@ public abstract class TaleNewsNegativeIndividual : TaleNews
             return false;
         }
 
-        if (pawn == PrimaryVictim || pawn == Instigator)
-        {
-            return true;
-        }
-
-        return false;
+        return pawn == PrimaryVictim || pawn == Instigator;
     }
 
     public override bool IsValid()

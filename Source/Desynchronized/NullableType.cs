@@ -3,11 +3,10 @@ using Verse;
 
 namespace Desynchronized;
 
-public struct NullableType<T> : IExposable where T : struct
+public struct NullableType<T>(T initialValue) : IExposable
+    where T : struct
 {
-    private bool hasValue;
-
-    private T insideValue;
+    private bool hasValue = true;
 
     public bool HasValue => hasValue;
 
@@ -20,30 +19,19 @@ public struct NullableType<T> : IExposable where T : struct
                 throw new InvalidOperationException("NullableType<T> : IExposable has no value.");
             }
 
-            return insideValue;
+            return initialValue;
         }
-    }
-
-    public NullableType(T initialValue)
-    {
-        hasValue = true;
-        insideValue = initialValue;
     }
 
     public void ExposeData()
     {
         Scribe_Values.Look(ref hasValue, "hasValue");
-        Scribe_Values.Look(ref insideValue, "insideValue");
+        Scribe_Values.Look(ref initialValue, "insideValue");
     }
 
     public T GetValueOrDefault(T defaultValue = default)
     {
-        if (HasValue)
-        {
-            return Value;
-        }
-
-        return defaultValue;
+        return HasValue ? Value : defaultValue;
     }
 
     public override bool Equals(object obj)
@@ -53,32 +41,17 @@ public struct NullableType<T> : IExposable where T : struct
             return obj == null;
         }
 
-        if (obj == null)
-        {
-            return false;
-        }
-
-        return base.Equals(obj);
+        return obj != null && base.Equals(obj);
     }
 
     public override int GetHashCode()
     {
-        if (hasValue)
-        {
-            return Value.GetHashCode();
-        }
-
-        return 0;
+        return hasValue ? Value.GetHashCode() : 0;
     }
 
     public override string ToString()
     {
-        if (hasValue)
-        {
-            return Value.ToString();
-        }
-
-        return "";
+        return hasValue ? Value.ToString() : "";
     }
 
     public static implicit operator NullableType<T>(T from)
@@ -88,22 +61,12 @@ public struct NullableType<T> : IExposable where T : struct
 
     public static implicit operator NullableType<T>(T? from)
     {
-        if (from.HasValue)
-        {
-            return new NullableType<T>(from.Value);
-        }
-
-        return new NullableType<T>();
+        return from.HasValue ? new NullableType<T>(from.Value) : new NullableType<T>();
     }
 
     public static implicit operator T?(NullableType<T> from)
     {
-        if (from.hasValue)
-        {
-            return from.Value;
-        }
-
-        return new T?();
+        return from.hasValue ? from.Value : new T?();
     }
 
     public static explicit operator T(NullableType<T> from)
