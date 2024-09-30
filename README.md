@@ -1,4 +1,4 @@
-# Desynchronized
+# [Desynchronized: Tales and News (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2222607126)
 
 ![Image](https://i.imgur.com/buuPQel.png)
 
@@ -8,13 +8,11 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1573233249
 - May be inompatible with RuntimeGC-mods. Depending on the settings it might remove pawns from history making news regarding them have no target.
 - Added support for Butchered Humanoid-news
 - Added option that only pawns in the same room or in range and sight of the event (outside) knows of it instantly. The normal behaviour is that all pawns on the same map knows all events instantly.
-- Added support for https://steamcommunity.com/sharedfiles/filedetails/?id=2451324814][SYR] Trait Value
+- Added support for [[SYR] Trait Value](https://steamcommunity.com/sharedfiles/filedetails/?id=2451324814)
 
 ![Image](https://i.imgur.com/pufA0kM.png)
-
 	
 ![Image](https://i.imgur.com/Z4GOv8H.png)
-
 
 *Information spreads from one to another.*
 
@@ -32,9 +30,9 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1573233249
 
 # Mod Description
 
-A continuation of https://steamcommunity.com/sharedfiles/filedetails/?id=1315706945]ClosedDoors made by MoobyNooby, this mod changes how information spreads among your colonists.
+A continuation of [ClosedDoors](https://steamcommunity.com/sharedfiles/filedetails/?id=1315706945) made by MoobyNooby, this mod changes how information spreads among your colonists.
 
-I always find it strange that colonists are able to know things happening basically out of their sight, knowing to an extreme that they can react instantly. (https://rimworldme.tumblr.com/post/165485304313/innocent-prisoners-of-rimworld]Descriptive comic by SrGrafo) That's why I decide to take the baton, and finish what has been started: to make information spreading more realistic, and to create the inevitable *desynchronization of understanding*.
+I always find it strange that colonists are able to know things happening basically out of their sight, knowing to an extreme that they can react instantly. ([Descriptive comic by SrGrafo](https://rimworldme.tumblr.com/post/165485304313/innocent-prisoners-of-rimworld)) That's why I decide to take the baton, and finish what has been started: to make information spreading more realistic, and to create the inevitable *desynchronization of understanding*.
 
 With the news-spreading mechanism well-defined and working smoothly across several thousands of colonies galaxy-wide, I present you this question: how much should your pure, innocent colonists know? Should they know everything that has happened in the game, whether big or small, whether bright or dark?
 
@@ -56,7 +54,7 @@ Help us out in our common pursuit of success on the Rim by:
 - **Reporting Bugs:** no one wants an infestation here. Visit "Reporting Bugs" down there.
 - **Suggesting Features:** we need new ideas to keep things interesting. Visit "Feature Suggestions" down there.
 - **Inspecting the Code:** sometimes, underlying problems are not obvious to spot. Visit the GitHub page to read the code.
-- **Translating the Texts**: if you are a native speaker of your language, you are most welcome to contribute by translating the texts to your own language. [u]You may now submit GitHub pull requests to provide your latest translations of this mod.[/u]
+- **Translating the Texts**: if you are a native speaker of your language, you are most welcome to contribute by translating the texts to your own language. <ins>You may now submit GitHub pull requests to provide your latest translations of this mod.</ins>
 
 
 In the GitHub page, you will find:
@@ -78,13 +76,12 @@ That's all. Wish y'all a successful run on the Rim!
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib or the standalone https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Uploader and command Ctrl+F12
+-  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
--  Use https://github.com/RimSort/RimSort/releases/latest]RimSort to sort your mods
+-  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
 
 
-https://steamcommunity.com/sharedfiles/filedetails/changelog/2222607126]![Image](https://img.shields.io/github/v/release/emipa606/Desynchronized?label=latest%20version&style=plastic&color=9f1111&labelColor=black)
-
+[![Image](https://img.shields.io/github/v/release/emipa606/Desynchronized?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2222607126)

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <PawnKidnapped>{PAWN_labelShort} a été {PAWN_gender ? kidnappé : kidnappée} par {1} de {2}.</PawnKidnapped>
 </LanguageData>

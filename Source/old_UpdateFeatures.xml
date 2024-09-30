@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
   <HugsLib.UpdateFeatureDef Abstract="true" Name="Desynchronized_UpdateFeatureBase">
     <modNameReadable>Desynchronized</modNameReadable>
@@ -7,17 +7,17 @@
   <HugsLib.UpdateFeatureDef ParentName="Desynchronized_UpdateFeatureBase">
     <defName>Desync_v1_0_0</defName>
     <assemblyVersion>1.0.0</assemblyVersion>
-    <content>Greetings, mod user. Thank you for using &lt;color=cyan&gt;Desynchronized&lt;/color&gt;, a WIP mod that aims to change how Colonists react to the outside world.|The only change in this update is that &lt;color=cyan&gt;Desynchronized&lt;/color&gt; now requires HugsLib, which is also the reason why you are reading this right now.|Stay safe, report bugs, and have fun!</content>
+    <content>Greetings, mod user. Thank you for using &lt;color=cyan>Desynchronized&lt;/color>, a WIP mod that aims to change how Colonists react to the outside world.|The only change in this update is that &lt;color=cyan>Desynchronized&lt;/color> now requires HugsLib, which is also the reason why you are reading this right now.|Stay safe, report bugs, and have fun!</content>
   </HugsLib.UpdateFeatureDef>
   <HugsLib.UpdateFeatureDef ParentName="Desynchronized_UpdateFeatureBase">
     <defName>Desync_v1_1_0</defName>
     <assemblyVersion>1.1.0</assemblyVersion>
-    <content>A slightly overdue update! But who cares; at least we got this mod updated. Yay!|&lt;b&gt;Implemented Mandatory Censorship Scheme&lt;/b&gt;
+    <content>A slightly overdue update! But who cares; at least we got this mod updated. Yay!|&lt;b>Implemented Mandatory Censorship Scheme&lt;/b>
 The Scheme filteres information about the following events that originate from outside the Colonists' home-base:|- Executions, Organ Harvests, and Banishments
 - Prisoners Sold
 - Colonist Died and associated thoughts|Note that the vanilla game has already implemented a similar Scheme to filter the following events:|- Know Butchered Human
 - Buried in Sarcophagus
-- Colonist Left Unburied.|&lt;b&gt;On a more serious note:&lt;/b&gt;
+- Colonist Left Unburied.|&lt;b>On a more serious note:&lt;/b>
 - Reduced Steam Workshop file size thanks to PublisherPlus
 - Changing the direction of this mod from a simple, low-level "Gulag mod" to a complex, high-level "Censorship mod"|That's all! Stay safe, report bugs, and have fun!</content>
   </HugsLib.UpdateFeatureDef>
@@ -106,7 +106,7 @@ The Scheme filteres information about the following events that originate from o
     <content>Version 1.4.4 is here to do some house-keeping work.|- Fixed bug: doing Finish Off (from Allow Tools) on human pawns will no longer throw NullReferenceException
 - Fixed bug that might have broken the entire TNDBS
 - Removed unused/now-irrelevant code
-- (Steam only) Reduced mod size down to &lt;1 MB (credits to Mehni's PublisherPlus patch!)|One known issue: when loading a save-game that was made with a previous version of this mod enabled, the game will show some &lt;b&gt;one-time errors&lt;/b&gt; along the lines of "Could not find class" in the debug log. The affected classes are: InformationKnowledgeStorage, CentralTaleDatabase, ArrivalAction_Sender_Linker. &lt;b&gt;This is harmless.&lt;/b&gt;|If you would like to include your error logs when reporting bugs, please use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, detailed changelogs and elaboration of features.</content>
+- (Steam only) Reduced mod size down to &lt;1 MB (credits to Mehni's PublisherPlus patch!)|One known issue: when loading a save-game that was made with a previous version of this mod enabled, the game will show some &lt;b>one-time errors&lt;/b> along the lines of "Could not find class" in the debug log. The affected classes are: InformationKnowledgeStorage, CentralTaleDatabase, ArrivalAction_Sender_Linker. &lt;b>This is harmless.&lt;/b>|If you would like to include your error logs when reporting bugs, please use PasteBin ( https://pastebin.com/ ) or HugsLib's log-sharing feature.|Click on the link above to visit the GitHub online repo, where you can find the source code, previous versions, detailed changelogs and elaboration of features.</content>
   </HugsLib.UpdateFeatureDef>
   <HugsLib.UpdateFeatureDef ParentName="Desynchronized_UpdateFeatureBase">
     <defName>Desync_1_4_5</defName>
