@@ -123,8 +123,10 @@ public class TaleNewsPawnDied : TaleNewsNegativeIndividual
             Victim.IsColonist
                 ? Desynchronized_ThoughtDefOf.KnowColonistExecuted
                 : Desynchronized_ThoughtDefOf.KnowGuestExecuted;
-        recipient.needs.mood.thoughts.memories.TryGainMemory(
-            ThoughtMaker.MakeThought(thoughtToGive, forcedStage));
+        if (ThoughtUtility.CanGetThought(recipient, thoughtToGive, true))
+        {
+            recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(thoughtToGive, forcedStage));
+        }
 
         return true;
     }
@@ -250,13 +252,15 @@ public class TaleNewsPawnDied : TaleNewsNegativeIndividual
     private void GiveOutGenericThoughts(Pawn recipient)
     {
         if (Victim.Faction == Faction.OfPlayer && Victim.Faction == recipient.Faction &&
-            Victim.HostFaction != recipient.Faction)
+            Victim.HostFaction != recipient.Faction &&
+            ThoughtUtility.CanGetThought(recipient, ThoughtDefOf.KnowColonistDied, true))
         {
             recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.KnowColonistDied, Victim);
         }
 
         var prisonerIsInnocent = Victim.IsPrisonerOfColony && !Victim.guilt.IsGuilty && !Victim.InAggroMentalState;
-        if (prisonerIsInnocent && recipient.Faction == Faction.OfPlayer && !recipient.IsPrisoner)
+        if (prisonerIsInnocent && recipient.Faction == Faction.OfPlayer && !recipient.IsPrisoner &&
+            ThoughtUtility.CanGetThought(recipient, ThoughtDefOf.KnowPrisonerDiedInnocent, true))
         {
             recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.KnowPrisonerDiedInnocent, Victim);
         }
@@ -339,15 +343,16 @@ public class TaleNewsPawnDied : TaleNewsNegativeIndividual
     private void GiveOutFriendOrRivalDiedThoughts(Pawn recipient)
     {
         var opinion = recipient.relations.OpinionOf(Victim);
-        if (opinion >= 20)
+        switch (opinion)
         {
-            new IndividualThoughtToAdd(ThoughtDefOf.PawnWithGoodOpinionDied, recipient, Victim,
-                Victim.relations.GetFriendDiedThoughtPowerFactor(opinion)).Add();
-        }
-        else if (opinion <= -20)
-        {
-            new IndividualThoughtToAdd(ThoughtDefOf.PawnWithBadOpinionDied, recipient, Victim,
-                Victim.relations.GetRivalDiedThoughtPowerFactor(opinion)).Add();
+            case >= 20:
+                new IndividualThoughtToAdd(ThoughtDefOf.PawnWithGoodOpinionDied, recipient, Victim,
+                    Victim.relations.GetFriendDiedThoughtPowerFactor(opinion)).Add();
+                break;
+            case <= -20:
+                new IndividualThoughtToAdd(ThoughtDefOf.PawnWithBadOpinionDied, recipient, Victim,
+                    Victim.relations.GetRivalDiedThoughtPowerFactor(opinion)).Add();
+                break;
         }
     }
 

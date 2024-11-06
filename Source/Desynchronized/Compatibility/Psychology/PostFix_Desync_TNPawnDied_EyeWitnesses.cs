@@ -47,6 +47,9 @@ public class PostFix_Desync_TNPawnDied_EyeWitnesses
 
         // Gain Desensitized
         recipient.story.traits.GainTrait(new Trait(Psycho_TraitDefOf.Desensitized));
-        recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf.RecentlyDesensitized);
+        if (ThoughtUtility.CanGetThought(recipient, Psycho_ThoughtDefOf.RecentlyDesensitized, true))
+        {
+            recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf.RecentlyDesensitized);
+        }
     }
 }

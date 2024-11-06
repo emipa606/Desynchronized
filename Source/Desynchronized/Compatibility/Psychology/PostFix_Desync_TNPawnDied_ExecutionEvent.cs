@@ -27,7 +27,10 @@ public class PostFix_Desync_TNPawnDied_ExecutionEvent
         var thoughtToGive = __instance.Victim.IsColonist
             ? Psycho_ThoughtDefOf.KnowColonistExecutedBleedingHeart
             : Psycho_ThoughtDefOf.KnowGuestExecutedBleedingHeart;
-        recipient.needs.mood.thoughts.memories.TryGainMemory(
-            ThoughtMaker.MakeThought(thoughtToGive, forcedStage));
+
+        if (ThoughtUtility.CanGetThought(recipient, thoughtToGive, true))
+        {
+            recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtMaker.MakeThought(thoughtToGive, forcedStage));
+        }
     }
 }

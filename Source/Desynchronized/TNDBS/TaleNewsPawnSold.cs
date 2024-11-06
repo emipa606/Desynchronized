@@ -72,54 +72,59 @@ public class TaleNewsPawnSold : TaleNewsNegativeIndividual
 
         if (recipient == PrimaryVictim)
         {
-            // I was sold
+            return;
         }
-        else
+
+        // Animal or Prisoner sold
+        if (PrimaryVictim.RaceProps.Animal)
         {
-            // Animal or Prisoner sold
-            if (PrimaryVictim.RaceProps.Animal)
+            // Vanilla v1.1, there are new features here
+            var firstDirectRelationPawn =
+                PrimaryVictim.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Bond);
+            if (firstDirectRelationPawn != null && firstDirectRelationPawn == recipient &&
+                firstDirectRelationPawn.needs.mood != null)
             {
-                // Vanilla v1.1, there are new features here
-                var firstDirectRelationPawn =
-                    PrimaryVictim.relations.GetFirstDirectRelationPawn(PawnRelationDefOf.Bond);
-                if (firstDirectRelationPawn != null && firstDirectRelationPawn == recipient &&
-                    firstDirectRelationPawn.needs.mood != null)
+                PrimaryVictim.relations.RemoveDirectRelation(PawnRelationDefOf.Bond, recipient);
+                if (ThoughtUtility.CanGetThought(firstDirectRelationPawn, ThoughtDefOf.SoldMyBondedAnimalMood, true))
                 {
-                    PrimaryVictim.relations.RemoveDirectRelation(PawnRelationDefOf.Bond, recipient);
                     firstDirectRelationPawn.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf
                         .SoldMyBondedAnimalMood);
                 }
             }
-            else if (PrimaryVictim.RaceProps.Humanlike)
+        }
+        else if (PrimaryVictim.RaceProps.Humanlike)
+        {
+            // Some prisoner was sold
+            if (PrimaryVictim.IsPrisonerOfColony &&
+                ThoughtUtility.CanGetThought(recipient, Desynchronized_ThoughtDefOf.KnowPrisonerSold, true))
             {
-                // Some prisoner was sold
-                if (PrimaryVictim.IsPrisonerOfColony)
-                {
-                    recipient.needs.mood.thoughts.memories.TryGainMemory(Desynchronized_ThoughtDefOf.KnowPrisonerSold,
-                        Instigator);
-                }
+                recipient.needs.mood.thoughts.memories.TryGainMemory(Desynchronized_ThoughtDefOf.KnowPrisonerSold,
+                    Instigator);
             }
+        }
 
-            // Relationship was sold, if there is any
-            var relation = recipient.GetMostImportantRelation(PrimaryVictim);
-            if (relation != null)
+        // Relationship was sold, if there is any
+        var relation = recipient.GetMostImportantRelation(PrimaryVictim);
+        if (relation != null)
+        {
+            foreach (var soldThought in relation.soldThoughts)
             {
-                foreach (var soldThought in relation.soldThoughts)
+                if (ThoughtUtility.CanGetThought(recipient, soldThought, true))
                 {
                     recipient.needs.mood.thoughts.memories.TryGainMemory(soldThought, Instigator);
                 }
             }
-
-            // Remove marriage-related memories, etc.
-            var spouse = PrimaryVictim.GetFirstSpouse();
-            if (spouse == null || recipient != spouse || recipient.Dead)
-            {
-                return;
-            }
-
-            var memories = recipient.needs.mood.thoughts.memories;
-            memories.RemoveMemoriesOfDef(ThoughtDefOf.GotMarried);
-            memories.RemoveMemoriesOfDef(ThoughtDefOf.HoneymoonPhase);
         }
+
+        // Remove marriage-related memories, etc.
+        var spouse = PrimaryVictim.GetFirstSpouse();
+        if (spouse == null || recipient != spouse || recipient.Dead)
+        {
+            return;
+        }
+
+        var memories = recipient.needs.mood.thoughts.memories;
+        memories.RemoveMemoriesOfDef(ThoughtDefOf.GotMarried);
+        memories.RemoveMemoriesOfDef(ThoughtDefOf.HoneymoonPhase);
     }
 }

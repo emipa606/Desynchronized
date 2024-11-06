@@ -27,10 +27,22 @@ public class PostFix_Desync_TNPawnHarvested_GiveThoughts
         // Determine the correct Bleeding Heart thought to be given out
         if (primaryVictim.IsColonist)
         {
-            recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf
-                .KnowColonistOrganHarvestedBleedingHeart);
+            if (ThoughtUtility.CanGetThought(recipient, Psycho_ThoughtDefOf.KnowColonistOrganHarvestedBleedingHeart,
+                    true))
+            {
+                recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf
+                    .KnowColonistOrganHarvestedBleedingHeart);
+            }
+
+            return;
         }
-        else if (primaryVictim.HostFaction == Faction.OfPlayer)
+
+        if (primaryVictim.HostFaction != Faction.OfPlayer)
+        {
+            return;
+        }
+
+        if (ThoughtUtility.CanGetThought(recipient, Psycho_ThoughtDefOf.KnowGuestOrganHarvestedBleedingHeart, true))
         {
             recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf
                 .KnowGuestOrganHarvestedBleedingHeart);

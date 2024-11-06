@@ -46,43 +46,48 @@ public class TaleNewsPawnBanished : TaleNewsNegativeIndividual
             {
                 new IndividualThoughtToAdd(ThoughtDefOf.BondedAnimalBanished, recipient, BanishmentVictim).Add();
             }
+
+            return;
         }
-        else if (recipient == BanishmentVictim)
+
+        if (recipient == BanishmentVictim)
         {
             // We have potential here. Next version, perhaps.
+            return;
+        }
+
+        ThoughtDef thoughtDefToGain;
+        if (!BanishmentVictim.IsPrisonerOfColony)
+        {
+            thoughtDefToGain = IsDeadly ? ThoughtDefOf.ColonistBanishedToDie : ThoughtDefOf.ColonistBanished;
         }
         else
         {
-            ThoughtDef thoughtDefToGain;
-            if (!BanishmentVictim.IsPrisonerOfColony)
+            if (IsDeadly)
             {
-                thoughtDefToGain = IsDeadly ? ThoughtDefOf.ColonistBanishedToDie : ThoughtDefOf.ColonistBanished;
+                thoughtDefToGain = ThoughtDefOf.PrisonerBanishedToDie;
             }
             else
             {
-                if (IsDeadly)
+                // Adjust for traits concerning prisoner released dangerously.
+                // Bloodlust trait has higher priority.
+                if (recipient.story.traits.HasTrait(TraitDefOf.Bloodlust))
                 {
-                    thoughtDefToGain = ThoughtDefOf.PrisonerBanishedToDie;
+                    thoughtDefToGain = Desynchronized_ThoughtDefOf.PrisonerReleasedDangerously_Bloodlust;
+                }
+                else if (recipient.story.traits.HasTrait(TraitDefOf.Psychopath))
+                {
+                    thoughtDefToGain = Desynchronized_ThoughtDefOf.PrisonerReleasedDangerously_Psychopath;
                 }
                 else
                 {
-                    // Adjust for traits concerning prisoner released dangerously.
-                    // Bloodlust trait has higher priority.
-                    if (recipient.story.traits.HasTrait(TraitDefOf.Bloodlust))
-                    {
-                        thoughtDefToGain = Desynchronized_ThoughtDefOf.PrisonerReleasedDangerously_Bloodlust;
-                    }
-                    else if (recipient.story.traits.HasTrait(TraitDefOf.Psychopath))
-                    {
-                        thoughtDefToGain = Desynchronized_ThoughtDefOf.PrisonerReleasedDangerously_Psychopath;
-                    }
-                    else
-                    {
-                        thoughtDefToGain = Desynchronized_ThoughtDefOf.PrisonerReleasedDangerously;
-                    }
+                    thoughtDefToGain = Desynchronized_ThoughtDefOf.PrisonerReleasedDangerously;
                 }
             }
+        }
 
+        if (ThoughtUtility.CanGetThought(recipient, thoughtDefToGain, true))
+        {
             recipient.needs.mood.thoughts.memories.TryGainMemory(thoughtDefToGain, BanishmentVictim);
         }
     }

@@ -38,6 +38,9 @@ public class PostFix_Desync_TNPawnBanished_GiveThoughts
             }
         }
 
-        recipient.needs.mood.thoughts.memories.TryGainMemory(thoughtDefToGain, banishmentVictim);
+        if (ThoughtUtility.CanGetThought(recipient, thoughtDefToGain, true))
+        {
+            recipient.needs.mood.thoughts.memories.TryGainMemory(thoughtDefToGain, banishmentVictim);
+        }
     }
 }

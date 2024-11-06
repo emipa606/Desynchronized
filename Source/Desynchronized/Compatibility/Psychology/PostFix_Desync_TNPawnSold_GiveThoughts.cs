@@ -1,5 +1,6 @@
 ﻿using Desynchronized.TNDBS;
 using HarmonyLib;
+using RimWorld;
 using Verse;
 
 namespace Desynchronized.Compatibility.Psychology;
@@ -26,10 +27,11 @@ public class PostFix_Desync_TNPawnSold_GiveThoughts
         }
 
         // Some prisoner was sold
-        if (primaryVictim.IsPrisonerOfColony)
+        if (primaryVictim.IsPrisonerOfColony &&
+            ThoughtUtility.CanGetThought(recipient, Psycho_ThoughtDefOf.KnowPrisonerSoldBleedingHeart, true))
         {
-            recipient.needs.mood.thoughts.memories.TryGainMemory(
-                Psycho_ThoughtDefOf.KnowPrisonerSoldBleedingHeart, __instance.Instigator);
+            recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf.KnowPrisonerSoldBleedingHeart,
+                __instance.Instigator);
         }
     }
 }

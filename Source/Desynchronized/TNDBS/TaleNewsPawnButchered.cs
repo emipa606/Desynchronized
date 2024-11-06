@@ -1,5 +1,6 @@
 ﻿using Desynchronized.Patches;
 using Desynchronized.TNDBS.Datatypes;
+using RimWorld;
 using Verse;
 
 namespace Desynchronized.TNDBS;
@@ -35,6 +36,11 @@ public class TaleNewsPawnButchered : TaleNewsNegativeIndividual
     protected override void GiveThoughtsToReceipient(Pawn recipient)
     {
         if (recipient == null || recipient.Dead)
+        {
+            return;
+        }
+
+        if (!ThoughtUtility.CanGetThought(recipient, Desynchronized_ThoughtDefOf.KnowButcheredHumanlikeCorpse, true))
         {
             return;
         }

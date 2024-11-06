@@ -70,7 +70,11 @@ public class TaleNewsPawnKidnapped : TaleNewsNegativeIndividual
         // Change to vanilla "pawn lost" thoughts
 
         // Give generic Colonist Kidnapped thoughts
-        recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.ColonistLost);
+
+        if (ThoughtUtility.CanGetThought(recipient, ThoughtDefOf.ColonistLost, true))
+        {
+            recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.ColonistLost);
+        }
 
         // Then give Friend/Rival Kidnapped thoughts
         if (recipient.RaceProps.IsFlesh && PawnUtility.ShouldGetThoughtAbout(KidnapVictim, recipient))

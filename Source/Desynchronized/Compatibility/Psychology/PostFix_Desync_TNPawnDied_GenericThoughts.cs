@@ -19,13 +19,15 @@ public class PostFix_Desync_TNPawnDied_GenericThoughts
         var victim = __instance.Victim;
 
         if (victim.Faction == Faction.OfPlayer && victim.Faction == recipient.Faction &&
-            victim.HostFaction != recipient.Faction)
+            victim.HostFaction != recipient.Faction &&
+            ThoughtUtility.CanGetThought(recipient, Psycho_ThoughtDefOf.KnowColonistDiedBleedingHeart, true))
         {
             recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf.KnowColonistDiedBleedingHeart);
         }
 
         var prisonerIsInnocent = victim.IsPrisonerOfColony && !victim.guilt.IsGuilty && !victim.InAggroMentalState;
-        if (prisonerIsInnocent && recipient.Faction == Faction.OfPlayer && !recipient.IsPrisoner)
+        if (prisonerIsInnocent && recipient.Faction == Faction.OfPlayer && !recipient.IsPrisoner &&
+            ThoughtUtility.CanGetThought(recipient, Psycho_ThoughtDefOf.KnowPrisonerDiedInnocentBleedingHeart, true))
         {
             recipient.needs.mood.thoughts.memories.TryGainMemory(Psycho_ThoughtDefOf
                 .KnowPrisonerDiedInnocentBleedingHeart);

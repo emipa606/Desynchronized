@@ -17,7 +17,7 @@ public static class NewsSelector
     {
         if (tracker == null)
         {
-            return Enumerable.Empty<TaleNewsReference>();
+            return [];
         }
 
         // EMBRACE THE POWER OF LINQ; LINQ PROTECTS
@@ -35,7 +35,7 @@ public static class NewsSelector
     public static IEnumerable<TaleNews> GetAllValidNonForgottenNews(this Pawn_NewsKnowledgeTracker tracker)
     {
         return tracker == null
-            ? Enumerable.Empty<TaleNews>()
+            ? []
             :
             // EMBRACE THE POWER OF LINQ; LINQ PROTECTS
             GetAllValidNonForgottenNewsReferences(tracker).Select(reference => reference.ReferencedTaleNews);

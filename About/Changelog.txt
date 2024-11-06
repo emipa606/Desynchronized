@@ -1,5 +1,8 @@
 # Changelog for Desynchronized
 
+1.5.2 - Added some extra checks for applying thoughts
+
+
 1.5.1 - Updated reference to the continued version of [SYR] Trait Value
 
 

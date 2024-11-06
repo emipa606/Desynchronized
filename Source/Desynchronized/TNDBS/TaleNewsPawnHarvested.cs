@@ -36,22 +36,39 @@ public class TaleNewsPawnHarvested : TaleNewsNegativeIndividual
     {
         if (recipient == PrimaryVictim)
         {
+            if (!ThoughtUtility.CanGetThought(recipient, ThoughtDefOf.MyOrganHarvested, true))
+            {
+                return;
+            }
+
             recipient.needs.mood.thoughts.memories.TryGainMemory(ThoughtDefOf.MyOrganHarvested);
+            return;
         }
-        else
+
+        // Not the same guy
+        // Determine the correct thought to be given out
+        if (PrimaryVictim.IsColonist)
         {
-            // Not the same guy
-            // Determine the correct thought to be given out
-            if (PrimaryVictim.IsColonist)
+            if (!ThoughtUtility.CanGetThought(recipient, Desynchronized_ThoughtDefOf.KnowColonistOrganHarvested, true))
             {
-                recipient.needs.mood.thoughts.memories.TryGainMemory(Desynchronized_ThoughtDefOf
-                    .KnowColonistOrganHarvested);
+                return;
             }
-            else if (PrimaryVictim.HostFaction == Faction.OfPlayer)
-            {
-                recipient.needs.mood.thoughts.memories.TryGainMemory(
-                    Desynchronized_ThoughtDefOf.KnowGuestOrganHarvested);
-            }
+
+            recipient.needs.mood.thoughts.memories.TryGainMemory(Desynchronized_ThoughtDefOf
+                .KnowColonistOrganHarvested);
+            return;
         }
+
+        if (PrimaryVictim.HostFaction != Faction.OfPlayer)
+        {
+            return;
+        }
+
+        if (!ThoughtUtility.CanGetThought(recipient, Desynchronized_ThoughtDefOf.KnowGuestOrganHarvested, true))
+        {
+            return;
+        }
+
+        recipient.needs.mood.thoughts.memories.TryGainMemory(Desynchronized_ThoughtDefOf.KnowGuestOrganHarvested);
     }
 }
