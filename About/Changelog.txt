@@ -1,5 +1,9 @@
 # Changelog for Desynchronized
 
+1.6.0 - Mod updated for 1.6 and passed autotests
+Used DeepL to update translations for ChineseSimplified, French, German, Russian
+
+
 1.5.2 - Added some extra checks for applying thoughts
 
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: attack repelled -->
+  <AttackRepelled.stages.attack_repelled.label>attack repelled</AttackRepelled.stages.attack_repelled.label>
+  <!-- EN: We have defended ourselves against hostile incursions. -->
+  <AttackRepelled.stages.attack_repelled.description>We have defended ourselves against hostile incursions.</AttackRepelled.stages.attack_repelled.description>
+  <!-- EN: attack repelled -->
+  <AttackRepelled_Bloodlust.stages.attack_repelled.label>attack repelled</AttackRepelled_Bloodlust.stages.attack_repelled.label>
+  <!-- EN: We have demonstrated our power against hostile incursions. Let's hope we don't have to see them again. -->
+  <AttackRepelled_Bloodlust.stages.attack_repelled.description>We have demonstrated our power against hostile incursions. Let's hope we don't have to see them again.</AttackRepelled_Bloodlust.stages.attack_repelled.description>
+  <!-- EN: attack repelled -->
+  <AttackRepelled_Pacifist.stages.attack_repelled.label>attack repelled</AttackRepelled_Pacifist.stages.attack_repelled.label>
+  <!-- EN: I don't agree with solving problems using violence, but good grief, it is finally over. -->
+  <AttackRepelled_Pacifist.stages.attack_repelled.description>I don't agree with solving problems using violence, but good grief, it is finally over.</AttackRepelled_Pacifist.stages.attack_repelled.description>
+  <!-- EN: no quarter given -->
+  <NoQuarterGiven.stages.no_quarter_given.label>no quarter given</NoQuarterGiven.stages.no_quarter_given.label>
+  <!-- EN: We have defended ourselves against hostile incursions, but we gave them no quarter. -->
+  <NoQuarterGiven.stages.no_quarter_given.description>We have defended ourselves against hostile incursions, but we gave them no quarter.</NoQuarterGiven.stages.no_quarter_given.description>
+  <!-- EN: no quarter given -->
+  <NoQuarterGiven_Bloodlust.stages.no_quarter_given.label>no quarter given</NoQuarterGiven_Bloodlust.stages.no_quarter_given.label>
+  <!-- EN: We have demonstrated our absolute might against hostile incursions. May them cower from the very sight of our presence! -->
+  <NoQuarterGiven_Bloodlust.stages.no_quarter_given.description>We have demonstrated our absolute might against hostile incursions. May them cower from the very sight of our presence!</NoQuarterGiven_Bloodlust.stages.no_quarter_given.description>
+  <!-- EN: no quarter given -->
+  <NoQuarterGiven_Pacifist.stages.no_quarter_given.label>no quarter given</NoQuarterGiven_Pacifist.stages.no_quarter_given.label>
+  <!-- EN: I don't agree with solving problems using violence, and honestly, this has gone too far. -->
+  <NoQuarterGiven_Pacifist.stages.no_quarter_given.description>I don't agree with solving problems using violence, and honestly, this has gone too far.</NoQuarterGiven_Pacifist.stages.no_quarter_given.description>
+  <!-- EN: no quarter given -->
+  <NoQuarterGiven_Psychopath.stages.no_quarter_given.label>no quarter given</NoQuarterGiven_Psychopath.stages.no_quarter_given.label>
+  <!-- EN: We have defended ourselves against hostile incursions, and we gave them no quarter. -->
+  <NoQuarterGiven_Psychopath.stages.no_quarter_given.description>We have defended ourselves against hostile incursions, and we gave them no quarter.</NoQuarterGiven_Psychopath.stages.no_quarter_given.description>
+</LanguageData>

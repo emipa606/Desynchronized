@@ -13,7 +13,7 @@ public class TaleNewsReference : IExposable
     /// <summary>
     ///     Default reference. Its UID is 0.
     /// </summary>
-    public static readonly TaleNewsReference DefaultReference = new TaleNewsReference(null)
+    public static readonly TaleNewsReference DefaultReference = new(null)
     {
         uidOfReferencedTaleNews = 0
     };
@@ -39,7 +39,7 @@ public class TaleNewsReference : IExposable
     ///     Used by RimWorld to reconstruct the TaleNewsReference when loading from save.
     /// </summary>
     /// <param name="subject">The owner of this TaleNewsReference</param>
-    public TaleNewsReference(Pawn subject)
+    private TaleNewsReference(Pawn subject)
     {
         CachedSubject = subject;
     }
@@ -70,13 +70,7 @@ public class TaleNewsReference : IExposable
     public Pawn CachedSubject
     {
         get => cachedSubject;
-        internal set
-        {
-            if (cachedSubject == null)
-            {
-                cachedSubject = value;
-            }
-        }
+        internal set => cachedSubject ??= value;
     }
 
     /// <summary>
@@ -133,7 +127,7 @@ public class TaleNewsReference : IExposable
     /// <param name="two"></param>
     /// <returns></returns>
     // We are able to make this method extremely fast by switching over to the index-pointing method.
-    public static bool RefsAreEqual(TaleNewsReference one, TaleNewsReference two)
+    private static bool RefsAreEqual(TaleNewsReference one, TaleNewsReference two)
     {
         return one.uidOfReferencedTaleNews == two.uidOfReferencedTaleNews;
     }

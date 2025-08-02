@@ -45,8 +45,8 @@ public class TaleNewsPawnButchered : TaleNewsNegativeIndividual
             return;
         }
 
-        PreFix_Corpse_ButcherProducts.overrideValue = true;
+        Corpse_ButcherProducts.overrideValue = true;
         recipient.needs.mood.thoughts.memories.TryGainMemory(Desynchronized_ThoughtDefOf.KnowButcheredHumanlikeCorpse);
-        PreFix_Corpse_ButcherProducts.overrideValue = false;
+        Corpse_ButcherProducts.overrideValue = false;
     }
 }

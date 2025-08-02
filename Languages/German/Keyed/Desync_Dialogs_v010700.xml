@@ -18,4 +18,19 @@
   <NewsIsPermForgot_Explanation>Keiner kann sich mehr an die Einzelheiten dieser Geschichte erinnern.</NewsIsPermForgot_Explanation>
   <NewsIsLocalForgot>Vergessen</NewsIsLocalForgot>
   <NewsIsLocalForgot_Explanation>Dieser Bauer kann sich nicht an die Einzelheiten dieser Geschichte erinnern, aber vielleicht wird er es, wenn andere darüber sprechen.</NewsIsLocalForgot_Explanation>
+  <!-- EN: Viewing news knowledge of:  -->
+  <!-- EN: Toggle display permanently forgotten news -->
+  <!-- EN: Permanently-forgotten news are not hidden. -->
+  <!-- EN: Hiding permanently-forgotten news. -->
+  <!-- EN: ID # -->
+  <!-- EN: The ID of this tale-news. -->
+  <!-- EN: Tale-news type -->
+  <!-- EN: The type of this tale-news. -->
+  <!-- EN: Importance score of this news:  -->
+  <!-- EN: News with higher importance score will be more likely to be passed on. -->
+  <!-- EN: Tale-news details -->
+  <!-- EN: Permanently forgotten -->
+  <!-- EN: No one can remember the details of this tale-news anymore. -->
+  <!-- EN: Forgotten -->
+  <!-- EN: This pawn cannot remember the details of this tale-news, but perhaps it will when others talk about it. -->
 </LanguageData>

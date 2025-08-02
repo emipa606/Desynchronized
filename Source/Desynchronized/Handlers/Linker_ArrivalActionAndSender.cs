@@ -7,12 +7,12 @@ namespace Desynchronized.Handlers;
 
 public class Linker_ArrivalActionAndSender : UtilityWorldObject
 {
-    private Dictionary<TransportPodsArrivalAction_GiveGift, int> internalMapping;
+    private Dictionary<TransportersArrivalAction_GiveGift, int> internalMapping;
 
     public override void PostAdd()
     {
         base.PostAdd();
-        internalMapping = new Dictionary<TransportPodsArrivalAction_GiveGift, int>();
+        internalMapping = new Dictionary<TransportersArrivalAction_GiveGift, int>();
     }
 
     public override void ExposeData()
@@ -21,12 +21,12 @@ public class Linker_ArrivalActionAndSender : UtilityWorldObject
         Scribe_Collections.Look(ref internalMapping, "internalMapping", LookMode.Deep, LookMode.Value);
     }
 
-    public void EstablishRelationship(TransportPodsArrivalAction_GiveGift actionInstance, int senderTileID)
+    public void EstablishRelationship(TransportersArrivalAction_GiveGift actionInstance, int senderTileID)
     {
         internalMapping.TryAdd(actionInstance, senderTileID);
     }
 
-    public Map SafelyGetMapOfGivenAction(TransportPodsArrivalAction_GiveGift actionInstance)
+    public Map SafelyGetMapOfGivenAction(TransportersArrivalAction_GiveGift actionInstance)
     {
         if (!internalMapping.TryGetValue(actionInstance, out var value))
         {

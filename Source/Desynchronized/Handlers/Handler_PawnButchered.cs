@@ -18,7 +18,7 @@ public class Handler_PawnButchered
     {
         if (listener.IsNearEnough())
         {
-            listener.GetNewsKnowledgeTracker()?.KnowNews(PreFix_Corpse_ButcherProducts.corpseNews);
+            listener.GetNewsKnowledgeTracker()?.KnowNews(Corpse_ButcherProducts.corpseNews);
         }
     }
 }

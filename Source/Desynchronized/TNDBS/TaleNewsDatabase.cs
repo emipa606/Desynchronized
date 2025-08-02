@@ -113,22 +113,19 @@ public class TaleNewsDatabase : UtilityWorldObject
             return;
         }
 
-        if (knowledgeTrackerMasterList == null)
-        {
-            knowledgeTrackerMasterList = [];
-        }
+        knowledgeTrackerMasterList ??= [];
     }
 
     /// <summary>
     ///     This method is a gateway to let us access the database to "clean it up" before actually saving it.
     /// </summary>
     [Obsolete("Conside connecting this to something existing")]
-    private void ConsolidateLists()
+    private static void ConsolidateLists()
     {
         // DumpAllTaleNewsReferences_v1450();
     }
 
-    public int GetNextUID()
+    private int GetNextUID()
     {
         var result = nextUID;
         try
@@ -188,15 +185,9 @@ public class TaleNewsDatabase : UtilityWorldObject
     internal void SelfVerify()
     {
         // Confirm all variables/structs are initialized.
-        if (talesOfImportance == null)
-        {
-            talesOfImportance = [];
-        }
+        talesOfImportance ??= [];
 
-        if (knowledgeTrackerMasterList == null)
-        {
-            knowledgeTrackerMasterList = [];
-        }
+        knowledgeTrackerMasterList ??= [];
 
         // Validate all variables/structs
         RemoveAllInvalidTaleNews();
@@ -285,7 +276,7 @@ public class TaleNewsDatabase : UtilityWorldObject
         }
     }
 
-    public override void Tick()
+    protected override void Tick()
     {
         base.Tick();
         tickerInternal++;
@@ -314,7 +305,7 @@ public class TaleNewsDatabase : UtilityWorldObject
         }
     }
 
-    private void ImportanceUpdateCycle_DoOnce()
+    private static void ImportanceUpdateCycle_DoOnce()
     {
         var database = DesynchronizedMain.TaleNewsDatabaseSystem;
 

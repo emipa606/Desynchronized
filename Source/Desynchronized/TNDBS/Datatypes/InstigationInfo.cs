@@ -13,11 +13,11 @@ public class InstigationInfo : IExposable
     /// <summary>
     ///     Do not use this constructor explicitly.
     /// </summary>
-    public InstigationInfo()
+    private InstigationInfo()
     {
     }
 
-    public InstigationInfo(Faction instigFaction = null, Pawn instigPawn = null)
+    private InstigationInfo(Faction instigFaction = null, Pawn instigPawn = null)
     {
         instigatingFaction = instigFaction;
         instigator = instigPawn;
@@ -26,7 +26,7 @@ public class InstigationInfo : IExposable
 
     public static Pawn RepresentativeOfPlayer => GetRepresentativeOfPlayerInGame();
 
-    public static InstigationInfo NoInstigator => new InstigationInfo();
+    public static InstigationInfo NoInstigator => new();
 
     public bool PlayerIsInstigator
     {
@@ -40,7 +40,7 @@ public class InstigationInfo : IExposable
     public Pawn InstigatingPawn
     {
         get => instigator;
-        internal set => instigator = value;
+        private set => instigator = value;
     }
 
     public Faction InstigatingFaction
@@ -54,10 +54,7 @@ public class InstigationInfo : IExposable
         if (Scribe.mode == LoadSaveMode.Saving)
         {
             // Do some init here
-            if (instigatingFaction == null)
-            {
-                instigatingFaction = instigator?.Faction;
-            }
+            instigatingFaction ??= instigator?.Faction;
         }
 
         Scribe_Values.Look(ref playerIsInstigator, "playerIsInstigator");
@@ -70,17 +67,14 @@ public class InstigationInfo : IExposable
         }
 
         // Do some init here
-        if (instigatingFaction == null)
-        {
-            instigatingFaction = instigator?.Faction;
-        }
+        instigatingFaction ??= instigator?.Faction;
     }
 
     /// <summary>
     ///     Our patch-mod should override this with Psychology mayor. Value can be null.
     /// </summary>
     /// <returns></returns>
-    public static Pawn GetRepresentativeOfPlayerInGame()
+    private static Pawn GetRepresentativeOfPlayerInGame()
     {
         return Faction.OfPlayer.leader;
     }

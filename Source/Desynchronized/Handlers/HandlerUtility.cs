@@ -32,7 +32,7 @@ public class HandlerUtility
             // In caravan
             var caravan = subject.GetCaravan();
 
-            foreach (var potential in PawnsFinder.AllCaravansAndTravelingTransportPods_Alive)
+            foreach (var potential in PawnsFinder.AllCaravansAndTravellingTransporters_Alive)
             {
                 if (potential.IsColonist && potential.GetCaravan() == caravan)
                 {
@@ -67,7 +67,7 @@ public class HandlerUtility
             // In caravan
             var caravan = subject.GetCaravan();
 
-            foreach (var potential in PawnsFinder.AllCaravansAndTravelingTransportPods_Alive)
+            foreach (var potential in PawnsFinder.AllCaravansAndTravellingTransporters_Alive)
             {
                 if (potential.IsPrisonerOfColony && potential.GetCaravan() == caravan)
                 {

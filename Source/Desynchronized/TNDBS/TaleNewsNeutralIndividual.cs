@@ -11,7 +11,7 @@ public abstract class TaleNewsNeutralIndividual : TaleNews
     {
     }
 
-    public TaleNewsNeutralIndividual(Pawn receiver) : base(null)
+    protected TaleNewsNeutralIndividual(Pawn receiver) : base(null)
     {
         this.receiver = receiver;
     }

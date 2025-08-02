@@ -12,7 +12,7 @@ namespace Desynchronized;
 public class DesynchronizedMain : ModBase
 {
     public static readonly string Desync_PawnIsReferencedString = "Desync_ReferencedByTaleNews";
-    public static string MODID => "com.vectorial1024.rimworld.desynchronized";
+    private static string MODID => "com.vectorial1024.rimworld.desynchronized";
 
     /// <summary>
     ///     Already includes a space character.
@@ -29,14 +29,14 @@ public class DesynchronizedMain : ModBase
     // public static InformationKnowledgeStorage InfoKnowStorage { get; private set; }
     public static TaleNewsDatabase TaleNewsDatabaseSystem { get; private set; }
     public static Linker_ArrivalActionAndSender ArrivalActionAndSenderLinker { get; private set; }
-    public static DesynchronizedVersionTracker DesynchronizedVersionTracker { get; private set; }
+    private static DesynchronizedVersionTracker DesynchronizedVersionTracker { get; set; }
     public static HallOfFigures TheHallOfFigures { get; private set; }
-    public static SettingHandle<bool> SettingHandle_AutoPauseNewsInterface { get; private set; }
-    public static SettingHandle<bool> SettingHandle_OnlySpreadInSameRoom { get; private set; }
-    public static SettingHandle<bool> SettingHandle_VerboseLogging { get; private set; }
+    private static SettingHandle<bool> SettingHandle_AutoPauseNewsInterface { get; set; }
+    private static SettingHandle<bool> SettingHandle_OnlySpreadInSameRoom { get; set; }
+    private static SettingHandle<bool> SettingHandle_VerboseLogging { get; set; }
     public static bool NewsUI_ShouldAutoPause => SettingHandle_AutoPauseNewsInterface.Value;
     public static bool NewsBehaviour_OnlySpreadInSameRoom => SettingHandle_OnlySpreadInSameRoom.Value;
-    public static bool ModBehaviour_VerboseLogging => SettingHandle_VerboseLogging.Value;
+    private static bool ModBehaviour_VerboseLogging => SettingHandle_VerboseLogging.Value;
 
     public override void WorldLoaded()
     {

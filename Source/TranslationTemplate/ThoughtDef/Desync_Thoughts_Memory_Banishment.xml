@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: prisoner released dangerously -->
+  <PrisonerReleasedDangerously.stages.prisoner_released_dangerously.label>prisoner released dangerously</PrisonerReleasedDangerously.stages.prisoner_released_dangerously.label>
+  <!-- EN: We let our prisoners run loose instead of properly releasing them by our Wardens. I feel threatened. -->
+  <PrisonerReleasedDangerously.stages.prisoner_released_dangerously.description>We let our prisoners run loose instead of properly releasing them by our Wardens. I feel threatened.</PrisonerReleasedDangerously.stages.prisoner_released_dangerously.description>
+  <!-- EN: prisoner released dangerously (bloodlust) -->
+  <PrisonerReleasedDangerously_Bloodlust.stages.prisoner_released_dangerously_bloodlust.label>prisoner released dangerously (bloodlust)</PrisonerReleasedDangerously_Bloodlust.stages.prisoner_released_dangerously_bloodlust.label>
+  <!-- EN: We let our prisoners run loose instead of properly releasing them by our Wardens. A fight it is! Bring it on! -->
+  <PrisonerReleasedDangerously_Bloodlust.stages.prisoner_released_dangerously_bloodlust.description>We let our prisoners run loose instead of properly releasing them by our Wardens. A fight it is! Bring it on!</PrisonerReleasedDangerously_Bloodlust.stages.prisoner_released_dangerously_bloodlust.description>
+  <!-- EN: prisoner released dangerously (psychopath) -->
+  <PrisonerReleasedDangerously_Psychopath.stages.prisoner_released_dangerously_psychopath.label>prisoner released dangerously (psychopath)</PrisonerReleasedDangerously_Psychopath.stages.prisoner_released_dangerously_psychopath.label>
+  <!-- EN: We let our prisoners run loose instead of properly releasing them by our Wardens. Just don't let them harm me. -->
+  <PrisonerReleasedDangerously_Psychopath.stages.prisoner_released_dangerously_psychopath.description>We let our prisoners run loose instead of properly releasing them by our Wardens. Just don't let them harm me.</PrisonerReleasedDangerously_Psychopath.stages.prisoner_released_dangerously_psychopath.description>
+</LanguageData>

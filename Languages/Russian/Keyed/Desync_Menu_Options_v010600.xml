@@ -8,4 +8,5 @@
   <OnlySpreadInSameRoom_descr>Если включено, действия, выполняемые в другой комнате, не будут автоматически известны пешкам. Если вне, то будут известны только события внутри определенного диапазона.</OnlySpreadInSameRoom_descr>
   <VerboseLogging_title>Подробное протоколирование</VerboseLogging_title>
   <VerboseLogging_descr>Если включено, журнал будет заполнен информацией о многих действиях. Используется для отладки.</VerboseLogging_descr>
+  <!-- EN: If enabled, opening any of the detailed UI of this mod will auto-pause the game. The effect is similar to opening the trade interface.\n\nEnabled by default. -->
 </LanguageData>

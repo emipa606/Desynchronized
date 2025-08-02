@@ -44,7 +44,7 @@ public class Handler_PawnSold
     /// <param name="salesNews">The TaleNews object for this sales.</param>
     private static void DistributeNews(Pawn victim, TaleNewsPawnSold salesNews)
     {
-        foreach (var other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
+        foreach (var other in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonistsAndPrisoners)
         {
             if (other.IsNearEnough(victim))
             {

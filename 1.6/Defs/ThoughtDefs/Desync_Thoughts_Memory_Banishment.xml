@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThoughtDef>
+    <defName>PrisonerReleasedDangerously</defName>
+    <durationDays>0.25</durationDays>
+    <stackLimit>5</stackLimit>
+    <showBubble>true</showBubble>
+    <nullifyingTraits>
+      <li>Psychopath</li>
+      <li>Bloodlust</li>
+    </nullifyingTraits>
+    <stages>
+      <li>
+        <label>prisoner released dangerously</label>
+        <description>We let our prisoners run loose instead of properly releasing them by our Wardens. I feel threatened.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef>
+    <defName>PrisonerReleasedDangerously_Psychopath</defName>
+    <durationDays>0.25</durationDays>
+    <stackLimit>5</stackLimit>
+    <showBubble>true</showBubble>
+    <requiredTraits>
+      <li>Psychopath</li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>prisoner released dangerously (psychopath)</label>
+        <description>We let our prisoners run loose instead of properly releasing them by our Wardens. Just don't let them harm me.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef>
+    <defName>PrisonerReleasedDangerously_Bloodlust</defName>
+    <durationDays>0.25</durationDays>
+    <stackLimit>5</stackLimit>
+    <showBubble>true</showBubble>
+    <requiredTraits>
+      <li>Bloodlust</li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>prisoner released dangerously (bloodlust)</label>
+        <description>We let our prisoners run loose instead of properly releasing them by our Wardens. A fight it is! Bring it on!</description>
+        <baseMoodEffect>1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

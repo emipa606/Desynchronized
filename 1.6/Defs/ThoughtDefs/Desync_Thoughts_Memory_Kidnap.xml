@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThoughtDef Name="KidnapMemory" Abstract="True">
+    <stackLimit>5</stackLimit>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemory">
+    <defName>KnowColonistKidnapped</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>5</stackLimit>
+    <nullifyingTraits>
+      <li>Psychopath</li>
+      <li>Bloodlust</li>
+    </nullifyingTraits>
+    <stages>
+      <li>
+        <label>colonist kidnapped</label>
+        <description>One of our people was kidnapped. I don't feel safe staying around.</description>
+        <!-- Carefully calibrated to give a nice curve of 2, 3, 4, 5, 6. Don't ever touch it. -->
+        <baseMoodEffect>-1.9</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemory">
+    <defName>PawnWithGoodOpinionWasKidnapped</defName>
+    <durationDays>40</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <nullifyingTraits>
+      <li>Psychopath</li>
+    </nullifyingTraits>
+    <stages>
+      <li>
+        <label>my friend {0} was kidnapped</label>
+        <description>Such a wonderful person, falling into enemy's hands. Will I ever see them again?</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemory">
+    <defName>PawnWithBadOpinionWasKidnapped</defName>
+    <durationDays>20</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>my rival {0} was kidnapped</label>
+        <description>Serves them right. At least I don't have to see them around for a while.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef Name="KidnapMemoryFamily" ParentName="KidnapMemory" Abstract="True">
+    <durationDays>45</durationDays>
+    <stackLimit>10</stackLimit>
+    <showBubble>true</showBubble>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+  </ThoughtDef>
+  <ThoughtDef Name="KidnapMemoryFamily_Close" ParentName="KidnapMemoryFamily" Abstract="True">
+    <durationDays>60</durationDays>
+  </ThoughtDef>
+  <ThoughtDef Name="KidnapMemoryFamily_Distant" ParentName="KidnapMemoryFamily" Abstract="True">
+    <durationDays>30</durationDays>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily_Close">
+    <defName>MySonWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my son {0} was kidnapped</label>
+        <description>My son was kidnapped. My own flesh and blood...</description>
+        <baseMoodEffect>-12</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily_Close">
+    <defName>MyDaughterWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my daughter {0} was kidnapped</label>
+        <description>My daughter was kidnapped. My own flesh and blood...</description>
+        <baseMoodEffect>-12</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily_Close">
+    <defName>MyHusbandWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my husband {0} was kidnapped</label>
+        <description>My husband was kidnapped. I am alone.</description>
+        <baseMoodEffect>-12</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily_Close">
+    <defName>MyWifeWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my wife {0} was kidnapped</label>
+        <description>My wife was kidnapped. I am alone.</description>
+        <baseMoodEffect>-12</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily_Close">
+    <defName>MyFianceWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my fiance {0} was kidnapped</label>
+        <description>My fiance was kidnapped. Such a man... who knows what torture awaits him?</description>
+        <baseMoodEffect>-12</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily_Close">
+    <defName>MyFianceeWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my fiancée {0} was kidnapped</label>
+        <description>My fiancée was kidnapped. Such a woman... who knows what torture awaits her?</description>
+        <baseMoodEffect>-12</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily_Close">
+    <defName>MyLoverWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my lover {0} was kidnapped</label>
+        <description>My lover was kidnapped. I am so alone.</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily_Close">
+    <defName>MyBrotherWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my brother {0} was kidnapped</label>
+        <description>My brother was kidnapped. My own flesh and blood...</description>
+        <baseMoodEffect>-9</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily_Close">
+    <defName>MySisterWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my sister {0} was kidnapped</label>
+        <description>My sister was kidnapped. My own flesh and blood...</description>
+        <baseMoodEffect>-9</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily">
+    <defName>MyGrandchildWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my grandchild {0} was kidnapped</label>
+        <description>My grandchild was kidnapped. My own flesh and blood...</description>
+        <baseMoodEffect>-7</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily_Close">
+    <defName>MyFatherWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my father {0} was kidnapped</label>
+        <description>My father was kidnapped. Will I ever see him again?</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily_Close">
+    <defName>MyMotherWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my mother {0} was kidnapped</label>
+        <description>My mother was kidnapped. Will I ever see her again?</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily">
+    <defName>MyNieceWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my niece {0} was kidnapped</label>
+        <description>My niece was kidnapped. Such a wonderful child.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily">
+    <defName>MyNephewWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my nephew {0} was kidnapped</label>
+        <description>My nephew was kidnapped. Such a wonderful child.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily">
+    <defName>MyHalfSiblingWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my half-sibling {0} was kidnapped</label>
+        <description>My half-sibling was kidnapped. My own flesh and blood...</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily">
+    <defName>MyAuntWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my aunt {0} was kidnapped</label>
+        <description>My aunt was kidnapped.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily">
+    <defName>MyUncleWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my uncle {0} was kidnapped</label>
+        <description>My uncle was kidnapped.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily">
+    <defName>MyGrandparentWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my grandparent {0} was kidnapped</label>
+        <description>My grandparent was kidnapped.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily">
+    <defName>MyCousinWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my cousin {0} was kidnapped</label>
+        <description>My cousin was kidnapped. My own flesh and blood...</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="KidnapMemoryFamily_Distant">
+    <defName>MyKinWasKidnapped</defName>
+    <stages>
+      <li>
+        <label>my kin {0} was kidnapped</label>
+        <description>My kin was kidnapped.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

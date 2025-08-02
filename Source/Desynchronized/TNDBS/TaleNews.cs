@@ -20,11 +20,11 @@ public abstract class TaleNews : IExposable
     ///     DO NOT USE THIS CONSTRUCTOR
     /// </summary>
     [Obsolete("This constructor is reserved. Keep this empty.")]
-    public TaleNews()
+    protected TaleNews()
     {
     }
 
-    public TaleNews(LocationInfo info)
+    protected TaleNews(LocationInfo info)
     {
         locationInfo = info;
         if (DesynchronizedMain.TaleNewsDatabaseSystem == null)
@@ -41,10 +41,10 @@ public abstract class TaleNews : IExposable
 
     public bool IsRegistered => UniqueID >= 0;
 
-    public LocationInfo LocationOfOccurence
+    protected LocationInfo LocationOfOccurence
     {
         get => locationInfo;
-        protected set => locationInfo = value;
+        set => locationInfo = value;
     }
 
     public bool PermanentlyForgotten => isPermanentlyForgotten;
@@ -53,10 +53,7 @@ public abstract class TaleNews : IExposable
     {
         Scribe_Values.Look(ref uniqueID, "uniqueID", -1);
         Scribe_Deep.Look(ref locationInfo, "locationInfo");
-        if (locationInfo == null)
-        {
-            locationInfo = LocationInfo.EmptyLocationInfo;
-        }
+        locationInfo ??= LocationInfo.EmptyLocationInfo;
 
         Scribe_Values.Look(ref isPermanentlyForgotten, "permaForgotten");
 
@@ -64,7 +61,7 @@ public abstract class TaleNews : IExposable
     }
 
     [Obsolete("Experimental tech.", true)]
-    public static TaleNews GenerateTaleNewsGenerally(TaleNewsTypeEnum typeEnum)
+    protected static TaleNews GenerateTaleNewsGenerally(TaleNewsTypeEnum typeEnum)
     {
         var newsInstance = Activator.CreateInstance(typeEnum.GetTypeForEnum()) as TaleNews;
         DesynchronizedMain.TaleNewsDatabaseSystem.RegisterNewTaleNews(newsInstance);

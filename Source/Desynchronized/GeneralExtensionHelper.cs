@@ -34,11 +34,6 @@ public static class GeneralExtensionHelper
 
                 break;
             case "Spouse":
-                resultingDef = kidnapVictim.gender == Gender.Female
-                    ? Desynchronized_ThoughtDefOf.MyWifeWasKidnapped
-                    : Desynchronized_ThoughtDefOf.MyHusbandWasKidnapped;
-
-                break;
             case "Fiance":
                 resultingDef = kidnapVictim.gender == Gender.Female
                     ? Desynchronized_ThoughtDefOf.MyWifeWasKidnapped
@@ -128,7 +123,7 @@ public static class GeneralExtensionHelper
     /// </summary>
     /// <param name="instance"></param>
     /// <returns></returns>
-    public static float GetBaseNewsSpreadChance(this Pawn instance)
+    private static float GetBaseNewsSpreadChance(this Pawn instance)
     {
         return instance.GetStatValue(Desynchronized_StatDefOf.NewsSpreadTendency);
     }
@@ -208,9 +203,9 @@ public static class GeneralExtensionHelper
         }
         else
         {
-            targetMap = PreFix_Corpse_ButcherProducts.corpseMap;
-            targetRoom = PreFix_Corpse_ButcherProducts.corpseRoom;
-            targetPosition = PreFix_Corpse_ButcherProducts.corpseLocation;
+            targetMap = Corpse_ButcherProducts.corpseMap;
+            targetRoom = Corpse_ButcherProducts.corpseRoom;
+            targetPosition = Corpse_ButcherProducts.corpseLocation;
         }
 
         // Different maps

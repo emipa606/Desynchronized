@@ -30,7 +30,7 @@ public class TaleNewsPawnDied : TaleNewsNegativeIndividual
     {
     }
 
-    public TaleNewsPawnDied(Pawn victim, DamageInfo? dinfo) : base(victim, InstigationInfo.NoInstigator)
+    private TaleNewsPawnDied(Pawn victim, DamageInfo? dinfo) : base(victim, InstigationInfo.NoInstigator)
     {
         // DesynchronizedMain.LogError("Dumping stacktrace: " + Environment.StackTrace);
 

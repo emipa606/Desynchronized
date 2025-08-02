@@ -27,7 +27,7 @@ public class Handler_PawnDied
         var taleNews = new TaleNewsPawnDied(victim, dinfo, culpritHediff);
 
         // Distribute news.
-        foreach (var other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists)
+        foreach (var other in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists)
         {
             if (other.IsNearEnough(victim))
             {

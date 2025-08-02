@@ -11,21 +11,21 @@ namespace Desynchronized.Interfaces;
 
 public class Dialog_NewsTrackerViewer : Window
 {
-    public readonly int EntryHeight = 30;
+    private readonly int EntryHeight = 30;
 
-    public readonly int EntryWidth = 800;
+    private readonly int EntryWidth = 800;
 
-    public readonly int HeaderLineHeight = 6;
+    private readonly int HeaderLineHeight = 6;
 
-    public readonly int ScrollerMargin = 16;
+    private readonly int ScrollerMargin = 16;
 
-    public readonly Pawn subjectPawn;
+    private readonly Pawn subjectPawn;
 
-    public readonly int TopAreaHeight = 58;
+    private readonly int TopAreaHeight = 58;
 
     public List<TaleNewsReference> knownNews;
 
-    public Vector2 scrollPosition = Vector2.zero;
+    private Vector2 scrollPosition = Vector2.zero;
 
     private bool shouldDisplayForgottenNews = true;
 
@@ -47,7 +47,7 @@ public class Dialog_NewsTrackerViewer : Window
         //absorbInputAroundWindow = true;
     }
 
-    public override Vector2 InitialSize => new Vector2(800, UI.screenHeight - 100);
+    public override Vector2 InitialSize => new(800, UI.screenHeight - 100);
 
     public override void DoWindowContents(Rect inRect)
     {
@@ -250,7 +250,7 @@ public class Dialog_NewsTrackerViewer : Window
         TooltipHandler.TipRegion(boundingRect, "TaleNewsType_Explanation".Translate());
     }
 
-    private void DrawNewsImportance_Header()
+    private static void DrawNewsImportance_Header()
     {
         // Placeholder
         // Probably don't need a header, quite self-explanatory.

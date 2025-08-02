@@ -82,7 +82,7 @@ public class Handler_PawnKidnapped
             : new TaleNewsPawnKidnapped(victim, kidnapper);
 
         // Distribute news; quite standard procedure
-        foreach (var other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists)
+        foreach (var other in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists)
         {
             // DesynchronizedMain.LogError("Parsing " + other.Name + "; he is in map " + other.MapHeld);
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <PawnColumnDef>
+    <defName>KnownNewsCount</defName>
+    <!--
+    <label>known news count</label>
+    -->
+    <workerClass>Desynchronized.Interfaces.PawnColumnWorker_KnownNewsCount</workerClass>
+    <sortable>true</sortable>
+    <headerIcon>UI/Icons/TaleNews/KnownNews</headerIcon>
+    <headerTip>Count the number of news that are known by this pawn.</headerTip>
+    <width>0</width>
+  </PawnColumnDef>
+  <PawnColumnDef>
+    <defName>ForgottenNewsCount</defName>
+    <!--
+    <label>forgotten news count</label>
+    -->
+    <workerClass>Desynchronized.Interfaces.PawnColumnWorker_ForgottenNewsCount</workerClass>
+    <sortable>true</sortable>
+    <headerIcon>UI/Icons/TaleNews/ForgottenNews</headerIcon>
+    <headerTip>Count the number of news that are forgotten by this pawn.</headerTip>
+    <width>22</width>
+  </PawnColumnDef>
+  <PawnColumnDef>
+    <defName>NewsKnowledgeButton</defName>
+    <label>view individual news knowledge</label>
+    <workerClass>Desynchronized.Interfaces.PawnColumnWorker_NewsKnowledgeButton</workerClass>
+    <width>22</width>
+  </PawnColumnDef>
+</Defs>

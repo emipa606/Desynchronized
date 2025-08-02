@@ -6,13 +6,13 @@ namespace Desynchronized.Interfaces;
 
 public class PawnColumnWorker_NewsKnowledgeButton : PawnColumnWorker
 {
-    public readonly int MinimumWidth = 175;
+    private readonly int MinimumWidth = 175;
 
-    public readonly int RecommendedWidth = 250;
+    private readonly int RecommendedWidth = 250;
 
-    public readonly int TopAreaHeight = 65;
+    private readonly int TopAreaHeight = 65;
 
-    public readonly int ViewAllTaleNews_Height = 32;
+    private readonly int ViewAllTaleNews_Height = 32;
     public readonly int ViewAllTaleNews_Width = 0;
 
     public override int GetMinHeaderHeight(PawnTable table)

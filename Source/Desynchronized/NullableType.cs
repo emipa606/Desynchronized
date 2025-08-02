@@ -10,18 +10,9 @@ public struct NullableType<T>(T initialValue) : IExposable
 
     public bool HasValue => hasValue;
 
-    public T Value
-    {
-        get
-        {
-            if (!HasValue)
-            {
-                throw new InvalidOperationException("NullableType<T> : IExposable has no value.");
-            }
-
-            return initialValue;
-        }
-    }
+    private T Value => !HasValue
+        ? throw new InvalidOperationException("NullableType<T> : IExposable has no value.")
+        : initialValue;
 
     public void ExposeData()
     {
@@ -66,7 +57,7 @@ public struct NullableType<T>(T initialValue) : IExposable
 
     public static implicit operator T?(NullableType<T> from)
     {
-        return from.hasValue ? from.Value : new T?();
+        return from.hasValue ? from.Value : null;
     }
 
     public static explicit operator T(NullableType<T> from)

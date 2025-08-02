@@ -27,7 +27,7 @@ public class Handler_PawnBanished
     {
         var banishmentNews = new TaleNewsPawnBanished(victim, banishmentIsDeadly);
 
-        foreach (var other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_Colonists)
+        foreach (var other in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists)
         {
             if (other.IsNearEnough(victim))
             {

@@ -33,7 +33,7 @@ public class Handler_PawnExecuted
         //TaleNewsPawnDied executionNews = TaleNewsPawnDied.GenerateAsExecution(victim, brutality);
         var executionNews = new TaleNewsPawnDied(victim, brutality);
 
-        foreach (var other in PawnsFinder.AllMapsCaravansAndTravelingTransportPods_Alive_FreeColonistsAndPrisoners)
+        foreach (var other in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonistsAndPrisoners)
         {
             if (other.IsNearEnough(victim))
             {

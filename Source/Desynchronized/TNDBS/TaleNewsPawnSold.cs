@@ -6,7 +6,7 @@ namespace Desynchronized.TNDBS;
 
 public class TaleNewsPawnSold : TaleNewsNegativeIndividual
 {
-    public Faction tradeDeal_OtherParty;
+    private Faction tradeDeal_OtherParty;
 
     public TaleNewsPawnSold()
     {
@@ -57,10 +57,7 @@ public class TaleNewsPawnSold : TaleNewsNegativeIndividual
             return;
         }
 
-        if (tradeDeal_OtherParty == null)
-        {
-            tradeDeal_OtherParty = PrimaryVictim?.Faction ?? PrimaryVictim?.HostFaction;
-        }
+        tradeDeal_OtherParty ??= PrimaryVictim?.Faction ?? PrimaryVictim?.HostFaction;
     }
 
     protected override void GiveThoughtsToReceipient(Pawn recipient)

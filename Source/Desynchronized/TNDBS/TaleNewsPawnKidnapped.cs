@@ -41,9 +41,9 @@ public class TaleNewsPawnKidnapped : TaleNewsNegativeIndividual
         }
     }
 
-    public Pawn Kidnapper => Instigator;
+    private Pawn Kidnapper => Instigator;
 
-    public Pawn KidnapVictim => PrimaryVictim;
+    private Pawn KidnapVictim => PrimaryVictim;
 
     public Faction KidnapperFaction => kidnapperFaction;
 

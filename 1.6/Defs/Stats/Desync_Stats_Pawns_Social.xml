@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <StatDef>
+    <defName>NewsSpreadTendency</defName>
+    <label>news spread tendency (NST)</label>
+    <description>How likely this person will spread news. Higher likeliness will result in faster news spread among people, and vice versa.</description>
+    <category>PawnSocial</category>
+    <defaultBaseValue>0.25</defaultBaseValue>
+    <minValue>0.001</minValue>
+    <toStringStyle>PercentTwo</toStringStyle>
+    <displayPriorityInCategory>10</displayPriorityInCategory>
+    <!--
+    <skillNeedFactors>
+      <li Class="SkillNeed_BaseBonus">
+        <skill>Social</skill>
+        <baseValue>0.4</baseValue>
+        <bonusPerLevel>0.075</bonusPerLevel>
+      </li>
+    </skillNeedFactors>
+    -->
+    <!--
+    <capacityFactors>
+      <li>
+        <capacity>Talking</capacity>
+        <weight>0.9</weight>
+        <allowedDefect>0.05</allowedDefect>
+        <max>1</max>
+      </li>
+      <li>
+        <capacity>Hearing</capacity>
+        <weight>0.9</weight>
+        <allowedDefect>0.20</allowedDefect>
+        <max>1</max>
+      </li>
+    </capacityFactors>
+    -->
+  </StatDef>
+</Defs>

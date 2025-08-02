@@ -109,7 +109,7 @@ public class Pawn_NewsKnowledgeTracker : IExposable
     ///     Forgets one known tale-news. Returns true if successfully forgetting one.
     /// </summary>
     /// <returns></returns>
-    public bool ForgetOneRandom()
+    private bool ForgetOneRandom()
     {
         var listOfKnownNews = this.GetAllValidNonForgottenNewsReferences().ToList();
         if (listOfKnownNews.Count == 0)

@@ -6,14 +6,14 @@ namespace Desynchronized.TNDBS;
 
 public abstract class TaleNewsNegativeIndividual : TaleNews
 {
-    protected InstigationInfo instigatorInfo;
+    private InstigationInfo instigatorInfo;
     private Pawn primaryVictim;
 
     public TaleNewsNegativeIndividual()
     {
     }
 
-    public TaleNewsNegativeIndividual(Pawn victim, InstigationInfo instigInfo) : base(
+    protected TaleNewsNegativeIndividual(Pawn victim, InstigationInfo instigInfo) : base(
         new LocationInfo(victim.MapHeld, victim.PositionHeld))
     {
         primaryVictim = victim;
@@ -22,10 +22,10 @@ public abstract class TaleNewsNegativeIndividual : TaleNews
 
     public Pawn PrimaryVictim => primaryVictim;
 
-    public InstigationInfo InstigationDetails
+    protected InstigationInfo InstigationDetails
     {
         get => instigatorInfo;
-        protected set => instigatorInfo = value;
+        set => instigatorInfo = value;
     }
 
     /// <summary>
@@ -72,10 +72,7 @@ public abstract class TaleNewsNegativeIndividual : TaleNews
 
     internal override void SelfVerify()
     {
-        if (LocationOfOccurence == null)
-        {
-            LocationOfOccurence = LocationInfo.EmptyLocationInfo;
-        }
+        LocationOfOccurence ??= LocationInfo.EmptyLocationInfo;
     }
 
     public override string GetDetailsPrintout()

@@ -10,7 +10,7 @@ public static class FactionUtilities
     /// <param name="subject"></param>
     /// <param name="other"></param>
     /// <returns></returns>
-    public static int ObtainFactionGoodwillSafely(Faction subject, Faction other)
+    private static int ObtainFactionGoodwillSafely(Faction subject, Faction other)
     {
         if (subject == other)
         {

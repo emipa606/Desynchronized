@@ -17,11 +17,11 @@ public class LocationInfo : IExposable
         positionInMap = position;
     }
 
-    public Map Map => mapInWorld;
+    private Map Map => mapInWorld;
 
-    public IntVec3 Position => positionInMap;
+    private IntVec3 Position => positionInMap;
 
-    public static LocationInfo EmptyLocationInfo => new LocationInfo(null, IntVec3.Invalid);
+    public static LocationInfo EmptyLocationInfo => new(null, IntVec3.Invalid);
 
     public void ExposeData()
     {

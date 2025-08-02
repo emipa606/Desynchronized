@@ -30,8 +30,7 @@ public class Transpiler_WorldPawnCleaner_GC
         return PresenceOfRuntimeGC;
     }
 
-    [HarmonyTranspiler]
-    public static IEnumerable<CodeInstruction> ManipulateTalePawnList(IEnumerable<CodeInstruction> instructions)
+    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
         // Find the 2nd "call" after the 6th "ldstr"
         // Insert a method after that position to manipulate the list.
@@ -64,8 +63,8 @@ public class Transpiler_WorldPawnCleaner_GC
         // Insert new commands.
         var insertionList = new List<CodeInstruction>
         {
-            new CodeInstruction(OpCodes.Ldloc_1),
-            new CodeInstruction(OpCodes.Call,
+            new(OpCodes.Ldloc_1),
+            new(OpCodes.Call,
                 typeof(TalePawnListManipulator).GetMethod("ManipulateListOfPawnsUsedByTales"))
         };
         instructionList.InsertRange(i, insertionList);

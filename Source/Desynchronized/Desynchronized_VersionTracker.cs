@@ -25,10 +25,7 @@ public class Desynchronized_VersionTracker : UtilityWorldObject
 
         if (Scribe.mode == LoadSaveMode.LoadingVars)
         {
-            if (versionOfMod == null)
-            {
-                versionOfMod = typeof(DesynchronizedMain).Assembly.GetName().Version.ToString();
-            }
+            versionOfMod ??= typeof(DesynchronizedMain).Assembly.GetName().Version.ToString();
         }
 
         // Sanity check; only do this after the vars are loaded.

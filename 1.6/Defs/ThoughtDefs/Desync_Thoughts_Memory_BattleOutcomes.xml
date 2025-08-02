@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThoughtDef Name="BattleOutcomeMemory" Abstract="True">
+    <stackLimit>3</stackLimit>
+  </ThoughtDef>
+  <ThoughtDef ParentName="BattleOutcomeMemory">
+    <defName>AttackRepelled</defName>
+    <durationDays>0.5</durationDays>
+    <nullifyingTraits>
+      <li>Bloodlust</li>
+    </nullifyingTraits>
+    <stages>
+      <li>
+        <label>attack repelled</label>
+        <description>We have defended ourselves against hostile incursions.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="BattleOutcomeMemory">
+    <defName>AttackRepelled_Bloodlust</defName>
+    <durationDays>0.5</durationDays>
+    <requiredTraits>
+      <li>Bloodlust</li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>attack repelled</label>
+        <description>We have demonstrated our power against hostile incursions. Let's hope we don't have to see them again.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="BattleOutcomeMemory">
+    <defName>AttackRepelled_Pacifist</defName>
+    <durationDays>0.5</durationDays>
+    <!--
+        <requiredTraits>
+            <li>Pacifist</li>
+        </requiredTraits>
+        -->
+    <stages>
+      <li>
+        <label>attack repelled</label>
+        <description>I don't agree with solving problems using violence, but good grief, it is finally over.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="BattleOutcomeMemory">
+    <defName>NoQuarterGiven</defName>
+    <durationDays>0.75</durationDays>
+    <nullifyingTraits>
+      <li>Psychopath</li>
+      <li>Bloodlust</li>
+    </nullifyingTraits>
+    <stages>
+      <li>
+        <label>no quarter given</label>
+        <description>We have defended ourselves against hostile incursions, but we gave them no quarter.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="BattleOutcomeMemory">
+    <defName>NoQuarterGiven_Psychopath</defName>
+    <durationDays>0.75</durationDays>
+    <requiredTraits>
+      <li>Psychopath</li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>no quarter given</label>
+        <description>We have defended ourselves against hostile incursions, and we gave them no quarter.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="BattleOutcomeMemory">
+    <defName>NoQuarterGiven_Bloodlust</defName>
+    <durationDays>0.75</durationDays>
+    <requiredTraits>
+      <li>Bloodlust</li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>no quarter given</label>
+        <description>We have demonstrated our absolute might against hostile incursions. May them cower from the very sight of our presence!</description>
+        <baseMoodEffect>7</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef ParentName="BattleOutcomeMemory">
+    <defName>NoQuarterGiven_Pacifist</defName>
+    <durationDays>0.75</durationDays>
+    <!--
+        <requiredTraits>
+            <li>Pacifist</li>
+        </requiredTraits>
+        -->
+    <stages>
+      <li>
+        <label>no quarter given</label>
+        <description>I don't agree with solving problems using violence, and honestly, this has gone too far.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>

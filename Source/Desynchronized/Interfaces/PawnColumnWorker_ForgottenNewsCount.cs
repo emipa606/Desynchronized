@@ -8,7 +8,7 @@ namespace Desynchronized.Interfaces;
 
 public class PawnColumnWorker_ForgottenNewsCount : PawnColumnWorker_Text
 {
-    private int GetForgottenNewsCount(Pawn pawn)
+    private static int getForgottenNewsCount(Pawn pawn)
     {
         return (int)(pawn.GetNewsKnowledgeTracker() != null
             ? pawn.GetNewsKnowledgeTracker().GetAllForgottenNewsReferences().Count()
@@ -17,13 +17,13 @@ public class PawnColumnWorker_ForgottenNewsCount : PawnColumnWorker_Text
 
     protected override string GetTextFor(Pawn pawn)
     {
-        return GetForgottenNewsCount(pawn).ToString();
+        return getForgottenNewsCount(pawn).ToString();
     }
 
     protected override string GetTip(Pawn pawn)
     {
         var builder = new StringBuilder("ForgottenNewsTip_01".Translate());
-        builder.Append(GetForgottenNewsCount(pawn));
+        builder.Append(getForgottenNewsCount(pawn));
         builder.AppendLine("\n");
         builder.Append("ForgottenNewsTip_02".Translate());
 

@@ -36,9 +36,6 @@ public class DesynchronizedVersionTracker : UtilityWorldObject
 
         // For some reason this value did not get included in the save-file.
         // Just making sure the string is stored properly, so it could be saved properly too.
-        if (versionOfMod == null)
-        {
-            versionOfMod = typeof(DesynchronizedMain).Assembly.GetName().Version.ToString();
-        }
+        versionOfMod ??= typeof(DesynchronizedMain).Assembly.GetName().Version.ToString();
     }
 }
