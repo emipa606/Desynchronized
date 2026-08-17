@@ -3,6 +3,7 @@ using Verse;
 
 namespace Desynchronized.TNDBS;
 
+[Obsolete("Obsolete")]
 public abstract class TaleNewsNeutralIndividual : TaleNews
 {
     private Pawn receiver;

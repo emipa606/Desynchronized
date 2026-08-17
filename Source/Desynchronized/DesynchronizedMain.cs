@@ -26,11 +26,15 @@ public class DesynchronizedMain : ModBase
 
     public override string ModIdentifier => MODID;
 
-    // public static InformationKnowledgeStorage InfoKnowStorage { get; private set; }
     public static TaleNewsDatabase TaleNewsDatabaseSystem { get; private set; }
     public static Linker_ArrivalActionAndSender ArrivalActionAndSenderLinker { get; private set; }
+
+    [Obsolete("Obsolete, depends on HugsLib")]
     private static DesynchronizedVersionTracker DesynchronizedVersionTracker { get; set; }
+
+    [Obsolete("Obsolete, depends on HugsLib")]
     public static HallOfFigures TheHallOfFigures { get; private set; }
+
     private static SettingHandle<bool> SettingHandle_AutoPauseNewsInterface { get; set; }
     private static SettingHandle<bool> SettingHandle_OnlySpreadInSameRoom { get; set; }
     private static SettingHandle<bool> SettingHandle_VerboseLogging { get; set; }

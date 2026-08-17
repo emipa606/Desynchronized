@@ -11,6 +11,7 @@ namespace Desynchronized.TNDBS;
 ///     The namespace name "TNDBS" is derived from the name of this class:
 ///     Tale-News-Data-Base-System.
 /// </summary>
+[Obsolete("Obsolete")]
 public class TaleNewsDatabase : UtilityWorldObject
 {
     /// <summary>

@@ -6,4 +6,33 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="Desynchronized/Desynchronized.csproj" />
+  <Folder Name="/XML/1.6/Defs/Misc/PawnTableDefs/">
+    <File Path="../1.6/Defs/Misc/PawnTableDefs/PawnTables_Desynchronized.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/Stats/">
+    <File Path="../1.6/Defs/Stats/Desync_Stats_Pawns_Social.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/TraitDefs/">
+    <File Path="../1.6/Defs/TraitDefs/Desync_Traits_Spectrum.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/ThoughtDefs/">
+    <File Path="../1.6/Defs/ThoughtDefs/Desync_Thoughts_Memory_Banishment.xml" />
+    <File Path="../1.6/Defs/ThoughtDefs/Desync_Thoughts_Memory_BattleOutcomes.xml" />
+    <File Path="../1.6/Defs/ThoughtDefs/Desync_Thoughts_Memory_Kidnap.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/Misc/PawnColumnDefs/">
+    <File Path="../1.6/Defs/Misc/PawnColumnDefs/PawnColumns_DesyncIntegrated.xml" />
+  </Folder>
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/Desync_Dialogs_v010700.xml" />
+    <File Path="../Languages/English/Keyed/Desync_MainTabs_v010700.xml" />
+    <File Path="../Languages/English/Keyed/Desync_Menu_Options_v010600.xml" />
+    <File Path="../Languages/English/Keyed/Desync_Messages.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/Misc/MainButtonDefs/">
+    <File Path="../1.6/Defs/Misc/MainButtonDefs/MainButtons_Desynchronized.xml" />
+  </Folder>
 </Solution>

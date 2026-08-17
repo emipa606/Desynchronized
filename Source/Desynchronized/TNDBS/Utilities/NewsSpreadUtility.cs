@@ -101,9 +101,7 @@ public class NewsSpreadUtility
     private static void SelectNewsDistinctly(Pawn initiator, Pawn receiver, out TaleNewsReference result)
     {
         var listInitiator = initiator.GetNewsKnowledgeTracker()?.AllNewsReferences_ReadOnlyList;
-        // DesynchronizedMain.TaleNewsDatabaseSystem.ListAllAwarenessOfPawn(initiator);
         var listReceiver = receiver.GetNewsKnowledgeTracker()?.AllNewsReferences_ReadOnlyList;
-        // DesynchronizedMain.TaleNewsDatabaseSystem.ListAllAwarenessOfPawn(receiver);
 
         // Distinct List
         var listDistinct = new List<TaleNewsReference>();
@@ -128,7 +126,6 @@ public class NewsSpreadUtility
 
     private static void AttemptToTransmitNews(Pawn receiver, TaleNewsReference news)
     {
-        // DesynchronizedMain.LogError("Attempting to transmit " + news.ToString());
         if (receiver == null)
         {
             return;
@@ -136,7 +133,6 @@ public class NewsSpreadUtility
 
         if (news == null || news.IsDefaultReference())
         {
-            // DesynchronizedMain.LogError("It was a null news. Nothing was done.");
             return;
         }
 

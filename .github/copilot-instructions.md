@@ -1,43 +1,58 @@
-# GitHub Copilot Instructions
+# GitHub Copilot Instructions for Desynchronized: Tales and News (Continued) Mod
 
 ## Mod Overview and Purpose
-**Mod Name:** Desynchronized: Tales and News (Continued)
 
-This mod is a continuation of Vectorial1024's original project, aiming to provide a more immersive storytelling experience in RimWorld by altering how information spreads among colonists. It challenges the strange notion that colonists know about all events happening instantly across the map, promoting a more realistic simulation where information spreads through interaction and proximity.
+**Mod Name**: Desynchronized: Tales and News (Continued)  
+**Author**: Vectorial1024
+
+**Purpose**: This mod is a continuation of the "ClosedDoors" mod by MoobyNooby, aimed at enhancing the realism of how information spreads among colonists in RimWorld. The goal is to create a more immersive experience by implementing a realistic gossip system, where colonists only learn about events through physical proximity and communication, rather than omniscience.
 
 ## Key Features and Systems
-- **Event Awareness:** Colonists will generally not react to off-map events, promoting a realistic awareness level.
-- **News Spread:** News about past events can be spread orally through colonists during social interactions.
-- **Event Significance:** Some news are rated as more important based on the colonist's personal values or traits.
-- **Custom Events:** Support for new events such as Butchered Humanoid-news and Trait Value news have been added.
 
-**Compatibility:**
-- Requires HugsLib and should be loaded after it.
-- May have compatibility issues with RuntimeGC-mods depending on their configuration.
+- **Localized Knowledge**: Colonists only learn about events within their immediate vicinity, particularly in the same room or when in line of sight of the event, allowing a more realistic dispersion of information.
+- **Inter-colonist Gossip**: Colonists have a chance to share important events during conversations, adding depth to interactions.
+- **Trait Integration**: Supports varying reactions based on colonist traits, adding yet another layer of realism to their responses.
+- **Event Prioritization**: Certain events are prioritized as "important" and are more likely to spread among colonists.
 
 ## Coding Patterns and Conventions
-- **Class and File Naming:** The project uses a clear and descriptive naming convention, for example, `PostFix_Desync_TNPawnDied_GenericThoughts`.
-- **Method Naming:** Methods are typically action-oriented, e.g., `EstablishRelationship`, `ForgetRandomly`.
-- **Access Modifiers:** All classes and methods are prefixed with appropriate access modifiers (e.g., `public`, `private`).
+
+- **C# Structure**: The mod organizes its C# files primarily under the `Compatibility` folder to ensure that harmony patches and other integration scripts are easy to locate.
+- **Class Naming**: Follow PascalCase for class names and methods. For instance, `Psycho_TraitDefOf` and `ModDetector`.
+- **Method Use**: Utilize Harmony's `Postfix` and `Prepare` methods for modifying the game’s original functions.
+- **File Organization**: Keep each type in its own file unless closely related to maintain readability and modularity of the code.
 
 ## XML Integration
-The mod heavily uses XML files for defining game objects like traits and thoughts, following the RimWorld modding conventions. Ensure coherence between XML definitions and C# code implementation by maintaining naming consistency.
+
+- **Def Modifications**: Customize UI elements such as main buttons and pawn columns within XML files located in `/Defs/Misc/` and other directories like `/Defs/ThoughtDefs/` for thought modifications.
+- **Stat and Thought Definitions**: XML definitions are heavily employed for adding new stats and thoughts, like the files found under `/Defs/Stats/` and `/Defs/ThoughtDefs/`.
+- **Tag Usage**: Utilize XML tags consistently to ensure proper loading and reference of definitions.
 
 ## Harmony Patching
-The mod makes extensive use of Harmony patches to alter and extend the behavior of existing game systems. Ensure:
-- **Non-Destructive Coding:** Harmony patches should be designed to enhance or extend functionalities without breaking the core functionality.
-- **Prefix and Postfix:** Use prefix and postfix patches where appropriate. For example, `PostFix_Pawn_PreTraded` adjusts behavior after the trading event.
-- **Transpilers:** Use for more complex changes to the IL code execution like bug fixes.
+
+- **Purpose**: Used to inject additional behavior into existing game logic without modifying original game files.
+- **Patch Locations**: Notable patches exist in files such as `TaleNewsPawnDied_TryProcessAsExecutionEvent.cs`, which handle specific event processing scenarios using the `Postfix` method for reactive changes.
+- **Preparation Methods**: Implement `Prepare` methods to ensure patches are only applied when necessary, based on conditions like mod compatibility.
 
 ## Suggestions for Copilot
-1. **Enhancing News Systems:** Implement new features that allow colonists to react gradually to news based on social skills or proximity.
-2. **Event Details:** Add additional parameters to tailor event significance better, like emotional impact based on relationships.
-3. **Performance Optimization:** Suggest ways to improve the performance of news spreading algorithms, particularly in very large colonies.
-4. **Safety Checks:** Implement methods to verify data integrity, especially after game updates or when other mods interact with Desynchronized's features.
 
-### Summary of Classes and Files
-A detailed breakdown of C# classes and files is provided above, with key handlers for various pawn-related events and utilities for seamlessly integrating news systems. Developers are encouraged to explore these files for a deeper understanding of the mod's mechanics and extend them as necessary for new functionality.
+1. **Ensure XML Correctness**: When working with XML files, suggest using predefined XML schema from RimWorld for definitions like `MainButtonDef` or `ThoughtDef`.
+2. **Code Completion**: Provide completion for often-used Harmony methods like `Postfix` and `Prepare` alongside explanations of when to use them.
+3. **Error Prevention**: Recommend copilot to check the compatibility context, especially when these relate to known incompatible mods such as RuntimeGC.
+4. **Enhancing Readability**: Guide users to separate their code by compatibility, utility, and core functionality, keeping in line with the organization found in `Desynchronized`.
+5. **Documentation Assistance**: Suggest autocompleting method documentation by summarizing what each method does to ensure clarity for future collaborators.
 
----
+By using these guidelines and structures, developers can continue to maintain and expand upon the "Desynchronized: Tales and News (Continued)" mod, ensuring it remains compatible, efficient, and a valuable addition to the RimWorld mod community.
 
-Happy modding in the RimWorld universe! Your contributions could very well be the news among colonists.
+## Project Solution Guidelines
+- Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
+- Use these in-solution XML files as the primary files for reference and modification.
+- The `.github/copilot-instructions.md` file is included in the solution under the `.github` solution folder, so it should be read/modified from within the solution instead of using paths outside the solution. Update this file once only, as it and the parent-path solution reference point to the same file in this workspace.
+- When making functional changes in this mod, ensure the documented features stay in sync with implementation; use the in-solution `.github` copy as the primary file.
+- In the solution is also a project called Assembly-CSharp, containing a read-only version of the decompiled game source, for reference and debugging purposes.
+- For any new documentation, update this copilot-instructions.md file rather than creating separate documentation files.
+
+
+## Hard rules (must follow)
+- Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
+- Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+

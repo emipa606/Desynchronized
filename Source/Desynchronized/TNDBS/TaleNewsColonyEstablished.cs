@@ -3,6 +3,7 @@ using Verse;
 
 namespace Desynchronized.TNDBS;
 
+[Obsolete("Obsolete")]
 public class TaleNewsColonyEstablished : TaleNewsNeutralIndividual
 {
     public override float CalculateNewsImportanceForPawn(Pawn pawn, TaleNewsReference refernce)

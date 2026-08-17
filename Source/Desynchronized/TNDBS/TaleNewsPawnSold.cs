@@ -89,15 +89,13 @@ public class TaleNewsPawnSold : TaleNewsNegativeIndividual
                 }
             }
         }
-        else if (PrimaryVictim.RaceProps.Humanlike)
+        else if (PrimaryVictim.RaceProps.Humanlike &&
+                 PrimaryVictim.IsPrisonerOfColony &&
+                 ThoughtUtility.CanGetThought(recipient, Desynchronized_ThoughtDefOf.KnowPrisonerSold, true))
         {
             // Some prisoner was sold
-            if (PrimaryVictim.IsPrisonerOfColony &&
-                ThoughtUtility.CanGetThought(recipient, Desynchronized_ThoughtDefOf.KnowPrisonerSold, true))
-            {
-                recipient.needs.mood.thoughts.memories.TryGainMemory(Desynchronized_ThoughtDefOf.KnowPrisonerSold,
-                    Instigator);
-            }
+            recipient.needs.mood.thoughts.memories.TryGainMemory(Desynchronized_ThoughtDefOf.KnowPrisonerSold,
+                Instigator);
         }
 
         // Relationship was sold, if there is any

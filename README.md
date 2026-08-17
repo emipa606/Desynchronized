@@ -1,6 +1,6 @@
 # [Desynchronized: Tales and News (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2222607126)
 
-![Image](https://i.imgur.com/buuPQel.png)
+![Image](https://img.litet.net/logos/Info.png)
 
 Update of Vectorial1024s mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1573233249
@@ -10,9 +10,9 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1573233249
 - Added option that only pawns in the same room or in range and sight of the event (outside) knows of it instantly. The normal behaviour is that all pawns on the same map knows all events instantly.
 - Added support for [[SYR] Trait Value](https://steamcommunity.com/sharedfiles/filedetails/?id=2451324814)
 
-![Image](https://i.imgur.com/pufA0kM.png)
+![Image](https://img.litet.net/logos/Notice.png)
 	
-![Image](https://i.imgur.com/Z4GOv8H.png)
+![Image](https://img.litet.net/logos/OriginalDescription.png)
 
 *Information spreads from one to another.*
 
@@ -70,13 +70,13 @@ In the GitHub page, you will find:
 That's all. Wish y'all a successful run on the Rim!
 
 
-![Image](https://i.imgur.com/PwoNOj4.png)
+![Image](https://img.litet.net/logos/ReportingIssues.png)
 
 
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
+-  Always post your log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404)
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
@@ -84,4 +84,4 @@ That's all. Wish y'all a successful run on the Rim!
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/Desynchronized?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2222607126) | tags:  communication, information
+[![Image](https://img.shields.io/github/v/release/emipa606/Desynchronized?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2222607126) | communication, information

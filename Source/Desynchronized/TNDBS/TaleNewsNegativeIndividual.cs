@@ -4,6 +4,7 @@ using Verse;
 
 namespace Desynchronized.TNDBS;
 
+[Obsolete("Obsolete")]
 public abstract class TaleNewsNegativeIndividual : TaleNews
 {
     private InstigationInfo instigatorInfo;

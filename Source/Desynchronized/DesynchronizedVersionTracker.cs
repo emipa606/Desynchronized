@@ -4,6 +4,7 @@ using Verse;
 
 namespace Desynchronized;
 
+[Obsolete("Obsolete, try to leave HugsLib")]
 public class DesynchronizedVersionTracker : UtilityWorldObject
 {
     // We will do "previous version" and "current version"

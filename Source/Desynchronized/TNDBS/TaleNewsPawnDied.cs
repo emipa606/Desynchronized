@@ -20,7 +20,7 @@ public class TaleNewsPawnDied : TaleNewsNegativeIndividual
 
     private DeathBrutality brutalityDegree;
 
-    private Hediff culpritHediff;
+    private HediffDef culpritHediffDef;
 
     private DamageDef killingBlowDamageType;
 
@@ -32,8 +32,6 @@ public class TaleNewsPawnDied : TaleNewsNegativeIndividual
 
     private TaleNewsPawnDied(Pawn victim, DamageInfo? dinfo) : base(victim, InstigationInfo.NoInstigator)
     {
-        // DesynchronizedMain.LogError("Dumping stacktrace: " + Environment.StackTrace);
-
         methodOfDeath = DeathMethod.NON_EXECUTION;
 
         if (!dinfo.HasValue)
@@ -51,7 +49,8 @@ public class TaleNewsPawnDied : TaleNewsNegativeIndividual
 
     public TaleNewsPawnDied(Pawn victim, DamageInfo? dinfo, Hediff culprit) : this(victim, dinfo)
     {
-        culpritHediff = culprit;
+        CulpritHediff = culprit;
+        culpritHediffDef = culprit?.def;
     }
 
     public TaleNewsPawnDied(Pawn victim, DeathBrutality brutality) : base(victim, InstigationInfo.NoInstigator)
@@ -66,17 +65,13 @@ public class TaleNewsPawnDied : TaleNewsNegativeIndividual
     /// <summary>
     ///     Defaults to HUMANE if something went wrong.
     /// </summary>
-    public DeathBrutality BrutalityDegree
-    {
-        get => brutalityDegree;
-        private set => brutalityDegree = value;
-    }
+    public DeathBrutality BrutalityDegree => brutalityDegree;
 
     public DamageDef KillingBlowDamageDef => killingBlowDamageType;
 
     public DeathMethod MethodOfDeath => methodOfDeath;
 
-    public Hediff CulpritHediff => culpritHediff;
+    public Hediff CulpritHediff { get; }
 
     [Obsolete("Use constructors instead.")]
     public static TaleNewsPawnDied GenerateAsExecution(Pawn victim, DeathBrutality brutality)
@@ -101,7 +96,7 @@ public class TaleNewsPawnDied : TaleNewsNegativeIndividual
         Scribe_Values.Look(ref methodOfDeath, "methodOfDeath", DeathMethod.INDETERMINATE);
         Scribe_Values.Look(ref brutalityDegree, "brutalityDegree", DeathBrutality.HUMANE);
         Scribe_Defs.Look(ref killingBlowDamageType, "killingBlowDamageType");
-        Scribe_Deep.Look(ref culpritHediff, "culpritHediff");
+        Scribe_Defs.Look(ref culpritHediffDef, "culpritHediffDef");
     }
 
     /// <summary>
@@ -382,18 +377,13 @@ public class TaleNewsPawnDied : TaleNewsNegativeIndividual
         float result = pawn.GetSocialProximityScoreForOther(Victim);
         // We have 2500 tick for 1 RW hour; hence, 60000 tick for 1 RW day
         // Shock grade scrapped in favour of simple boolean "shocking news" flag
-        // result += (int)reference.ShockGrade * Mathf.Pow(0.5f, (1.0f / (60000 * 15)) * (Find.TickManager.TicksGame - reference.TickReceived));
-        //float victimKindScore = Victim.RaceProps.Animal ? 1 : 10;
         // First determine thought by relations
         var potentialGivenThought =
             pawn.GetMostImportantRelation(Victim)?.GetGenderSpecificDiedThought(Victim);
         // If there exists none, then determine by factions
-        if (potentialGivenThought == null)
+        if (potentialGivenThought == null && pawn.Faction != null && pawn.Faction == Victim.Faction)
         {
-            if (pawn.Faction != null && pawn.Faction == Victim.Faction)
-            {
-                potentialGivenThought = ThoughtDefOf.KnowColonistDied;
-            }
+            potentialGivenThought = ThoughtDefOf.KnowColonistDied;
         }
 
         float relationalDeathImpact;
@@ -467,11 +457,12 @@ public class TaleNewsPawnDied : TaleNewsNegativeIndividual
                 KillingBlowDamageDef.deathMessage.Formatted(Victim.LabelShort.CapitalizeFirst(),
                     Victim.Named("PAWN"));
         }
-        else if (culpritHediff != null)
+        else if (culpritHediffDef != null || CulpritHediff != null)
         {
             // Died due to health conditions.
+            var hediffDef = culpritHediffDef ?? CulpritHediff.def;
             deathMessage = "PawnDiedBecauseOf".Translate(Victim.LabelShort.CapitalizeFirst(),
-                culpritHediff.def.LabelCap, Victim.Named("PAWN"));
+                hediffDef.LabelCap, Victim.Named("PAWN"));
         }
         else
         {

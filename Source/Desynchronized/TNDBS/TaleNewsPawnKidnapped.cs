@@ -99,7 +99,6 @@ public class TaleNewsPawnKidnapped : TaleNewsNegativeIndividual
         if (genderSpecificLostThought != null)
         {
             new IndividualThoughtToAdd(genderSpecificLostThought, recipient, KidnapVictim).Add();
-            // outIndividualThoughts.Add(new IndividualThoughtToAdd(genderSpecificDiedThought, potentiallyRelatedPawn, victim, 1f, 1f));
         }
 
         // TODO
